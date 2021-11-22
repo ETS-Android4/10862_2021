@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 @TeleOp(name = "Blue Teleop")
 public class TeleOpTest extends MatchOpMode {
     // Motors
-    private MotorEx leftFront, leftCenter, leftRear, rightRear, rightCenter, rightFront;
+    private MotorEx leftFront,  leftRear, rightRear,  rightFront;
     private MotorEx liftMotor;
     private MotorEx intakeMotor;
 
@@ -51,7 +51,7 @@ public class TeleOpTest extends MatchOpMode {
     public void robotInit() {
 
         // Intake hardware Initializations
-        intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
+        intakeMotor = new MotorEx(hardwareMap, "intake");
         // Lift hardware initializations
         //liftMotor = new MotorEx(hardwareMap, "lift");
 
