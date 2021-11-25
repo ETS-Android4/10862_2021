@@ -66,12 +66,12 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
  */
 @Config
 public class SampleTankDrive extends TankDrive {
-    public static PIDCoefficients AXIAL_PID = new PIDCoefficients(0, 0, 0);
-    public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0, 0, 0);
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(0, 0, 0);
-
-    public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.00008, 0, 0); //kP 0.01
-    public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.00016, 0, 0); //kP 0.01
+    public static PIDCoefficients AXIAL_PID = new PIDCoefficients(6, 0, 0);
+    public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.0000385, 0, 0);
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(12.8, 0, 0);
+//kP = 0.00008
+    public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.00008, 0, 0.000008); //kP 0.01
+    public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.000008, 0, 0.004); //kP 0.01
 
     private PIDController leftDriveVeloPID;
     private PIDController rightDriveVeloPID;
@@ -285,8 +285,7 @@ public class SampleTankDrive extends TankDrive {
                 double targetOmega = targetState.getV();
                 double targetAlpha = targetState.getA();
                 setDriveSignal(new DriveSignal(new Pose2d(
-                        0, 0, targetOmega + correction
-                ), new Pose2d(
+                        0, 0, targetOmega + correction), new Pose2d(
                         0, 0, targetAlpha
                 )));
 

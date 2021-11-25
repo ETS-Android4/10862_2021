@@ -12,8 +12,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
-@Disabled
-@Autonomous(name = "Blue Park - Carousel", group = "BLUE")
+@Autonomous(name = "Test Auton", group = "BLUE")
 public class BlueParkCarouselAuton extends MatchOpMode {
     public static double startPoseX = 0;
     public static double startPoseY = 0;
@@ -21,14 +20,12 @@ public class BlueParkCarouselAuton extends MatchOpMode {
 
     // Motors
     private MotorEx leftFront, leftRear, rightRear, rightFront;
-    private MotorEx intakeMotor;
 
     // Gamepad
     private GamepadEx driverGamepad;
 
     // Subsystems
     private Drivetrain drivetrain;
-    private Intake intake;
 
 
     @Override
@@ -36,9 +33,6 @@ public class BlueParkCarouselAuton extends MatchOpMode {
         // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-
-        intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
-        intake = new Intake(intakeMotor, telemetry);
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
@@ -51,7 +45,7 @@ public class BlueParkCarouselAuton extends MatchOpMode {
 
     @Override
     public void matchStart() {
-        schedule(new BlueParkCarouselCommand(drivetrain, intake, telemetry)
+        schedule(new BlueParkCarouselCommand(drivetrain, telemetry)
         );
 
     }
