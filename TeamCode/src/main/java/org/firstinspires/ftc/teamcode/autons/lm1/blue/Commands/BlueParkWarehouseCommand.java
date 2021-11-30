@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.lm1.blue;
+package org.firstinspires.ftc.teamcode.autons.lm1.blue.Commands;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 

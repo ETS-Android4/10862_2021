@@ -27,16 +27,16 @@ public class Lift extends SubsystemBase {
     private boolean automatic;
 
     public static double CPR = 384.5; //383.6
-    public double UP_SPEED = 0.5;
-    public double DOWN_SPEED = -0.5;
+    public double UP_SPEED = 0.1;
+    public double DOWN_SPEED = -0.1;
 
     private double encoderOffset = 0;
 
     public int RESTING_POSITION = 0;
-    public static int LOW_POSITION = 300;
-    public static int MID_POSITION = 600;
-    public static int HIGH_POSITION = 900;
-    public static int CAP_POSITION = 1200;
+    public static int LOW_POSITION = 80;
+    public static int MID_POSITION = 80;
+    public static int HIGH_POSITION = 1;
+    public static int CAP_POSITION = 1;
 
     private int liftPosition = 0;
 
@@ -107,7 +107,6 @@ public class Lift extends SubsystemBase {
     public void liftResting() {
         // TODO: CHANGE
         controller.setP(0.015);
-
         automatic = true;
         controller.setSetPoint(RESTING_POSITION);
     }
