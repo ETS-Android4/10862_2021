@@ -15,7 +15,7 @@ public class BlueWarehouseCommandR extends SequentialCommandGroup {
         addCommands(
                 //distance is in inches
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, 315, true),
+                new TurnToCommand(drivetrain, 225, true),
                 //arm
                 new DriveForwardCommand(drivetrain, -24),
                 //servo deposit
@@ -23,7 +23,9 @@ public class BlueWarehouseCommandR extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 0),
                 new DriveForwardCommand(drivetrain, 24.5),
                 new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 30)
+                new DriveForwardCommand(drivetrain, 35)
+                //distance is in inches
+                //The weird makes the robot go opposite direction
         );
     }
 }
