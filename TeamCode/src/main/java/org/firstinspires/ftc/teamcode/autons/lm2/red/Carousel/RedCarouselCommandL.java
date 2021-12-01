@@ -15,16 +15,17 @@ public class RedCarouselCommandL extends SequentialCommandGroup {
         addCommands(
                 //distance is in inches
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, 45, true),
+                new TurnToCommand(drivetrain, 315, true),
                 //arm
                 new DriveForwardCommand(drivetrain, -24),
                 //servo deposit
                 new DriveForwardCommand(drivetrain, 24),
                 new TurnToCommand(drivetrain, 0),
                 new DriveForwardCommand(drivetrain, 24.5),
-                new TurnToCommand(drivetrain, 170),
+                new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 24),
                 //carousel
+                new DriveForwardCommand(drivetrain, -2),
                 new TurnToCommand(drivetrain, 180),
                 new DriveForwardCommand(drivetrain, 24)
         );
