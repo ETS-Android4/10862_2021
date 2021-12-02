@@ -14,6 +14,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.commands.drive.DefaultDriveCommand;
@@ -21,6 +22,7 @@ import org.firstinspires.ftc.teamcode.commands.drive.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 
+import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
@@ -32,6 +34,7 @@ public class TeleOpTest extends MatchOpMode {
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;
     private MotorEx liftMotor;
     private MotorEx intakeMotor;
+    private ServoEx armServo, dropServo;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
@@ -40,12 +43,15 @@ public class TeleOpTest extends MatchOpMode {
     private Drivetrain drivetrain;
     private Lift lift;
     private Intake intake;
+    private ArmServos armServos;
 
     //Buttons
     private Button intakeButton, halfSpeedButton, outtakeButton;
     private Button slowModeTrigger;
     public Button liftUpButton, liftDownButton;
     public Button liftRestButton, liftLowButton, liftMidButton, liftHighButton, liftCapButton;
+    public Button armServoHomeButton, armServoDropButton;
+    public Button dropServoClosebutton, dropServoOpenButton;
 
     @Override
     public void robotInit() {
@@ -54,12 +60,16 @@ public class TeleOpTest extends MatchOpMode {
         intakeMotor = new MotorEx(hardwareMap, "intake");
         // Lift hardware initializations
         liftMotor = new MotorEx(hardwareMap, "lift");
+        // Servos hardware initializations
+        armServo = new SimpleServo(hardwareMap,"arm", 0, 180);
+        dropServo = new SimpleServo(hardwareMap, "drop",0,180);
 
         // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap),telemetry);
         drivetrain.init();
         intake = new Intake(intakeMotor, telemetry);
         lift = new Lift(liftMotor, telemetry);
+        armServos = new ArmServos(armServo, dropServo, telemetry);
 
         //gamepad1.setJoystickDeadzone(0.0f);
         driverGamepad = new GamepadEx(gamepad1);
@@ -71,19 +81,24 @@ public class TeleOpTest extends MatchOpMode {
     @Override
     public void configureButtons() {
 
-        slowModeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
-        intakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER).whileHeld(intake::intake).whenReleased(intake::stop));
-        outtakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER).whileHeld(intake::intake).whenReleased(intake::stop));
+        slowModeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+        intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
+        outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
 
-        liftUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(lift::liftLow));
-        liftDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whenPressed(lift::liftResting));
-        liftRestButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN).whenPressed(lift::liftResting));
-        liftLowButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT).whenPressed(lift::liftLow));
-        liftMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT).whenPressed(lift::liftMid));
-        liftHighButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP).whenPressed(lift::liftHigh));
-        liftCapButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X).whenPressed(lift::liftCap));
+        liftUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP).whenPressed(lift::liftLow));
+        liftDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN).whenPressed(lift::liftResting));
+        liftRestButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(lift::liftResting));
+        liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
+        liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
+        liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
+        liftCapButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT).whenPressed(lift::liftCap));
+        armServoHomeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::reset));
 
-
+        //box score = right bumper
+        //open box =  left bumper
+        //box and arm rest = A
+        //carosl = Right Trigger
+        //carosl = Left Trigger
 /*
         singleFeedButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)).whenPressed(new FeedRingsCommand(feeder, 1));
         // TRIPLE SHOT SPEED *********************

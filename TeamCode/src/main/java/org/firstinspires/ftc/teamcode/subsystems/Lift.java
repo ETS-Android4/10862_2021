@@ -21,6 +21,7 @@ import java.util.logging.Level;
 public class Lift extends SubsystemBase {
     private Telemetry telemetry;
     private MotorEx liftMotor;
+
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.01, 0.0001, 0.003, 0);
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
