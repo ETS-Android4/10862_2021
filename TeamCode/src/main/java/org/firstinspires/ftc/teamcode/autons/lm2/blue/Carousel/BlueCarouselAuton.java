@@ -49,8 +49,8 @@ public void robotInit() {
     // Subsystems
     drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
     drivetrain.init();
-    intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
-    liftMotor = new MotorEx(hardwareMap, "liftMotor", Motor.GoBILDA.RPM_435);
+    intakeMotor = new MotorEx(hardwareMap, "intake");
+    liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_435);
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));

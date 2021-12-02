@@ -18,7 +18,7 @@ public class FFRectDetector {
     private final HardwareMap hardwareMap;
     private TeamMarkerPipeline ftclibPipeline;
 
-    public static int CAMERA_WIDTH = 320, CAMERA_HEIGHT = 240;
+    public static int CAMERA_WIDTH = 432, CAMERA_HEIGHT = 240;
     public static OpenCvCameraRotation ORIENTATION = OpenCvCameraRotation.UPRIGHT;
 
     // The constructor is overloaded to allow the use of webcam instead of the phone camera
