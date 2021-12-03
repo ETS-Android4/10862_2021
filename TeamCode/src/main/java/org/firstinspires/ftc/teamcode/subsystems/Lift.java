@@ -22,22 +22,22 @@ public class Lift extends SubsystemBase {
     private Telemetry telemetry;
     private MotorEx liftMotor;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.01, 0.0001, 0.003, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.1, 0, 0, 0);
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
     private boolean automatic;
 
-    public static double CPR = 384.5; //383.6
-    public double UP_SPEED = 0.1;
-    public double DOWN_SPEED = -0.1;
+    public static double CPR = 1425.1; //383.6
+    public static double UP_SPEED = -0.25;
+    public static double DOWN_SPEED = 0.25;
 
     private double encoderOffset = 0;
 
-    public int RESTING_POSITION = 0;
-    public static int LOW_POSITION = 80;
-    public static int MID_POSITION = 80;
-    public static int HIGH_POSITION = 1;
-    public static int CAP_POSITION = 1;
+    public static int RESTING_POSITION = 0;
+    public static int LOW_POSITION = -35;
+    public static int MID_POSITION = -100;
+    public static int HIGH_POSITION = -150;
+    public static int CAP_POSITION = 0;
 
     private int liftPosition = 0;
 
@@ -107,13 +107,11 @@ public class Lift extends SubsystemBase {
     /************************************************************************************************/
     public void liftResting() {
         // TODO: CHANGE
-        controller.setP(0.015);
         automatic = true;
         controller.setSetPoint(RESTING_POSITION);
     }
     public void liftLow() {
         // TODO: CHANGE
-        controller.setP(0.025);
         automatic = true;
         controller.setSetPoint(LOW_POSITION);
 
@@ -121,8 +119,6 @@ public class Lift extends SubsystemBase {
     }
     public void liftMid() {
         // TODO: CHANGE
-        controller.setP(0.025);
-
         automatic = true;
         controller.setSetPoint(MID_POSITION);
 
@@ -131,8 +127,6 @@ public class Lift extends SubsystemBase {
 
     public void liftHigh() {
         // TODO: CHANGE
-        controller.setP(0.025);
-
         automatic = true;
         controller.setSetPoint(HIGH_POSITION);
 
@@ -141,8 +135,6 @@ public class Lift extends SubsystemBase {
 
     public void liftCap() {
         // TODO: CHANGE
-        controller.setP(0.025);
-
         automatic = true;
         controller.setSetPoint(CAP_POSITION);
 
