@@ -67,8 +67,8 @@ public class TeleOpTest extends MatchOpMode {
         //carouse hardware initializations
         carouselMotor = new MotorEx(hardwareMap, "carousel");
         // Servos hardware initializations
-        armServo = new SimpleServo(hardwareMap,"arm", 0, 180);
-        dropServo = new SimpleServo(hardwareMap, "drop",0,180);
+        armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
+        dropServo = new SimpleServo(hardwareMap, "drop",0,360);
 
         // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap),telemetry);
@@ -95,19 +95,22 @@ public class TeleOpTest extends MatchOpMode {
         outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
 
         //lift
-        liftUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP).whenPressed(lift::liftManual));
-        liftDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN).whenPressed(lift::lowerLiftManual));
+        liftUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP).whenPressed(lift::liftManual).whenReleased(lift::stopLift));
+        liftDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN).whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
         liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
         liftCapButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT).whenPressed(lift::liftCap));
+
+        //arm Servo
+        armServoDropButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(armServos::armDrop));
 
         //drop servos
         dropServoOpenButton= (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(armServos::boxOpen));
         dropServoCloseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER).whenPressed(armServos::boxClose));
 
         //reset
-        liftRestButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(lift::lowerLiftManual));
+        liftRestButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(lift::liftManual));
         armServoHomeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::reset));
 
 

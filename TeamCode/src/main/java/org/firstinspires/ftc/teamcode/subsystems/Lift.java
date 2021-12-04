@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Util;
 
 import java.util.logging.Level;
 
@@ -22,7 +23,7 @@ public class Lift extends SubsystemBase {
     private Telemetry telemetry;
     private MotorEx liftMotor;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.1, 0, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.015, 0, 0, 0);
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
     private boolean automatic;
@@ -34,9 +35,9 @@ public class Lift extends SubsystemBase {
     private double encoderOffset = 0;
 
     public static int RESTING_POSITION = 0;
-    public static int LOW_POSITION = -35;
-    public static int MID_POSITION = -100;
-    public static int HIGH_POSITION = -150;
+    public static int LOW_POSITION = -40;
+    public static int MID_POSITION = -90;
+    public static int HIGH_POSITION = -135;
     public static int CAP_POSITION = 0;
 
     private int liftPosition = 0;
@@ -70,6 +71,7 @@ public class Lift extends SubsystemBase {
             double output = controller.calculate(getAngle());
             liftMotor.set(output);
         }
+        Util.logger(this, telemetry, Level.INFO, "arm encoder pos: ", liftMotor.getCurrentPosition());
     }
 
     private double getEncoderDistance() {
