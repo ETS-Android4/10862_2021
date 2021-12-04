@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 @Config
-@TeleOp(name = "Blue Teleop")
+@TeleOp(name = "League Meet 2 TeleOp")
 public class TeleOpTest extends MatchOpMode {
     // Motors
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;

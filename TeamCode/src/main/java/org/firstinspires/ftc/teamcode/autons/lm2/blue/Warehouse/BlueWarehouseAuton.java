@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -13,6 +14,7 @@ import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
+import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
@@ -31,6 +33,7 @@ public static double startPoseHeading = 0;
 private MotorEx leftFront, leftRear, rightRear, rightFront;
 private MotorEx intakeMotor;
 private MotorEx liftMotor;
+    private ServoEx dropServo, armServo;
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -40,6 +43,7 @@ private Drivetrain drivetrain;
 private Intake intake;
 private Lift lift;
 private Vision vision;
+private ArmServos armServos;
 
 @Override
 public void robotInit() {
@@ -48,12 +52,14 @@ public void robotInit() {
     drivetrain.init();
     intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
     liftMotor = new MotorEx(hardwareMap, "liftMotor", Motor.GoBILDA.RPM_435);
+    //TODO: Do I need to change the RPM?
+
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     intake = new Intake(intakeMotor, telemetry);
     lift = new Lift(liftMotor, telemetry);
-}
+    armServos = new ArmServos(armServo, dropServo, telemetry);}
 
 @Override
 public void disabledPeriodic() {
@@ -66,13 +72,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new BlueWarehouseCommandL(drivetrain, telemetry)
+                        new BlueWarehouseCommandL(drivetrain, intake, lift, armServos)
                 ));
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new BlueWarehouseCommandC(drivetrain, telemetry)
+                        new BlueWarehouseCommandC(drivetrain, intake, lift, armServos)
                 ));
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new BlueWarehouseCommandR(drivetrain, telemetry)
+                        new BlueWarehouseCommandR(drivetrain, intake, lift, armServos)
                 ));
             }}, vision::getCurrentPosition)
     );
