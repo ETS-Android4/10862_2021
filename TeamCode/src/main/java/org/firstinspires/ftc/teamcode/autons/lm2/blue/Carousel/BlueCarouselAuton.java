@@ -19,6 +19,7 @@ import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
+import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
@@ -37,6 +38,7 @@ public static double startPoseHeading = 0;
 private MotorEx leftFront, leftRear, rightRear, rightFront;
 private MotorEx intakeMotor;
 private MotorEx liftMotor;
+private MotorEx carouselMotor;
 private ServoEx dropServo, armServo;
 
 // Gamepad
@@ -48,6 +50,7 @@ private Intake intake;
 private Lift lift;
 private Vision vision;
 private ArmServos armServos;
+private Carousel carousel;
 
 @Override
 public void robotInit() {
@@ -67,6 +70,7 @@ public void robotInit() {
     intake = new Intake(intakeMotor, telemetry);
     lift = new Lift(liftMotor, telemetry);
     armServos = new ArmServos(armServo, dropServo, telemetry);
+    carousel = new Carousel(carouselMotor, telemetry);
 }
 
 @Override
@@ -80,14 +84,14 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new BlueCarouselCommandL(drivetrain, intake, lift, armServos)
-                ));
+                        new BlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
+                );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new BlueCarouselCommandC(drivetrain, intake, lift, armServos)
-                ));
+                        new BlueCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
+                );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new BlueCarouselCommandR(drivetrain, intake, lift, armServos)
-                ));
+                        new BlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
+                );
             }}, vision::getCurrentPosition)
     );
 

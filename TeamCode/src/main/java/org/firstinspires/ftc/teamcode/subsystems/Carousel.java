@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @Config
 public class Carousel extends SubsystemBase {
     public static double CAROUSEL_LEFT_SPEED = 0.75;
-    public static double CAROSUEL_RIGHT_SPEED = -0.75;
+    public static double CAROUSEL_RIGHT_SPEED = -0.75;
 
     Telemetry telemetry;
     private MotorEx carouselMotor;
@@ -31,13 +31,9 @@ public class Carousel extends SubsystemBase {
         carouselMotor.set(speed);
     }
 
-    public void carouselLeft() {
-        set(CAROSUEL_RIGHT_SPEED);
-    }
+    public void carouselLeft() { set(CAROUSEL_LEFT_SPEED); }
 
-    public void carouselRight() {
-        set(CAROUSEL_LEFT_SPEED);
-    }
+    public void carouselRight() { set(CAROUSEL_RIGHT_SPEED); }
 
     public void stop() {
         carouselMotor.stopMotor();
