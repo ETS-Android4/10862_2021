@@ -16,6 +16,8 @@ public class RedWarehouseCommandR extends SequentialCommandGroup {
 
         addCommands(
 
+
+                //new ArmHighCommand(lift),
         );
     }
 }

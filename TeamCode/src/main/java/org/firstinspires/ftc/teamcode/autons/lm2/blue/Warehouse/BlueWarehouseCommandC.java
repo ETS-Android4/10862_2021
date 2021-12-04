@@ -6,6 +6,8 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.SlowSplineCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.TurnToCommand;
@@ -23,7 +25,7 @@ public class BlueWarehouseCommandC extends SequentialCommandGroup {
                 //distance is in inches
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 225, true),
-                //arm
+                new ArmMidCommand(lift),
                 new DriveForwardCommand(drivetrain, -24),
                 //servo deposit
                 new DriveForwardCommand(drivetrain, 24),

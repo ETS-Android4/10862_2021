@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
@@ -19,7 +21,7 @@ public class BlueCarouselCommandC extends SequentialCommandGroup {
                 //distance is in inches
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 45, true),
-                //arm
+                new ArmMidCommand(lift),
                 new DriveForwardCommand(drivetrain, -24),
                 //servo deposit
                 new DriveForwardCommand(drivetrain, 24),
@@ -37,10 +39,6 @@ public class BlueCarouselCommandC extends SequentialCommandGroup {
                 //one is freight pickup
                 //zero is freight drop
 
-                /*
-    public static int LOW_POSITION = -40;
-    public static int MID_POSITION = -90;
-    public static int HIGH_POSITION = -135;*/
         );
     }
 }

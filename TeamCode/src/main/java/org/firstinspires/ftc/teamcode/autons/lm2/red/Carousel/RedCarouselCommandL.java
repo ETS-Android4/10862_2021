@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
@@ -19,7 +20,7 @@ public class RedCarouselCommandL extends SequentialCommandGroup {
                 //distance is in inches
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 315, true),
-                //arm - Low
+                new ArmLowCommand(lift),
                 new DriveForwardCommand(drivetrain, -24),
                 //servo deposit
                 new DriveForwardCommand(drivetrain, 24),
