@@ -27,9 +27,6 @@ public class BlueCarouselCommandL extends SequentialCommandGroup {
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 60, true),
-                //new ArmMidCommand(lift),
-                //new WaitCommand(1000),
-                //I added the mid then made it low, because the arm some
                 new ArmLowCommand(lift),
                 new WaitCommand(1000),
 
