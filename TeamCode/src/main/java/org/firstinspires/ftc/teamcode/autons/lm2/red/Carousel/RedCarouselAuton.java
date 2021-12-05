@@ -60,7 +60,6 @@ public class RedCarouselAuton extends MatchOpMode {
         intakeMotor = new MotorEx(hardwareMap, "intake");
         liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
         carouselMotor = new MotorEx(hardwareMap, "carousel");
-        //TODO: Do I need to change the RPM?
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);

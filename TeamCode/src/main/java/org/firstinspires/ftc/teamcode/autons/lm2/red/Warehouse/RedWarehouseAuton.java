@@ -52,7 +52,6 @@ public class RedWarehouseAuton extends MatchOpMode {
         // Intake hardware Initializations
         intakeMotor = new MotorEx(hardwareMap, "intake");
         liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-        //TODO: Do I need to change the RPM?
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));

@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel;
 
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.commands.DropCommand;
 import org.firstinspires.ftc.teamcode.commands.LeftCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
@@ -21,22 +24,25 @@ public class RedCarouselCommandC extends SequentialCommandGroup {
 
 
         addCommands(
-                //distance is in inches
+                new InstantCommand(armServos::armUp,armServos),
+
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, 325, true),
+                new TurnToCommand(drivetrain, -60,true),
                 new ArmMidCommand(lift),
-                new DriveForwardCommand(drivetrain, -24),
-                //servo deposit
-                new DriveForwardCommand(drivetrain, 24),
-                new TurnToCommand(drivetrain, 0),
-                new DriveForwardCommand(drivetrain, 22.5),
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 15),
+                new WaitCommand(1000),
+
+                new DriveForwardCommand(drivetrain, -8),
+                new DropCommand(armServos),
+                new WaitCommand(3000),
+                new InstantCommand(lift::liftResting, lift),
+
+
+                new TurnToCommand(drivetrain, 360),
+                new DriveForwardCommand(drivetrain, 20),
+                new TurnToCommand(drivetrain, -90,true),
+                new DriveForwardCommand(drivetrain,20)
                 //carousel
-                new RightCarouselCommand(carousel),
-                new DriveForwardCommand(drivetrain, -2),
-                new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 24)
+
                 //distance is in inches
                 //The weird makes the robot go opposite direction
         );
