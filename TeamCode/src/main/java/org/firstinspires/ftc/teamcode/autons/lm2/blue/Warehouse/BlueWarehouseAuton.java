@@ -33,7 +33,7 @@ public static double startPoseHeading = 0;
 private MotorEx leftFront, leftRear, rightRear, rightFront;
 private MotorEx intakeMotor;
 private MotorEx liftMotor;
-    private ServoEx dropServo, armServo;
+private ServoEx dropServo, armServo;
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -50,9 +50,9 @@ public void robotInit() {
     // Subsystems
     drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
     drivetrain.init();
-    intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
-    liftMotor = new MotorEx(hardwareMap, "liftMotor", Motor.GoBILDA.RPM_435);
-    //TODO: Do I need to change the RPM?
+    intakeMotor = new MotorEx(hardwareMap, "intake");
+    liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+    //TODO: Do I need to change the RPM? - won't make a difference
 
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);

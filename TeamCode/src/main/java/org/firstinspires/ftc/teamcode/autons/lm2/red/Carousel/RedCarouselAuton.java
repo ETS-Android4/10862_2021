@@ -54,17 +54,19 @@ public class RedCarouselAuton extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        // Subsystems
+        // Subsystems/a
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         intakeMotor = new MotorEx(hardwareMap, "intake");
-        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_435);
+        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+        carouselMotor = new MotorEx(hardwareMap, "carousel");
         //TODO: Do I need to change the RPM?
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
         dropServo = new SimpleServo(hardwareMap, "drop",0,360);
+
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         intake = new Intake(intakeMotor, telemetry);

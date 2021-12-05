@@ -17,7 +17,6 @@ public class Carousel extends SubsystemBase {
     private MotorEx carouselMotor;
 
     public Carousel(MotorEx carouselMotor, Telemetry tl) {
-        carouselMotor.setInverted(false);
         this.carouselMotor = carouselMotor;
         this.telemetry = tl;
     }
@@ -27,7 +26,7 @@ public class Carousel extends SubsystemBase {
         //Util.logger(this, telemetry, Level.INFO, "Current Carousel Speed", carousel.get());
     }
 
-    private void set(double speed) {
+    public void set(double speed) {
         carouselMotor.set(speed);
     }
 

@@ -17,7 +17,6 @@ public class Intake extends SubsystemBase {
     private MotorEx intakeMotor;
 
     public Intake(MotorEx intakeMotor, Telemetry tl) {
-        intakeMotor.setInverted(false);
         this.intakeMotor = intakeMotor;
         this.telemetry = tl;
     }

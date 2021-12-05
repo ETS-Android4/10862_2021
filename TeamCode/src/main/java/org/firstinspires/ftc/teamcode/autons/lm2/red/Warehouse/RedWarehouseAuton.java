@@ -22,7 +22,6 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 
-@Disabled
 @Autonomous(name = "Red Warehouse", group = "RED")
 public class RedWarehouseAuton extends MatchOpMode {
     public static double startPoseX = 0;
@@ -51,8 +50,8 @@ public class RedWarehouseAuton extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         // Intake hardware Initializations
-        intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
-        liftMotor = new MotorEx(hardwareMap, "liftMotor", Motor.GoBILDA.RPM_435);
+        intakeMotor = new MotorEx(hardwareMap, "intake");
+        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
         //TODO: Do I need to change the RPM?
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);

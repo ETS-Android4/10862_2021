@@ -75,9 +75,9 @@ public class FFRectMarkerPipeline extends OpenCvPipeline {
                 rectangleHeight
         );
 
-        drawRectOnToMat(display, leftRect, new Scalar(255, 0, 0));
-        drawRectOnToMat(display, centerRect, new Scalar(0, 255, 0));
-        drawRectOnToMat(display, rightRect, new Scalar(0, 0, 255));
+        drawRectOnToMat(display, leftRect, new Scalar(255, 255, 255));
+        drawRectOnToMat(display, centerRect, new Scalar(255, 225, 255));
+        drawRectOnToMat(display, rightRect, new Scalar(255, 255, 225));
 
         //We crop the image so it is only everything inside the rectangles and find the cb value inside of them
         leftBlock = matHSV.submat(leftRect);

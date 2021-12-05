@@ -58,8 +58,7 @@ public void robotInit() {
     drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
     drivetrain.init();
     intakeMotor = new MotorEx(hardwareMap, "intake");
-    liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_435);
-    //TODO: Do I need to change the RPM?
+    liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
 
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);
@@ -94,6 +93,5 @@ public void matchStart() {
                 );
             }}, vision::getCurrentPosition)
     );
-
-}
+    }
 }

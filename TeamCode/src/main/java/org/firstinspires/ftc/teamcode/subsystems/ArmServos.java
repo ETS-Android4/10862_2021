@@ -12,8 +12,9 @@ import java.util.logging.Level;
 @Config
 public class ArmServos extends SubsystemBase {
 
-    public static double SERVO_POSITION_ARM_HOME = 1;
-    public static double SERVO_POSITION_ARM_DROP = 0.33;
+    public static double SERVO_POSITION_ARM_HOME = .9;
+    public static double SERVO_POSITION_ARM_UP = 0.60;
+    public static double SERVO_POSITION_ARM_DROP = 0.15;
     public static double SERVO_POSITION_BOX_OPEN = 0.75;
     public static double SERVO_POSITION_BOX_CLOSE = 0.85;
 
@@ -29,13 +30,13 @@ public class ArmServos extends SubsystemBase {
         this.packet = packet;
 
         this.dropServo = dropServo;
-        this.packet = packet;
+        //this.packet = packet; - do you need this twice?
     }
 
     @Override
     public void periodic() {
-        Util.logger(this, telemetry, Level.INFO, "Arm Servo Position", armServo.getPosition());
-        Util.logger(this, telemetry, Level.INFO, "Drop Servo Position", dropServo.getPosition());
+        //Util.logger(this, telemetry, Level.INFO, "Arm Servo Position", armServo.getPosition());
+        //Util.logger(this, telemetry, Level.INFO, "Drop Servo Position", dropServo.getPosition());
     }
 
     public void setArmServo(double armServoPosition) {
@@ -48,6 +49,7 @@ public class ArmServos extends SubsystemBase {
     public void armHome() {
         setArmServo(SERVO_POSITION_ARM_HOME);
     }
+    public void armUp(){setArmServo(SERVO_POSITION_ARM_UP );}
     public void armDrop() {
         setArmServo(SERVO_POSITION_ARM_DROP);
     }

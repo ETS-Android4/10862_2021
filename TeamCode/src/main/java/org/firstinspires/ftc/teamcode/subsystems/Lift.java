@@ -46,7 +46,6 @@ public class Lift extends SubsystemBase {
         this.liftMotor = liftMotor;
 
         this.liftMotor.setDistancePerPulse(360/CPR);
-        liftMotor.setInverted(false);
 
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f,  getAngle(), getAngle());
         controller.setTolerance(10);
