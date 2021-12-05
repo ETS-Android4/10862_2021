@@ -31,16 +31,16 @@ public class RedCarouselCommandC extends SequentialCommandGroup {
                 new ArmMidCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -8),
+                new DriveForwardCommand(drivetrain, -7),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
                 new InstantCommand(lift::liftResting, lift),
 
 
                 new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 20),
+                new DriveForwardCommand(drivetrain, 21.5),
                 new TurnToCommand(drivetrain, -90,true),
-                new DriveForwardCommand(drivetrain,20)
+                new DriveForwardCommand(drivetrain,21)
                 //carousel
 
                 //distance is in inches

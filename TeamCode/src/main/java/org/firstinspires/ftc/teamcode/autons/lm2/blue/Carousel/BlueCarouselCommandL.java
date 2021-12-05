@@ -27,18 +27,21 @@ public class BlueCarouselCommandL extends SequentialCommandGroup {
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 60, true),
+                //new ArmMidCommand(lift),
+                //new WaitCommand(1000),
+                //I added the mid then made it low, because the arm some
                 new ArmLowCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -5),
+                new DriveForwardCommand(drivetrain, -8),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
                 new InstantCommand(lift::liftResting, lift),
 
                 new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 33),
+                new DriveForwardCommand(drivetrain, 34),
                 new TurnToCommand(drivetrain,0),
-                new DriveForwardCommand(drivetrain, 18)
+                new DriveForwardCommand(drivetrain, 16)
         );
     }
 }
