@@ -34,9 +34,9 @@ public class BlueWarehouseCommandC extends SequentialCommandGroup {
                 new InstantCommand(lift::liftResting, lift),
 
                 new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 28.1),
+                new DriveForwardCommand(drivetrain, 27.75),
                 new TurnToCommand(drivetrain,90, true),
-                new DriveForwardCommand(drivetrain, -20)
+                new DriveForwardCommand(drivetrain, -22)
 
                 //distance is in inches
                 //The weird makes the robot go opposite direction

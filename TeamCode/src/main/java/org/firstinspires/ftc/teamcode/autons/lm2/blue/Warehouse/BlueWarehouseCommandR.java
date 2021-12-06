@@ -27,19 +27,19 @@ public class BlueWarehouseCommandR extends SequentialCommandGroup {
                 new InstantCommand(armServos::armUp,armServos),
 
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, 298),
+                new TurnToCommand(drivetrain, 290),
                 new ArmHighCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -5),
+                new DriveForwardCommand(drivetrain, -6),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
                 new InstantCommand(lift::liftResting, lift),
 
                 new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 28.1),
+                new DriveForwardCommand(drivetrain, 27.75),
                 new TurnToCommand(drivetrain,90, true),
-                new DriveForwardCommand(drivetrain, -20)
+                new DriveForwardCommand(drivetrain, -22)
         );
     }
 }
