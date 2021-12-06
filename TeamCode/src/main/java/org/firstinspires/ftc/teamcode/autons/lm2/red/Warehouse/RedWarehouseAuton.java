@@ -6,21 +6,27 @@ import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
+import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel.RedCarouselCommandC;
+import org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel.RedCarouselCommandL;
+import org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel.RedCarouselCommandR;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
+import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
+import java.util.logging.Level;
 
 @Autonomous(name = "Red Warehouse", group = "RED")
 public class RedWarehouseAuton extends MatchOpMode {
@@ -32,6 +38,7 @@ public class RedWarehouseAuton extends MatchOpMode {
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx intakeMotor;
     private MotorEx liftMotor;
+    private MotorEx carouselMotor;
     private ServoEx dropServo, armServo;
 
     // Gamepad
@@ -43,26 +50,34 @@ public class RedWarehouseAuton extends MatchOpMode {
     private Lift lift;
     private Vision vision;
     private ArmServos armServos;
+    private Carousel carousel;
 
     @Override
     public void robotInit() {
-        // Subsystems
+        // Subsystems/a
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-        // Intake hardware Initializations
         intakeMotor = new MotorEx(hardwareMap, "intake");
         liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+        carouselMotor = new MotorEx(hardwareMap, "carousel");
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
+        dropServo = new SimpleServo(hardwareMap, "drop",0,360);
+
+
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         intake = new Intake(intakeMotor, telemetry);
         lift = new Lift(liftMotor, telemetry);
         armServos = new ArmServos(armServo, dropServo, telemetry);
+        carousel = new Carousel(carouselMotor, telemetry);
     }
 
     @Override
     public void disabledPeriodic() {
-
+        Util.logger(this, telemetry, Level.INFO, "Current Position", vision.getCurrentPosition());
+        vision.periodic();
     }
 
     @Override
@@ -70,14 +85,14 @@ public class RedWarehouseAuton extends MatchOpMode {
         schedule(
                 new SelectCommand(new HashMap<Object, Command>() {{
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                            new RedWarehouseCommandL(drivetrain, intake, lift, armServos)
-                    ));
+                            new RedWarehouseCommandL(drivetrain, intake, lift, armServos))
+                    );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                            new RedWarehouseCommandC(drivetrain, intake, lift, armServos)
-                    ));
+                            new RedWarehouseCommandC(drivetrain, intake, lift, armServos))
+                    );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                            new RedWarehouseCommandR(drivetrain, intake, lift, armServos)
-                    ));
+                            new RedWarehouseCommandR(drivetrain, intake, lift, armServos))
+                    );
                 }}, vision::getCurrentPosition)
         );
 

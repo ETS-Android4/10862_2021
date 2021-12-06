@@ -53,7 +53,7 @@ public class TeleOpTest extends MatchOpMode {
     private Button slowModeTrigger;
     public Button liftUpButton, liftDownButton;
     public Button liftRestButton, liftLowButton, liftMidButton, liftHighButton, liftCapButton;
-    public Button armServoHomeButton, armServoDropButton;
+    public Button armServoHomeButton, armServoDropButton, armServoMidButton;
     public Button dropServoCloseButton, dropServoOpenButton;
     public Button carouselRightButton, carouselLeftButton;
 
@@ -100,23 +100,26 @@ public class TeleOpTest extends MatchOpMode {
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
         liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
-        liftCapButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT).whenPressed(lift::liftCap));
 
         //arm Servo
         armServoDropButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(armServos::armDrop));
-
-        //drop servos
-        dropServoOpenButton= (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(armServos::boxOpen));
-        dropServoCloseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER).whenPressed(armServos::boxClose));
-
-        //reset
-        liftRestButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(lift::liftManual));
-        armServoHomeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::reset));
-
+        armServoHomeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER).whenPressed(armServos::reset));
+        armServoMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::reset));
 
         //carousel
         carouselLeftButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(carousel::carouselRight).whenReleased(carousel::stop));
         carouselRightButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
+
+        /*
+        lift low position: X
+        lift mid position: B
+        lift high position: Y
+        lift reset position: DPAD_DOWN
+
+        box position intake: LEFT_BUMPER
+        box position up: A
+        box position outtake: RIGHT_BUMPER
+         */
 
 
 /*
