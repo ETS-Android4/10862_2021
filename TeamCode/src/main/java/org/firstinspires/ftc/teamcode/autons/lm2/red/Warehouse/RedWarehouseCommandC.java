@@ -24,18 +24,19 @@ public class RedWarehouseCommandC extends SequentialCommandGroup {
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 60, true),
+                //60
                 new ArmMidCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -5),
+                new DriveForwardCommand(drivetrain, -4.5),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
                 new InstantCommand(lift::liftResting, lift),
 
                 new TurnToCommand(drivetrain, 0),
-                new DriveForwardCommand(drivetrain, 27.75),
+                new DriveForwardCommand(drivetrain, 26.5),
                 new TurnToCommand(drivetrain,90, true),
-                new DriveForwardCommand(drivetrain, 22)
+                new DriveForwardCommand(drivetrain, 24)
         );
     }
 }
