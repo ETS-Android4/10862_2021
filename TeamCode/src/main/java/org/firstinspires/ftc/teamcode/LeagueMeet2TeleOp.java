@@ -17,6 +17,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import org.firstinspires.ftc.teamcode.commands.DropCommand;
+import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
@@ -52,10 +54,11 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     private Button intakeButton, halfSpeedButton, outtakeButton;
     private Button slowModeTrigger;
     public Button liftUpButton, liftDownButton;
-    public Button liftRestButton, liftLowButton, liftMidButton, liftHighButton, liftCapButton;
+    public Button liftLowButton, liftMidButton, liftHighButton;
     public Button armServoHomeButton, armServoDropButton, armServoMidButton;
-    public Button dropServoCloseButton, dropServoOpenButton;
     public Button carouselRightButton, carouselLeftButton;
+    public Button resetArmButton;
+    public Button dropBoxButton;
 
     @Override
     public void robotInit() {
@@ -88,27 +91,39 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     @Override
     public void configureButtons() {
 
+        //slowmode
         slowModeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         //intake
         intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
         outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
 
+
         //lift
+        //Don't use any other D-Pad except down
         liftUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP).whenPressed(lift::liftManual).whenReleased(lift::stopLift));
-        liftDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN).whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
+        liftDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT).whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
+
+        //reset motion
+        resetArmButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(
+                new ResetCommand(armServos, lift)
+        );
+
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
         liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
 
-        //arm Servo
-        armServoDropButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(armServos::armDrop));
-        armServoHomeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER).whenPressed(armServos::armUp));
-        armServoMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::reset));
-
         //carousel
         carouselLeftButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whenPressed(carousel::carouselLeft).whenReleased(carousel::stop));
         carouselRightButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whenPressed(carousel::carouselRight).whenReleased(carousel::stop));;
+
+        //Arm up
+        armServoMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::armUp));
+
+        //drop motion
+        dropBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(
+                new DropCommand(armServos)
+        );
 
         /*
         lift low position: X
@@ -116,7 +131,6 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         lift high position: Y
         lift reset position: DPAD_DOWN
 
-        box position intake: LEFT_BUMPER
         box position up: A
         box position outtake: RIGHT_BUMPER
          */
