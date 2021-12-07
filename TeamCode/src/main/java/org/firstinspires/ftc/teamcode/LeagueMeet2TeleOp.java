@@ -30,7 +30,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 @Config
 @TeleOp(name = "League Meet 2 TeleOp")
-public class TeleOpTest extends MatchOpMode {
+public class LeagueMeet2TeleOp extends MatchOpMode {
     // Motors
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;
     private MotorEx liftMotor;
@@ -103,12 +103,12 @@ public class TeleOpTest extends MatchOpMode {
 
         //arm Servo
         armServoDropButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(armServos::armDrop));
-        armServoHomeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER).whenPressed(armServos::reset));
+        armServoHomeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER).whenPressed(armServos::armUp));
         armServoMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::reset));
 
         //carousel
-        carouselLeftButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(carousel::carouselRight).whenReleased(carousel::stop));
-        carouselRightButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
+        carouselLeftButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whenPressed(carousel::carouselLeft).whenReleased(carousel::stop));
+        carouselRightButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whenPressed(carousel::carouselRight).whenReleased(carousel::stop));;
 
         /*
         lift low position: X

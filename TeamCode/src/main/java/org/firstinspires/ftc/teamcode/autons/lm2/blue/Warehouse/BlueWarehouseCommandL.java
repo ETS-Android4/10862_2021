@@ -35,8 +35,8 @@ public class BlueWarehouseCommandL extends SequentialCommandGroup {
                 new InstantCommand(lift::liftResting, lift),
 
                 new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 27.75),
-                new TurnToCommand(drivetrain,90, true),
+                new DriveForwardCommand(drivetrain, 18),
+                new TurnToCommand(drivetrain,92, true),
                 new DriveForwardCommand(drivetrain, -22)
         );
     }
