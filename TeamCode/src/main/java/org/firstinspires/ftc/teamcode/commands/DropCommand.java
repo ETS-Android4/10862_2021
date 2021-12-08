@@ -16,9 +16,7 @@ public class DropCommand extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(armServos::armDrop, armServos),
                 new WaitCommand(300),
-                new InstantCommand(armServos::boxOpen, armServos),
-                new WaitCommand(500),
-                new InstantCommand(armServos::armHome, armServos)
+                new InstantCommand(armServos::boxOpen, armServos)
                 );
     }
 
