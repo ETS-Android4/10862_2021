@@ -1,21 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
 import org.firstinspires.ftc.teamcode.commands.ResetCommand;
@@ -59,6 +52,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     public Button carouselRightButton, carouselLeftButton;
     public Button resetArmButton;
     public Button dropBoxButton;
+    public Button restBoxButton;
 
     @Override
     public void robotInit() {
@@ -124,6 +118,9 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         dropBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(
                 new DropCommand(armServos)
         );
+
+        //rest position for box
+        restBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(armServos::armHome);
 
         /*
         lift low position: X
