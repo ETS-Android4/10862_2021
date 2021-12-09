@@ -10,8 +10,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @Config
 public class Carousel extends SubsystemBase {
-    public static double CAROUSEL_LEFT_SPEED = 0.75;
-    public static double CAROUSEL_RIGHT_SPEED = -0.75;
+    public static double CAROUSEL_LEFT_SPEED = 0.3;
+    public static double CAROUSEL_RIGHT_SPEED = -0.3;
 
     Telemetry telemetry;
     private MotorEx carouselMotor;
