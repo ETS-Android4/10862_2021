@@ -25,6 +25,7 @@ public class Lift extends SubsystemBase {
 
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.005, 0, 0, 0);
     //0.015
+
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
     private boolean automatic;

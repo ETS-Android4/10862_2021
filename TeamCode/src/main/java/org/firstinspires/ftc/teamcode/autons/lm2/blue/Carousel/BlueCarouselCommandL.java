@@ -40,7 +40,7 @@ public class BlueCarouselCommandL extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain,0),
                 new DriveForwardCommand(drivetrain, 16),
                 new WaitCommand(5000),
-                new DriveForwardCommand(drivetrain, -10)
+                new DriveForwardCommand(drivetrain, -15)
         );
     }
 }

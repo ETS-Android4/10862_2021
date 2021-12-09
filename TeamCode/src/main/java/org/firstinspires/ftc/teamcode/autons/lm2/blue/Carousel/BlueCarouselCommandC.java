@@ -40,7 +40,9 @@ public class BlueCarouselCommandC extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 33),
                 new TurnToCommand(drivetrain,0),
-                new DriveForwardCommand(drivetrain, 18)
+                new DriveForwardCommand(drivetrain, 18),
+                new WaitCommand(5000),
+                new DriveForwardCommand(drivetrain, -15)
 
                 //distance is in inches
                 //The weird makes the robot go opposite direction
