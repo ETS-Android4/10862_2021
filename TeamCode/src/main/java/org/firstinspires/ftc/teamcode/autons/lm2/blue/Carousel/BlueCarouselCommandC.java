@@ -24,26 +24,26 @@ public class BlueCarouselCommandC extends SequentialCommandGroup {
 
 
         addCommands(
+                //distance is in inches
                 //Setup
                 new InstantCommand(armServos::armUp,armServos),
 
-                new DriveForwardCommand(drivetrain, -24),
+                new DriveForwardCommand(drivetrain, -27),
                 new TurnToCommand(drivetrain, 60, true),
                 new ArmMidCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -5),
+                new DriveForwardCommand(drivetrain, -8),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
                 new InstantCommand(lift::liftResting, lift),
 
                 new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 33),
+                new DriveForwardCommand(drivetrain, 32),
                 new TurnToCommand(drivetrain,0),
-                new DriveForwardCommand(drivetrain, 18),
+                new DriveForwardCommand(drivetrain, 17),
                 new WaitCommand(5000),
                 new DriveForwardCommand(drivetrain, -15)
-
                 //distance is in inches
                 //The weird makes the robot go opposite direction
 

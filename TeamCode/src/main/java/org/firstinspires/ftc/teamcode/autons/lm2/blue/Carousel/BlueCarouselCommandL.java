@@ -23,9 +23,10 @@ public class BlueCarouselCommandL extends SequentialCommandGroup {
 
         addCommands(
                 //distance is in inches
+                //Setup
                 new InstantCommand(armServos::armUp,armServos),
 
-                new DriveForwardCommand(drivetrain, -24),
+                new DriveForwardCommand(drivetrain, -27),
                 new TurnToCommand(drivetrain, 60, true),
                 new ArmLowCommand(lift),
                 new WaitCommand(1000),
@@ -36,9 +37,9 @@ public class BlueCarouselCommandL extends SequentialCommandGroup {
                 new InstantCommand(lift::liftResting, lift),
 
                 new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 34),
+                new DriveForwardCommand(drivetrain, 32),
                 new TurnToCommand(drivetrain,0),
-                new DriveForwardCommand(drivetrain, 16),
+                new DriveForwardCommand(drivetrain, 17),
                 new WaitCommand(5000),
                 new DriveForwardCommand(drivetrain, -15)
         );
