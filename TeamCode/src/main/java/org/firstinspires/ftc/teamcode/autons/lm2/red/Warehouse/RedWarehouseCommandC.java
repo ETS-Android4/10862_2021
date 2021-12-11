@@ -8,6 +8,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
 import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmHighCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.KindaSlowDriveForwardCommand;
@@ -28,20 +29,22 @@ public class RedWarehouseCommandC extends SequentialCommandGroup {
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 60, true),
-                //60
+                //original 60
                 new ArmMidCommand(lift),
                 new WaitCommand(1000),
 
-                new KindaSlowDriveForwardCommand(drivetrain, -6),
+                new KindaSlowDriveForwardCommand(drivetrain, -5),
                 new DropCommand(armServos),
                 new WaitCommand(1000),
                 new InstantCommand(armServos::armUp,armServos),
 
+                new DriveForwardCommand(drivetrain, 2),
+
                 new TurnToCommand(drivetrain, 0),
                 new ResetCommand(armServos, lift),
-                new DriveForwardCommand(drivetrain, 28),
+                new DriveForwardCommand(drivetrain, 23),
                 new TurnCommand(drivetrain,85),
-                new DriveForwardCommand(drivetrain, 35)
+                new DriveForwardCommand(drivetrain, 45)
         );
     }
 }

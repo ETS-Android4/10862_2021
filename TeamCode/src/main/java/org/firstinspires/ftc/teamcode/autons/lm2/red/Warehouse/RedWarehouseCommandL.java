@@ -27,22 +27,23 @@ public class RedWarehouseCommandL extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(armServos::armUp,armServos),
 
-                new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, 60, true),
-                //60
+                new DriveForwardCommand(drivetrain, -2),
+                new TurnToCommand(drivetrain, 50, true),
+                //original 60
                 new ArmLowCommand(lift),
                 new WaitCommand(1000),
 
-                new KindaSlowDriveForwardCommand(drivetrain, -6),
+                new KindaSlowDriveForwardCommand(drivetrain, -21.5),
+
                 new DropCommand(armServos),
                 new WaitCommand(1000),
                 new InstantCommand(armServos::armUp,armServos),
 
                 new TurnToCommand(drivetrain, 0),
                 new ResetCommand(armServos, lift),
-                new DriveForwardCommand(drivetrain, 28),
+                new DriveForwardCommand(drivetrain, 23),
                 new TurnCommand(drivetrain,85),
-                new DriveForwardCommand(drivetrain, 35)
+                new DriveForwardCommand(drivetrain, 45)
         );
     }
 }
