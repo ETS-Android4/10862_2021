@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
+import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
@@ -24,23 +25,21 @@ public class BlueWarehouseCommandR extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(armServos::armUp,armServos),
 
-                new InstantCommand(armServos::armUp,armServos),
-
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, 290),
-                new ArmHighCommand(lift),
+                new TurnToCommand(drivetrain, 298),
+                new ArmMidCommand(lift),
                 new WaitCommand(1000),
 
                 new DriveForwardCommand(drivetrain, -6),
                 new DropCommand(armServos),
-                new WaitCommand(3000),
-                new InstantCommand(lift::liftResting, lift),
+                new WaitCommand(1000),
+                new InstantCommand(armServos::armUp,armServos),
 
-                new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 27.75),
-                //Change to 28
-                new TurnToCommand(drivetrain,90, true),
-                new DriveForwardCommand(drivetrain, -22)
+                new TurnToCommand(drivetrain, 0),
+                new ResetCommand(armServos, lift),
+                new DriveForwardCommand(drivetrain, 28),
+                new TurnToCommand(drivetrain,80, true),
+                new DriveForwardCommand(drivetrain, 35)
         );
     }
 }
