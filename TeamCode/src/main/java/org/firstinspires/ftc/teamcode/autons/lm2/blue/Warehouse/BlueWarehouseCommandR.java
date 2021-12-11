@@ -27,7 +27,7 @@ public class BlueWarehouseCommandR extends SequentialCommandGroup {
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new ArmMidCommand(lift),
+                new ArmHighCommand(lift),
                 new WaitCommand(1000),
 
                 new DriveForwardCommand(drivetrain, -6),
