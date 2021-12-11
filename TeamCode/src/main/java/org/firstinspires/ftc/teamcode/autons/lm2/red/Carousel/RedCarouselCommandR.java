@@ -10,8 +10,10 @@ import org.firstinspires.ftc.teamcode.commands.LeftCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmHighCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
@@ -25,14 +27,12 @@ public class RedCarouselCommandR extends SequentialCommandGroup {
 
 
         addCommands(
-                new InstantCommand(armServos::armUp,armServos),
-
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, -60, true),
                 new ArmHighCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -6.5),
+                new KindaSlowDriveForwardCommand(drivetrain, -6.5),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
                 new DriveForwardCommand(drivetrain, 3),
@@ -42,14 +42,15 @@ public class RedCarouselCommandR extends SequentialCommandGroup {
                 new ResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 25),
                 new TurnToCommand(drivetrain, -90,true),
-                new DriveForwardCommand(drivetrain,22),
+                new DriveForwardCommand(drivetrain,20),
 
                 new WaitCommand(1000),
-                new DriveForwardCommand(drivetrain, 3),
+                new KindaSlowDriveForwardCommand(drivetrain, 3),
                 new RightCarouselCommand(carousel),
 
                 new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 25)
+                new DriveForwardCommand(drivetrain, 25),
+                new InstantCommand(armServos::armUp,armServos)
         );
     }
 }

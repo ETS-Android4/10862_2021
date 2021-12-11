@@ -32,29 +32,20 @@ public class BlueCarouselCommandR extends SequentialCommandGroup {
                 new InstantCommand(armServos::armUp,armServos),
 
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, 60, true),
+                new TurnToCommand(drivetrain, 68, true),
                 new ArmHighCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -6.5),
+                new KindaSlowDriveForwardCommand(drivetrain, -6.5),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
-                new DriveForwardCommand(drivetrain, 3),
+                new DriveForwardCommand(drivetrain, 4),
                 new InstantCommand(armServos::armUp,armServos),
 
                 new TurnToCommand(drivetrain, 90),
                 new ResetCommand(armServos, lift),
-                new DriveForwardCommand(drivetrain, 22),
-                new TurnToCommand(drivetrain,0),
-                new DriveForwardCommand(drivetrain, 22),
 
-                new WaitCommand(1000),
-                new KindaSlowDriveForwardCommand(drivetrain, 3),
-                //See if this good?
-                new RightCarouselCommand(carousel),
-
-                new DriveForwardCommand(drivetrain, -18)
-
+                new DriveForwardCommand(drivetrain, 23.5)
         );
     }
 }

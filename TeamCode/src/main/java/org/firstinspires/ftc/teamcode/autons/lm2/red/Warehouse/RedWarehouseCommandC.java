@@ -10,6 +10,8 @@ import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.KindaSlowDriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -30,7 +32,7 @@ public class RedWarehouseCommandC extends SequentialCommandGroup {
                 new ArmMidCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -6),
+                new KindaSlowDriveForwardCommand(drivetrain, -6),
                 new DropCommand(armServos),
                 new WaitCommand(1000),
                 new InstantCommand(armServos::armUp,armServos),
@@ -38,7 +40,7 @@ public class RedWarehouseCommandC extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 0),
                 new ResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 28),
-                new TurnToCommand(drivetrain,80, true),
+                new TurnCommand(drivetrain,85),
                 new DriveForwardCommand(drivetrain, 35)
         );
     }
