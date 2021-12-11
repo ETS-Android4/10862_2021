@@ -42,8 +42,10 @@ public class RedCarouselCommandC extends SequentialCommandGroup {
                 new ResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 25),
                 new TurnToCommand(drivetrain, -90,true),
-                new DriveForwardCommand(drivetrain,25),
+                new DriveForwardCommand(drivetrain,22),
 
+                new WaitCommand(1000),
+                new DriveForwardCommand(drivetrain, 3),
                 new RightCarouselCommand(carousel),
 
                 new TurnToCommand(drivetrain, 180),
