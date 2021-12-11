@@ -6,6 +6,8 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
+import org.firstinspires.ftc.teamcode.commands.ResetCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
@@ -29,15 +31,16 @@ public class RedWarehouseCommandL extends SequentialCommandGroup {
                 new ArmLowCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -4.5),
+                new DriveForwardCommand(drivetrain, -7.5),
                 new DropCommand(armServos),
-                new WaitCommand(3000),
-                new InstantCommand(lift::liftResting, lift),
+                new WaitCommand(1000),
+                new InstantCommand(armServos::armUp,armServos),
 
                 new TurnToCommand(drivetrain, 0),
-                new DriveForwardCommand(drivetrain, 26.5),
-                new TurnToCommand(drivetrain,90, true),
-                new DriveForwardCommand(drivetrain, 24)
+                new ResetCommand(armServos, lift),
+                new DriveForwardCommand(drivetrain, 28),
+                new TurnToCommand(drivetrain,80, true),
+                new DriveForwardCommand(drivetrain, 35)
         );
     }
 }

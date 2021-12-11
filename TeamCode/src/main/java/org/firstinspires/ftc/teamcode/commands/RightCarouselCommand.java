@@ -13,7 +13,8 @@ public class RightCarouselCommand extends SequentialCommandGroup{
     public RightCarouselCommand(Carousel carousel){
         addCommands(
                 new InstantCommand(carousel::carouselRight, carousel),
-                new WaitCommand(1000)
+                new WaitCommand(4000),
+                new InstantCommand(carousel::stop, carousel)
         );
     }
 }

@@ -31,7 +31,7 @@ public class Lift extends SubsystemBase {
     private boolean automatic;
 
     public static double CPR = 1425.1; //383.6
-    public static double UP_SPEED = -0.25;
+    public static double UP_SPEED = -0.75;
     public static double DOWN_SPEED = 0.25;
 
     private double encoderOffset = 0;

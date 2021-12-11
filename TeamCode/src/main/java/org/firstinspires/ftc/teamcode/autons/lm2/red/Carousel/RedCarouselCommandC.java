@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
 import org.firstinspires.ftc.teamcode.commands.LeftCarouselCommand;
+import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
@@ -27,22 +28,26 @@ public class RedCarouselCommandC extends SequentialCommandGroup {
                 new InstantCommand(armServos::armUp,armServos),
 
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, -60,true),
+                new TurnToCommand(drivetrain, -60, true),
                 new ArmMidCommand(lift),
                 new WaitCommand(1000),
 
-                new DriveForwardCommand(drivetrain, -7),
+                new DriveForwardCommand(drivetrain, -6.5),
                 new DropCommand(armServos),
                 new WaitCommand(3000),
-                new InstantCommand(lift::liftResting, lift),
-
+                new DriveForwardCommand(drivetrain, 3),
+                new InstantCommand(armServos::armUp,armServos),
 
                 new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 21.5),
+                new ResetCommand(armServos, lift),
+                new DriveForwardCommand(drivetrain, 25),
                 new TurnToCommand(drivetrain, -90,true),
-                new DriveForwardCommand(drivetrain,21)
-                //carousel
+                new DriveForwardCommand(drivetrain,25),
 
+                new RightCarouselCommand(carousel),
+
+                new TurnToCommand(drivetrain, 180),
+                new DriveForwardCommand(drivetrain, 25)
                 //distance is in inches
                 //The weird makes the robot go opposite direction
         );
