@@ -42,8 +42,7 @@ public class ArmServos extends SubsystemBase {
     public void setArmServo(double armServoPosition) {
         armServo.setPosition(armServoPosition);
     }
-    public void setDropServo(double dropServoPosition){
-        dropServo.setPosition(dropServoPosition);
+    public void setDropServo(double dropServoPosition){ dropServo.setPosition(dropServoPosition);
     }
 
     public void armHome() {
