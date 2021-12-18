@@ -26,12 +26,13 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 @Config
 @TeleOp(name = "League Meet 2 TeleOp")
 public class LeagueMeet2TeleOp extends MatchOpMode {
-    // Motors
+    // Motors and Servos
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;
     private MotorEx liftMotor;
     private MotorEx intakeMotor;
     private MotorEx carouselMotor;
     private ServoEx armServo, dropServo;
+    private ServoEx intakeServo;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
@@ -53,12 +54,14 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     public Button resetArmButton;
     public Button dropBoxButton;
     public Button restBoxButton;
+    public Button intakeUpButton, intakeDownButton, intakeMiddleButton;
 
     @Override
     public void robotInit() {
 
         // Intake hardware Initializations
         intakeMotor = new MotorEx(hardwareMap, "intake");
+        intakeServo = new SimpleServo(hardwareMap,"intakeServo",0,360);
         // Lift hardware initializations
         liftMotor = new MotorEx(hardwareMap, "lift");
         //carouse hardware initializations
@@ -67,10 +70,12 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
         dropServo = new SimpleServo(hardwareMap, "drop",0,360);
 
+
+
         // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap),telemetry);
         drivetrain.init();
-        intake = new Intake(intakeMotor, telemetry);
+        intake = new Intake(intakeMotor, intakeServo, telemetry);
         lift = new Lift(liftMotor, telemetry);
         armServos = new ArmServos(armServo, dropServo, telemetry);
         carousel = new Carousel(carouselMotor, telemetry);
@@ -91,7 +96,6 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         //intake
         outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
         intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
-
 
         //lift
         //Don't use any other D-Pad except down
@@ -121,6 +125,13 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
 
         //rest position for box
         restBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(armServos::armHome);
+
+        //Intake Up
+        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)). whenPressed(intake::servoUp);
+        //Intake Mid
+        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
+        //Intake Down
+        intakeDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)). whenPressed(intake::servoDown);
 
         /*
         lift low position: X

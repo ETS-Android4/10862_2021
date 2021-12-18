@@ -14,13 +14,19 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Intake extends SubsystemBase {
     public static double INTAKE_SPEED = 1;
     public static double OUTTAKE_SPEED = -.75;
+    public static double UP_POSITION= 1;
+    public static double MID_POSITION = 0.88;
+    public static double DOWN_POSITION= 0.67;
 
 
     Telemetry telemetry;
     private MotorEx intakeMotor;
+    private ServoEx intakeServo;
 
-    public Intake(MotorEx intakeMotor, Telemetry tl) {
+
+    public Intake(MotorEx intakeMotor, ServoEx intakeServo, Telemetry tl) {
         this.intakeMotor = intakeMotor;
+        this.intakeServo = intakeServo;
         this.telemetry = tl;
     }
 
@@ -32,34 +38,20 @@ public class Intake extends SubsystemBase {
     private void set(double speed) {
         intakeMotor.set(speed);
     }
-
     public void intake() {
         set(INTAKE_SPEED);
     }
-
     public void outtake() {
         set(OUTTAKE_SPEED);
     }
-
     public void stop() {
         intakeMotor.stopMotor();
     }
 
-
-    //Intake Servo
-    public static double UP_POS= 0.60;
-    public static double MID_POS = 0.5;
-    public static double DOWN_POS= 0.75;
-
-    private ServoEx intakeServo;
-
-    public Intake(ServoEx intakeServo) {
-        this.intakeServo = intakeServo;
-    }
-
     public void setIntakeServo(double intakeServoPosition) {intakeServo.setPosition(intakeServoPosition);}
 
-    public void servoUp() {setIntakeServo(UP_POS);}
-    public void servoMid() {setIntakeServo(MID_POS); }
-    public void servoDown() {setIntakeServo(DOWN_POS); }
+    public void servoUp() {setIntakeServo(UP_POSITION);}
+    public void servoMid() {setIntakeServo(MID_POSITION); }
+    public void servoDown() {setIntakeServo(DOWN_POSITION); }
+
 }

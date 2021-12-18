@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.autons.lm1.blue;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -22,6 +23,7 @@ public class BluePushAuton extends MatchOpMode {
     // Motors
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx intakeMotor;
+    private ServoEx intakeServo;
 
     // Gamepad
     private GamepadEx driverGamepad;
@@ -38,7 +40,7 @@ public class BluePushAuton extends MatchOpMode {
         drivetrain.init();
 
         intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
-        intake = new Intake(intakeMotor, telemetry);
+        intake = new Intake(intakeMotor, intakeServo, telemetry);
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));

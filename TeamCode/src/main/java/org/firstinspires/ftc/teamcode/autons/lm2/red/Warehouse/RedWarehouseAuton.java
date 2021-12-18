@@ -37,6 +37,7 @@ public class RedWarehouseAuton extends MatchOpMode {
     // Motors
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx intakeMotor;
+    private ServoEx intakeServo;
     private MotorEx liftMotor;
     private MotorEx carouselMotor;
     private ServoEx dropServo, armServo;
@@ -68,7 +69,7 @@ public class RedWarehouseAuton extends MatchOpMode {
 
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        intake = new Intake(intakeMotor, telemetry);
+        intake = new Intake(intakeMotor, intakeServo,telemetry);
         lift = new Lift(liftMotor, telemetry);
         armServos = new ArmServos(armServo, dropServo, telemetry);
         carousel = new Carousel(carouselMotor, telemetry);
