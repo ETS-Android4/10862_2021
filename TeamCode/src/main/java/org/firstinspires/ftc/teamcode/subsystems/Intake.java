@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @Config
 public class Intake extends SubsystemBase {
     public static double INTAKE_SPEED = 1;
-    public static double OUTTAKE_SPEED = -.75;
+    public static double OUTTAKE_SPEED = -1;
     public static double UP_POSITION= 1;
     public static double MID_POSITION = 0.88;
     public static double DOWN_POSITION= 0.67;
