@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 @Disabled
-@Autonomous(name = "Red Carousel", group = "RED")
+@Autonomous(name = "CRed Carousel", group = "RED")
 public class CRedCarouselAuton extends MatchOpMode {
     public static double startPoseX = 0;
     public static double startPoseY = 0;
