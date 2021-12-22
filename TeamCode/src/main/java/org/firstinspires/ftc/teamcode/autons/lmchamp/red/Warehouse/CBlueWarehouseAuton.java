@@ -32,7 +32,7 @@ import java.util.logging.Level;
 
 @Disabled
 @Autonomous(name = "Blue Warehouse", group = "BLUE")
-public class BlueWarehouseAuton extends MatchOpMode {
+public class CBlueWarehouseAuton extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;

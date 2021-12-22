@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse;
+package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
@@ -28,8 +28,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 @Disabled
-@Autonomous(name = "Blue Warehouse", group = "BLUE")
-public class BlueWarehouseAuton extends MatchOpMode {
+@Autonomous(name = "Blue Carousel", group = "BLUE")
+public class CBlueCarouselAuton extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;
@@ -61,6 +61,7 @@ public void robotInit() {
     intakeMotor = new MotorEx(hardwareMap, "intake");
     liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
 
+
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);
     armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
@@ -83,13 +84,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new BlueWarehouseCommandL(drivetrain, intake, lift, armServos))
+                        new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new BlueWarehouseCommandC(drivetrain, intake, lift, armServos))
+                        new CBlueCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new BlueWarehouseCommandR(drivetrain, intake, lift, armServos))
+                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
                 );
             }}, vision::getCurrentPosition)
     );

@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
-public class RedCarouselCommandC extends SequentialCommandGroup {
-    public RedCarouselCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel) {
+public class CRedCarouselCommandC extends SequentialCommandGroup {
+    public CRedCarouselCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel) {
         //declare variables here
 
 

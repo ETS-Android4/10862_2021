@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
 import org.firstinspires.ftc.teamcode.commands.ResetCommand;
-import org.firstinspires.ftc.teamcode.commands.arm.ArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.ArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.TurnToCommand;
@@ -16,8 +16,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
-public class BlueCarouselCommandC extends SequentialCommandGroup {
-    public BlueCarouselCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel) {
+public class CBlueCarouselCommandR extends SequentialCommandGroup {
+    public CBlueCarouselCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel) {
         //declare variables here
 
 
@@ -28,7 +28,7 @@ public class BlueCarouselCommandC extends SequentialCommandGroup {
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 68, true),
-                new ArmMidCommand(lift),
+                new ArmHighCommand(lift),
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -6.5),

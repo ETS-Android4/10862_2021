@@ -29,7 +29,7 @@ import java.util.logging.Level;
 
 @Disabled
 @Autonomous(name = "Red Carousel", group = "RED")
-public class RedCarouselAuton extends MatchOpMode {
+public class CRedCarouselAuton extends MatchOpMode {
     public static double startPoseX = 0;
     public static double startPoseY = 0;
     public static double startPoseHeading = 0;
@@ -86,13 +86,13 @@ public class RedCarouselAuton extends MatchOpMode {
         schedule(
                 new SelectCommand(new HashMap<Object, Command>() {{
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                            new RedCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
+                            new CRedCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                            new RedCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
+                            new CRedCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                            new RedCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
+                            new CRedCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
                     );
                 }}, vision::getCurrentPosition)
         );
