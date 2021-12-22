@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel;
+package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
@@ -12,7 +12,6 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
@@ -27,6 +26,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
+
 @Disabled
 @Autonomous(name = "Blue Carousel", group = "BLUE")
 public class BlueCarouselAuton extends MatchOpMode {

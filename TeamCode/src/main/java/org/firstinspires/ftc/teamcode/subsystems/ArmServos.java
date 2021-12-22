@@ -30,13 +30,13 @@ public class ArmServos extends SubsystemBase {
         this.packet = packet;
 
         this.dropServo = dropServo;
-        //this.packet = packet; - do you need this twice?
+
     }
 
     @Override
     public void periodic() {
-        //Util.logger(this, telemetry, Level.INFO, "Arm Servo Position", armServo.getPosition());
-        //Util.logger(this, telemetry, Level.INFO, "Drop Servo Position", dropServo.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Arm Servo Position", armServo.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Drop Servo Position", dropServo.getPosition());
     }
 
     public void setArmServo(double armServoPosition) {

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel;
+package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
@@ -12,7 +12,6 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
@@ -27,9 +26,10 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
+
 @Disabled
-@Autonomous(name = "Blue Carousel", group = "BLUE")
-public class BlueCarouselAuton extends MatchOpMode {
+@Autonomous(name = "Blue Warehouse", group = "BLUE")
+public class BlueWarehouseAuton extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;
@@ -61,7 +61,6 @@ public void robotInit() {
     intakeMotor = new MotorEx(hardwareMap, "intake");
     liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
 
-
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);
     armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
@@ -84,13 +83,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new BlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
+                        new BlueWarehouseCommandL(drivetrain, intake, lift, armServos))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new BlueCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
+                        new BlueWarehouseCommandC(drivetrain, intake, lift, armServos))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new BlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
+                        new BlueWarehouseCommandR(drivetrain, intake, lift, armServos))
                 );
             }}, vision::getCurrentPosition)
     );

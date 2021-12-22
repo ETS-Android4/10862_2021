@@ -35,18 +35,11 @@ public class Intake extends SubsystemBase {
         //Util.logger(this, telemetry, Level.INFO, "Current Intake Speed", intake.get());
     }
 
-    private void set(double speed) {
-        intakeMotor.set(speed);
-    }
-    public void intake() {
-        set(INTAKE_SPEED);
-    }
-    public void outtake() {
-        set(OUTTAKE_SPEED);
-    }
-    public void stop() {
-        intakeMotor.stopMotor();
-    }
+    private void set(double speed) {intakeMotor.set(speed); }
+
+    public void intake() {set(INTAKE_SPEED); }
+    public void outtake() {set(OUTTAKE_SPEED); }
+    public void stop() {intakeMotor.stopMotor(); }
 
     public void setIntakeServo(double intakeServoPosition) {intakeServo.setPosition(intakeServoPosition);}
 

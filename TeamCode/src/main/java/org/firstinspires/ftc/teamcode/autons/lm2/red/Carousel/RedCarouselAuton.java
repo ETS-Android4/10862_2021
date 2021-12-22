@@ -10,6 +10,9 @@ import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.CRServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
@@ -24,7 +27,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
-
+@Disabled
 @Autonomous(name = "Red Carousel", group = "RED")
 public class RedCarouselAuton extends MatchOpMode {
     public static double startPoseX = 0;
@@ -36,7 +39,7 @@ public class RedCarouselAuton extends MatchOpMode {
     private MotorEx intakeMotor;
     private ServoEx intakeServo;
     private MotorEx liftMotor;
-    private MotorEx carouselMotor;
+    private CRServo carouselServo;
     private ServoEx dropServo, armServo;
 
     // Gamepad
@@ -52,12 +55,12 @@ public class RedCarouselAuton extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        // Subsystems/a
+        // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         intakeMotor = new MotorEx(hardwareMap, "intake");
         liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-        carouselMotor = new MotorEx(hardwareMap, "carousel");
+
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
@@ -69,7 +72,7 @@ public class RedCarouselAuton extends MatchOpMode {
         intake = new Intake(intakeMotor,  intakeServo, telemetry);
         lift = new Lift(liftMotor, telemetry);
         armServos = new ArmServos(armServo, dropServo, telemetry);
-        carousel = new Carousel(carouselMotor, telemetry);
+
     }
 
     @Override

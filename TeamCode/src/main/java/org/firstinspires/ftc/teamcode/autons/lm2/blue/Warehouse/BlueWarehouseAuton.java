@@ -10,6 +10,9 @@ import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.CRServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel.BlueCarouselCommandC;
@@ -27,7 +30,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
-
+@Disabled
 @Autonomous(name = "Blue Warehouse", group = "BLUE")
 public class BlueWarehouseAuton extends MatchOpMode {
 public static double startPoseX = 0;
@@ -39,7 +42,7 @@ private MotorEx leftFront, leftRear, rightRear, rightFront;
 private MotorEx intakeMotor;
 private ServoEx intakeServo;
 private MotorEx liftMotor;
-private MotorEx carouselMotor;
+private CRServo carouselServo;
 private ServoEx dropServo, armServo;
 
 // Gamepad
@@ -70,7 +73,6 @@ public void robotInit() {
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
     armServos = new ArmServos(armServo, dropServo, telemetry);
-    carousel = new Carousel(carouselMotor, telemetry);
 }
 
 @Override

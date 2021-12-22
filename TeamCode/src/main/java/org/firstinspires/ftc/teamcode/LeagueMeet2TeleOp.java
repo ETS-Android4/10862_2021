@@ -9,6 +9,10 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.CRServoImpl;
+import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
 import org.firstinspires.ftc.teamcode.commands.ResetCommand;
@@ -30,7 +34,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;
     private MotorEx liftMotor;
     private MotorEx intakeMotor;
-    private MotorEx carouselMotor;
+    private CRServo carouselServo;
     private ServoEx armServo, dropServo;
     private ServoEx intakeServo;
 
@@ -64,8 +68,9 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         intakeServo = new SimpleServo(hardwareMap,"intakeServo",0,360);
         // Lift hardware initializations
         liftMotor = new MotorEx(hardwareMap, "lift");
-        //carouse hardware initializations
-        carouselMotor = new MotorEx(hardwareMap, "carousel");
+        //carousel hardware initializations
+        //carouselServo = new CRServo(hardwareMap, "carouselServo");
+        //carouselServo = new Carousel(hardwareMap, telemetry);
         // Servos hardware initializations
         armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
         dropServo = new SimpleServo(hardwareMap, "drop",0,360);
@@ -78,7 +83,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         intake = new Intake(intakeMotor, intakeServo, telemetry);
         lift = new Lift(liftMotor, telemetry);
         armServos = new ArmServos(armServo, dropServo, telemetry);
-        carousel = new Carousel(carouselMotor, telemetry);
+
 
         //gamepad1.setJoystickDeadzone(0.0f);
         driverGamepad = new GamepadEx(gamepad1);

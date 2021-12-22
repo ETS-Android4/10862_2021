@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.lm2.red.Warehouse;
+package org.firstinspires.ftc.teamcode.autons.lmchamp.red.Carousel;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
@@ -12,13 +12,8 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
-import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel.RedCarouselCommandC;
-import org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel.RedCarouselCommandL;
-import org.firstinspires.ftc.teamcode.autons.lm2.red.Carousel.RedCarouselCommandR;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -31,9 +26,10 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
+
 @Disabled
-@Autonomous(name = "Red Warehouse", group = "RED")
-public class RedWarehouseAuton extends MatchOpMode {
+@Autonomous(name = "Red Carousel", group = "RED")
+public class RedCarouselAuton extends MatchOpMode {
     public static double startPoseX = 0;
     public static double startPoseY = 0;
     public static double startPoseHeading = 0;
@@ -59,11 +55,12 @@ public class RedWarehouseAuton extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        // Subsystems/a
+        // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         intakeMotor = new MotorEx(hardwareMap, "intake");
-        liftMotor = new MotorEx(hardwareMap,"lift", Motor.GoBILDA.RPM_117);
+        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
@@ -72,7 +69,7 @@ public class RedWarehouseAuton extends MatchOpMode {
 
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        intake = new Intake(intakeMotor, intakeServo,telemetry);
+        intake = new Intake(intakeMotor,  intakeServo, telemetry);
         lift = new Lift(liftMotor, telemetry);
         armServos = new ArmServos(armServo, dropServo, telemetry);
 
@@ -89,13 +86,13 @@ public class RedWarehouseAuton extends MatchOpMode {
         schedule(
                 new SelectCommand(new HashMap<Object, Command>() {{
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                            new RedWarehouseCommandL(drivetrain, intake, lift, armServos))
+                            new RedCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                            new RedWarehouseCommandC(drivetrain, intake, lift, armServos))
+                            new RedCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                            new RedWarehouseCommandR(drivetrain, intake, lift, armServos))
+                            new RedCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
                     );
                 }}, vision::getCurrentPosition)
         );
