@@ -31,8 +31,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 @Disabled
-@Autonomous(name = "CBlue Warehouse", group = "BLUE")
-public class CBlueWarehouseAuton extends MatchOpMode {
+@Autonomous(name = "CRed Warehouse", group = "BLUE")
+public class CRedWarehouseAuton extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;

@@ -66,15 +66,16 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         // Intake hardware Initializations
         intakeMotor = new MotorEx(hardwareMap, "intake");
         intakeServo = new SimpleServo(hardwareMap,"intakeServo",0,360);
+
         // Lift hardware initializations
         liftMotor = new MotorEx(hardwareMap, "lift");
+
         //carousel hardware initializations
-        //carouselServo = new CRServo(hardwareMap, "carouselServo");
-        //carouselServo = new Carousel(hardwareMap, telemetry);
+        carousel = new Carousel(hardwareMap, telemetry);
+
         // Servos hardware initializations
         armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
         dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-
 
 
         // Subsystems
