@@ -4,8 +4,11 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.pipelines.FFRectDetector;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
+
+import java.util.logging.Level;
 //import org.firstinspires.ftc.teamcode.Util;
 
 
@@ -28,8 +31,7 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic() {
         currentPos = duckDetector.getPosition();
-
-        //Util.logger(this, telemetry, Level.INFO, "Current Stack", currentStack);
+        Util.logger(this, telemetry, Level.INFO, "Duck Position", duckDetector.getPosition());
     }
 
     public TeamMarkerPipeline.Position getCurrentPosition() {

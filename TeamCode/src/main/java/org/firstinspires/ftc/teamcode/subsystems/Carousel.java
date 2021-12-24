@@ -9,9 +9,9 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Util;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Util;
 
 import java.util.logging.Level;
 
@@ -29,8 +29,9 @@ public class Carousel extends SubsystemBase {
         carouselServo.setInverted(true);
     }
 
+    @Override
     public void periodic() {
-        //Util.logger(this, telemetry, Level.INFO, "Current Carousel Speed", carouselServo.get());
+        Util.logger(this, telemetry, Level.INFO, "Carousel Servo Speed", carouselServo.get());
     }
 
     //public void set(double power) {carouselServo.set(power); }

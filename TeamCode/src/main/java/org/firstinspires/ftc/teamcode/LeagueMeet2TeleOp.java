@@ -12,8 +12,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.CRServoImpl;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
+import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
 import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.DefaultDriveCommand;
@@ -26,6 +28,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
+import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 @Config
 @TeleOp(name = "League Meet 2 TeleOp")
@@ -37,6 +40,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     private CRServo carouselServo;
     private ServoEx armServo, dropServo;
     private ServoEx intakeServo;
+    private ColorSensor colorSensor;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
@@ -47,6 +51,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     private Intake intake;
     private ArmServos armServos;
     private Carousel carousel;
+    private SensorColor sensorColor;
 
     //Buttons
     private Button intakeButton, halfSpeedButton, outtakeButton;
@@ -70,13 +75,12 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         // Lift hardware initializations
         liftMotor = new MotorEx(hardwareMap, "lift");
 
-        //carousel hardware initializations
-        carousel = new Carousel(hardwareMap, telemetry);
-
         // Servos hardware initializations
         armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
         dropServo = new SimpleServo(hardwareMap, "drop",0,360);
 
+        //color sensor hardware initialization
+        sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
 
         // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap),telemetry);
@@ -84,13 +88,14 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         intake = new Intake(intakeMotor, intakeServo, telemetry);
         lift = new Lift(liftMotor, telemetry);
         armServos = new ArmServos(armServo, dropServo, telemetry);
-
+        carousel = new Carousel(hardwareMap, telemetry);
 
         //gamepad1.setJoystickDeadzone(0.0f);
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
+        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor));
     }
 
     @Override
@@ -100,8 +105,8 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         slowModeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         //intake
-        outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
-        intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
+        outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
+        intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
 
         //lift
         //Don't use any other D-Pad except down
@@ -185,6 +190,10 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     }
 
     @Override
+    public void matchLoop() {
+    }
+
+    @Override
     public void disabledPeriodic() {
     }
 
@@ -194,5 +203,6 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
 
     @Override
     public void robotPeriodic() {
+        sensorColor.periodic();
     }
 }
