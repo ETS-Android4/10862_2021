@@ -57,7 +57,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     private Button intakeButton, halfSpeedButton, outtakeButton;
     private Button slowModeTrigger;
     public Button liftUpButton, liftDownButton;
-    public Button liftLowButton, liftMidButton, liftHighButton;
+    public Button liftRestButton, liftLowButton, liftMidButton, liftHighButton;
     public Button armServoHomeButton, armServoDropButton, armServoMidButton;
     public Button carouselRightButton, carouselLeftButton;
     public Button resetArmButton;
@@ -118,6 +118,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
                 new ResetCommand(armServos, lift)
         );
 
+        liftRestButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(lift::liftResting));
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
         liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
@@ -125,9 +126,6 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         //carousel
         carouselLeftButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whenPressed(carousel::carouselLeft).whenReleased(carousel::stop));
         carouselRightButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whenPressed(carousel::carouselRight).whenReleased(carousel::stop));
-
-        //Arm up
-        armServoMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(armServos::armUp));
 
         //drop motion
         dropBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(

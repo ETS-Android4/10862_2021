@@ -72,8 +72,8 @@ public class SampleTankDrive extends TankDrive {
     //kP = 0.00005, kD = 0.00038
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(11.75, 0, 0.022);
     //kP = 12.3, kD = 0.09
-    public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.00008, 0, 0.0004); //kP 0.01
-    public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.00008, 0, 0.0004); //kP 0.01
+    public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.00008, 0, 0.000088); //kP 0.01
+    public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.000008, 0, 0.004); //kP 0.01
 //kP = 0.000008
     private PIDController leftDriveVeloPID;
     private PIDController rightDriveVeloPID;
