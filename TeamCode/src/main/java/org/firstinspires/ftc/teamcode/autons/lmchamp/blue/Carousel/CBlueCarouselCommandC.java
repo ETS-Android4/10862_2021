@@ -24,7 +24,6 @@ public class CBlueCarouselCommandC extends SequentialCommandGroup {
         addCommands(
                 //distance is in inches
                 //Setup
-                //sussy
                 new InstantCommand(armServos::armUp,armServos),
 
                 new DriveForwardCommand(drivetrain, -24),
