@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DropCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.ResetCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.ArmLowCommand;
@@ -16,9 +17,10 @@ import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
+import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class CRedWarehouseCommandL extends SequentialCommandGroup {
-    public CRedWarehouseCommandL(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos) {
+    public CRedWarehouseCommandL(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor colorSensor) {
         //declare variables here
 
 
@@ -43,8 +45,7 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, -45),
 
                 //intake
-                //new IntakeCommand(lift, intake),
-                //new ColorIntakeCommand(lift, intake, colorSensor),
+                new IntakeCommand(lift, intake, colorSensor),
 
                 new DriveForwardCommand(drivetrain, 45),
                 new TurnToCommand(drivetrain, 0),

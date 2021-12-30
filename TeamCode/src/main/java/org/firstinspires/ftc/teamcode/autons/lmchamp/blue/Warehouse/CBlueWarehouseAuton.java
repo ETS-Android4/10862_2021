@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.hardware.SensorColor;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
@@ -12,6 +13,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
@@ -27,7 +29,6 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-@Disabled
 @Autonomous(name = "CBlue Warehouse", group = "BLUE")
 public class CBlueWarehouseAuton extends MatchOpMode {
 public static double startPoseX = 0;
@@ -41,6 +42,7 @@ private ServoEx intakeServo;
 private MotorEx liftMotor;
 private CRServo carouselServo;
 private ServoEx dropServo, armServo;
+private ColorSensor colorSensor;
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -52,6 +54,7 @@ private Lift lift;
 private Vision vision;
 private ArmServos armServos;
 private Carousel carousel;
+private SensorColor sensorColor;
 
 @Override
 public void robotInit() {
@@ -70,6 +73,9 @@ public void robotInit() {
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
     armServos = new ArmServos(armServo, dropServo, telemetry);
+    //TODO:Y isn't this working?
+    sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
+    sensorColor = new SensorColor(colorSensor, telemetry);
 }
 
 @Override
@@ -83,13 +89,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos))
+                        new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, colorSensor))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos))
+                        new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos, colorSensor))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos))
+                        new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, colorSensor))
                 );
             }}, vision::getCurrentPosition)
     );
