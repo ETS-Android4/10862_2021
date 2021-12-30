@@ -31,7 +31,7 @@ public class Carousel extends SubsystemBase {
 
     @Override
     public void periodic() {
-        Util.logger(this, telemetry, Level.INFO, "Carousel Servo Speed", carouselServo.get());
+        Util.logger(this, telemetry, Level.INFO, "Carousel Servo Speed: ", carouselServo.get());
     }
 
     //public void set(double power) {carouselServo.set(power); }

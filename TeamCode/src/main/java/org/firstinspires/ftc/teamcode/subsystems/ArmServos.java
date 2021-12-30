@@ -13,7 +13,7 @@ import java.util.logging.Level;
 public class ArmServos extends SubsystemBase {
 
     public static double SERVO_POSITION_ARM_HOME =0.68;
-    public static double SERVO_POSITION_ARM_UP = 0.5;
+    public static double SERVO_POSITION_ARM_UP = 0.4;
     public static double SERVO_POSITION_ARM_DROP = 0;
     public static double SERVO_POSITION_BOX_OPEN = 0.75;
     public static double SERVO_POSITION_BOX_CLOSE = 0.85;
@@ -35,8 +35,8 @@ public class ArmServos extends SubsystemBase {
 
     @Override
     public void periodic() {
-        Util.logger(this, telemetry, Level.INFO, "Arm Servo Position", armServo.getPosition());
-        Util.logger(this, telemetry, Level.INFO, "Drop Servo Position", dropServo.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Arm Servo Position: ", armServo.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Drop Servo Position: ", dropServo.getPosition());
     }
 
     public void setArmServo(double armServoPosition) {

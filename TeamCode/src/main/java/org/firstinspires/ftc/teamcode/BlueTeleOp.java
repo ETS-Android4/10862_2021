@@ -31,8 +31,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 @Config
-@TeleOp(name = "League Meet 2 TeleOp")
-public class LeagueMeet2TeleOp extends MatchOpMode {
+@TeleOp(name = "Blue TeleOp")
+public class BlueTeleOp extends MatchOpMode {
     // Motors and Servos
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;
     private MotorEx liftMotor;
@@ -123,7 +123,6 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
                 new ResetCommand(armServos, lift)
         );
 
-
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
         liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
@@ -140,17 +139,6 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)).whenPressed(armServos::armUp);
         resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(armServos::armHome);
-
-
-        /*
-        lift low position: X
-        lift mid position: B
-        lift high position: Y
-        lift reset position: DPAD_DOWN
-
-        box position up: A
-        box position outtake: RIGHT_BUMPER
-         */
 
 
 /*
