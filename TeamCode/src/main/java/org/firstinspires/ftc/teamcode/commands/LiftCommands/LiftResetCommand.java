@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.LiftCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -9,8 +9,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
 import java.time.Instant;
 
-public class ResetCommand extends SequentialCommandGroup {
-        public ResetCommand(ArmServos armServos, Lift lift){
+public class LiftResetCommand extends SequentialCommandGroup {
+        public LiftResetCommand(ArmServos armServos, Lift lift){
         addCommands(
                 new InstantCommand(armServos::armHome, armServos),
                 new InstantCommand(lift::liftResting, lift)

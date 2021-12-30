@@ -109,19 +109,18 @@ public class Lift extends SubsystemBase {
 
     /************************************************************************************************/
     public void liftResting() {
-        // TODO: CHANGE
         automatic = true;
         controller.setSetPoint(RESTING_POSITION);
     }
+
     public void liftLow() {
-        // TODO: CHANGE
         automatic = true;
         controller.setSetPoint(LOW_POSITION);
 
         liftPosition = 1;
     }
+
     public void liftMid() {
-        // TODO: CHANGE
         automatic = true;
         controller.setSetPoint(MID_POSITION);
 
@@ -129,7 +128,6 @@ public class Lift extends SubsystemBase {
     }
 
     public void liftHigh() {
-        // TODO: CHANGE
         automatic = true;
         controller.setSetPoint(HIGH_POSITION);
 

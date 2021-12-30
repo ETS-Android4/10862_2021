@@ -1,14 +1,9 @@
-package org.firstinspires.ftc.teamcode.commands.drive;
+package org.firstinspires.ftc.teamcode.commands.DriveCommands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
-import com.arcrobotics.ftclib.command.Subsystem;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
-import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-
-import java.util.Set;
-import java.util.function.DoubleSupplier;
 
 public class DefaultDriveCommand extends CommandBase {
     private Drivetrain drive;

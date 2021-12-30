@@ -1,16 +1,16 @@
-package org.firstinspires.ftc.teamcode.commands.arm;
+package org.firstinspires.ftc.teamcode.commands.LiftCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
-public class ArmLowCommand extends SequentialCommandGroup {
+public class LiftHighCommand extends SequentialCommandGroup {
     private Lift lift;
-    
-    public ArmLowCommand(Lift lift){
+
+    public LiftHighCommand(Lift lift){
         addCommands(
-                new InstantCommand(lift::liftLow, lift)
+                new InstantCommand(lift::liftHigh, lift)
                 );
         
     }   

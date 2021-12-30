@@ -9,10 +9,10 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
 import java.time.Instant;
 
-public class DropCommand extends SequentialCommandGroup {
+public class DropFreightCommand extends SequentialCommandGroup {
     private ArmServos armServos;
 
-    public DropCommand(ArmServos armServos){
+    public DropFreightCommand(ArmServos armServos){
         addCommands(
                 new InstantCommand(armServos::armDrop, armServos),
                 new WaitCommand(300),

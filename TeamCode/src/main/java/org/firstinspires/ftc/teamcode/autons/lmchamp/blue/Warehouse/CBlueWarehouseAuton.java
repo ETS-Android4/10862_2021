@@ -73,9 +73,6 @@ public void robotInit() {
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
     armServos = new ArmServos(armServo, dropServo, telemetry);
-    //TODO:Y isn't this working?
-    sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
-    sensorColor = new SensorColor(colorSensor, telemetry);
 }
 
 @Override
@@ -89,13 +86,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, colorSensor))
+                        new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos, colorSensor))
+                        new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, colorSensor))
+                        new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos))
                 );
             }}, vision::getCurrentPosition)
     );

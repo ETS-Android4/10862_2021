@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode.autons.lm1.blue.Commands;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.commands.drive.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.drive.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 

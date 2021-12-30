@@ -10,16 +10,13 @@ import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImpl;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
-import org.firstinspires.ftc.teamcode.commands.DropCommand;
-import org.firstinspires.ftc.teamcode.commands.ResetCommand;
-import org.firstinspires.ftc.teamcode.commands.drive.DefaultDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.drive.SlowDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 
@@ -120,7 +117,7 @@ public class BlueTeleOp extends MatchOpMode {
 
         //reset motion
         resetArmButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(
-                new ResetCommand(armServos, lift)
+                new LiftResetCommand(armServos, lift)
         );
 
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
@@ -133,7 +130,7 @@ public class BlueTeleOp extends MatchOpMode {
 
         //drop motion
         dropBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(
-                new DropCommand(armServos)
+                new DropFreightCommand(armServos)
         );
 
         //Box servos stuff
