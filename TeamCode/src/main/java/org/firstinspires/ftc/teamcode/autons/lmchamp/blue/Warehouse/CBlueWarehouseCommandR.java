@@ -40,11 +40,11 @@ public class CBlueWarehouseCommandR extends SequentialCommandGroup {
                 new ResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 22),
                 new TurnCommand(drivetrain,90),
-                new DriveForwardCommand(drivetrain, -40)
+                new DriveForwardCommand(drivetrain, -40),
 
                 //intake
-                new IntakeCommand(lift, intake),
-                new ColorIntakeCommand(lift, intake, colorSensor),
+                //new IntakeCommand(lift, intake),
+                //new ColorIntakeCommand(lift, intake, colorSensor),
 
                 new DriveForwardCommand(drivetrain, 40),
                 new TurnToCommand(drivetrain, 0),

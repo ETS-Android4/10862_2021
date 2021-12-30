@@ -19,7 +19,7 @@ public class Intake extends SubsystemBase {
     public static double OUTTAKE_SPEED = 1;
     public static double UP_POSITION= 1;
     public static double MID_POSITION = 0.88;
-    public static double DOWN_POSITION= 0.67;
+    public static double DOWN_POSITION= 0.7;
 
 
     Telemetry telemetry;

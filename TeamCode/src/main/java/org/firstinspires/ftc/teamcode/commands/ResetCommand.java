@@ -15,11 +15,8 @@ public class ResetCommand extends SequentialCommandGroup {
 
     public ResetCommand(ArmServos armServos, Lift lift){
         addCommands(
-                new InstantCommand(lift::lowerLiftManual, lift),
+                new InstantCommand(lift::liftResting, lift),
                 new WaitCommand(100),
-                new InstantCommand(lift::stopLift, lift),
-                new InstantCommand(armServos::boxOpen, armServos),
-                new WaitCommand(500),
                 new InstantCommand(armServos::armHome, armServos)
         );
     }

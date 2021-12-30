@@ -58,11 +58,9 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
     private Button slowModeTrigger;
     public Button liftUpButton, liftDownButton;
     public Button liftRestButton, liftLowButton, liftMidButton, liftHighButton;
-    public Button armServoHomeButton, armServoDropButton, armServoMidButton;
     public Button carouselRightButton, carouselLeftButton;
     public Button resetArmButton;
-    public Button dropBoxButton;
-    public Button restBoxButton;
+    public Button dropBoxButton, resetBoxButton, upBoxButton;
     public Button intakeUpButton, intakeDownButton, intakeMiddleButton;
 
     @Override
@@ -108,6 +106,13 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
         outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
         intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
 
+        //Intake Up
+        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)). whenPressed(intake::servoUp);
+        //Intake Mid
+        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
+        //Intake Down
+        intakeDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)). whenPressed(intake::servoDown);
+
         //lift
         //Don't use any other D-Pad except down
         liftUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP).whenPressed(lift::liftManual).whenReleased(lift::stopLift));
@@ -118,7 +123,7 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
                 new ResetCommand(armServos, lift)
         );
 
-        liftRestButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A).whenPressed(lift::liftResting));
+
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
         liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
@@ -132,15 +137,10 @@ public class LeagueMeet2TeleOp extends MatchOpMode {
                 new DropCommand(armServos)
         );
 
-        //rest position for box
-        restBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(armServos::armHome);
+        //Box servos stuff
+        upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)).whenPressed(armServos::armUp);
+        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(armServos::armHome);
 
-        //Intake Up
-        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)). whenPressed(intake::servoUp);
-        //Intake Mid
-        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
-        //Intake Down
-        intakeDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)). whenPressed(intake::servoDown);
 
         /*
         lift low position: X
