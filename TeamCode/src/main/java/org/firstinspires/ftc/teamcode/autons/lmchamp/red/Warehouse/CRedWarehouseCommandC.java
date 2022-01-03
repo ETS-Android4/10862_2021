@@ -44,7 +44,7 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, -45),
 
                 //intake
-                new IntakeCommand(lift, intake, colorSensor),
+                new IntakeCommand(lift, intake, colorSensor, armServos),
 
                 new DriveForwardCommand(drivetrain, 45),
                 new TurnToCommand(drivetrain, 0),

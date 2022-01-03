@@ -90,7 +90,7 @@ public class BlueTeleOp extends MatchOpMode {
         operatorGamepad = new GamepadEx(gamepad2);
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
-        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor));
+        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
     }
 
     @Override
