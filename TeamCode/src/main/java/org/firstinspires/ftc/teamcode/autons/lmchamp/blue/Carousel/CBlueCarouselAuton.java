@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -14,6 +15,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftLowCommand;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -83,8 +86,13 @@ public void disabledPeriodic() {
 public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
+
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
+                        //new FirstHalfCommand(),
+                        //new LiftLowCommand(lift),
+                        //new EndOfAutonCommand()
+                        new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel)
+            )
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                         new CBlueCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
