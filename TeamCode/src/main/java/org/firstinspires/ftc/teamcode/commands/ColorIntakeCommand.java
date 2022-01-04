@@ -16,16 +16,16 @@ import java.time.Instant;
 
 public class ColorIntakeCommand extends SequentialCommandGroup {
 
-    public ColorIntakeCommand(Lift lift, Intake intake, SensorColor colorSensor) {
+    public ColorIntakeCommand(Lift lift, Intake intake, SensorColor colorSensor, ArmServos armServos) {
 
             addCommands(
                     new ConditionalCommand(
                             new SequentialCommandGroup(
                                     new InstantCommand(intake::servoMid, intake),
-                                    new InstantCommand(intake::outtake, intake),
+                                    //new InstantCommand(intake::outtake, intake),
                                     new WaitCommand(1000),
-                                    new InstantCommand(lift::liftLow, lift),
-                                    new InstantCommand(intake::stop, intake)),
+                                    //new InstantCommand(intake::stop, intake)),
+                                    new InstantCommand(armServos::armUp, armServos)),
                             new InstantCommand(),
                             () -> (colorSensor.red() > 200) && (colorSensor.green() > 200)
                     )
