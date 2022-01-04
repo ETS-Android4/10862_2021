@@ -22,12 +22,12 @@ public class ColorIntakeCommand extends SequentialCommandGroup {
                     new ConditionalCommand(
                             new SequentialCommandGroup(
                                     new InstantCommand(intake::servoMid, intake),
-                                    //new InstantCommand(intake::outtake, intake),
-                                    new WaitCommand(1000),
-                                    //new InstantCommand(intake::stop, intake)),
+                                    new InstantCommand(intake::outtake, intake),
+                                    new WaitCommand(500),
+                                    new InstantCommand(intake::stop, intake),
                                     new InstantCommand(armServos::armUp, armServos)),
                             new InstantCommand(),
-                            () -> (colorSensor.red() > 200) && (colorSensor.green() > 200)
+                            () -> (colorSensor.red() > 200) && (colorSensor.green() > 200) && (armServos.BOX_CAN_MOVE = true)
                     )
             );
     }

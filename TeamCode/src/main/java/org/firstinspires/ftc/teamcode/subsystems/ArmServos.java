@@ -18,6 +18,8 @@ public class ArmServos extends SubsystemBase {
     public static double SERVO_POSITION_BOX_OPEN = 0.75;
     public static double SERVO_POSITION_BOX_CLOSE = 0.85;
 
+    public static boolean BOX_CAN_MOVE = true ;
+
     private Telemetry telemetry;
     private TelemetryPacket packet;
 
@@ -46,10 +48,15 @@ public class ArmServos extends SubsystemBase {
     }
 
     public void armHome() {
+        BOX_CAN_MOVE = true;
         setArmServo(SERVO_POSITION_ARM_HOME);
     }
-    public void armUp(){setArmServo(SERVO_POSITION_ARM_UP );}
+    public void armUp() {
+        BOX_CAN_MOVE = false;
+        setArmServo(SERVO_POSITION_ARM_UP);
+    }
     public void armDrop() {
+        BOX_CAN_MOVE = false;
         setArmServo(SERVO_POSITION_ARM_DROP);
     }
     public void boxOpen() {

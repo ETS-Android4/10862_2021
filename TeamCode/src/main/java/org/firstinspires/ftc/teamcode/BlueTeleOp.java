@@ -56,7 +56,7 @@ public class BlueTeleOp extends MatchOpMode {
     public Button liftUpButton, liftDownButton;
     public Button liftRestButton, liftLowButton, liftMidButton, liftHighButton;
     public Button carouselRightButton, carouselLeftButton;
-    public Button resetArmButton;
+    public Button resetLiftButton;
     public Button dropBoxButton, resetBoxButton, upBoxButton;
     public Button intakeUpButton, intakeDownButton, intakeMiddleButton;
 
@@ -96,7 +96,7 @@ public class BlueTeleOp extends MatchOpMode {
     @Override
     public void configureButtons() {
 
-        //slowmode
+        //slowmode for the drivetrain
         slowModeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         //intake
@@ -108,7 +108,7 @@ public class BlueTeleOp extends MatchOpMode {
         //Intake Mid
         intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
         //Intake Down
-        intakeDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)). whenPressed(intake::servoDown);
+        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)). whenPressed(intake::servoDown);
 
         //lift
         //Don't use any other D-Pad except down
@@ -116,7 +116,7 @@ public class BlueTeleOp extends MatchOpMode {
         liftDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT).whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
 
         //reset motion
-        resetArmButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(
+        resetLiftButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(
                 new LiftResetCommand(armServos, lift)
         );
 
@@ -129,13 +129,13 @@ public class BlueTeleOp extends MatchOpMode {
         carouselRightButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whenPressed(carousel::carouselRight).whenReleased(carousel::stop));
 
         //drop motion
-        dropBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(
+        dropBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(
                 new DropFreightCommand(armServos)
         );
 
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)).whenPressed(armServos::armUp);
-        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(armServos::armHome);
+        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(armServos::armHome);
 
 
 /*
