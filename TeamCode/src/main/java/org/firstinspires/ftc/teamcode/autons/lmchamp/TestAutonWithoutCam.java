@@ -1,11 +1,10 @@
-package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse;
+package org.firstinspires.ftc.teamcode.autons.lmchamp;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.arcrobotics.ftclib.hardware.SensorColor;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
@@ -16,6 +15,10 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel.CBlueCarouselCommandC;
+import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel.CBlueCarouselCommandL;
+import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel.CBlueCarouselCommandR;
+import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -24,13 +27,13 @@ import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
-import org.firstinspires.ftc.teamcode.subsystems.Vision;
+import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 import java.util.HashMap;
 import java.util.logging.Level;
 
-@Autonomous(name = "CBlue Warehouse", group = "BLUE")
-public class CBlueWarehouseAuton extends MatchOpMode {
+@Autonomous(name = "TestAutonWithoutCam", group = "BLUE")
+public class TestAutonWithoutCam extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;
@@ -51,7 +54,6 @@ private GamepadEx driverGamepad;
 private Drivetrain drivetrain;
 private Intake intake;
 private Lift lift;
-private Vision vision;
 private ArmServos armServos;
 private Carousel carousel;
 private SensorColor sensorColor;
@@ -64,8 +66,8 @@ public void robotInit() {
     intakeMotor = new MotorEx(hardwareMap, "intake");
     liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
 
+
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
-    vision = new Vision(hardwareMap, "Webcam 1", telemetry);
     armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
     dropServo = new SimpleServo(hardwareMap, "drop",0,360);
 
@@ -73,28 +75,19 @@ public void robotInit() {
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
     armServos = new ArmServos(armServo, dropServo, telemetry);
+    sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
 }
 
-@Override
-public void disabledPeriodic() {
-    Util.logger(this, telemetry, Level.INFO, "Current Position", vision.getCurrentPosition());
-    vision.periodic();
-}
-
-@Override
+/*@Override
 public void matchStart() {
     schedule(
-            new SelectCommand(new HashMap<Object, Command>() {{
-                put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos))
-                );
-                put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos))
-                );
-                put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                       new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos))
-                );
-            }}, vision::getCurrentPosition)
-    );
-    }
-}
+              new SequentialCommandGroup(
+                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel)));
+            }};*/
+
+    @Override
+    public void matchStart() {
+        schedule(
+                new SequentialCommandGroup(
+                        new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos)));
+    }};
