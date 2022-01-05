@@ -108,7 +108,7 @@ public class BlueTeleOp extends MatchOpMode {
         //Intake Mid
         intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
         //Intake Down
-        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)). whenPressed(intake::servoDown);
+        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)). whenPressed(intake::servoDown);
 
         //lift
         //Don't use any other D-Pad except down

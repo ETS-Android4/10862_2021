@@ -7,15 +7,11 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
-import java.time.Instant;
-
 public class LiftResetCommand extends SequentialCommandGroup {
         public LiftResetCommand(ArmServos armServos, Lift lift){
         addCommands(
                 new InstantCommand(armServos::armHome, armServos),
-                new WaitCommand(300),
                 new InstantCommand(lift::liftResting, lift)
-
         );
     }
 
