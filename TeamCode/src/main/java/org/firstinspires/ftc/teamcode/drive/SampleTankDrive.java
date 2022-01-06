@@ -67,14 +67,15 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
 @Config
 public class SampleTankDrive extends TankDrive {
     public static PIDCoefficients AXIAL_PID = new PIDCoefficients(5, 0, 0.25);
-    //kP = 8, kD = 0.003
+    //5, 0, 0.25
     public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.03, 0, 0);
-    //kP = 0.00005, kD = 0.00038
+    //0.03, 0, 0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(17.5, 0, 0.03);
-    //kP = 12.3, kD = 0.09
-    public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0); //kP 0.01
-    public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0); //kP 0.01
-//kP = 0.000008
+    //17.5, 00.03
+    public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0);
+    //0.001, 0, 0
+    public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0);
+    //0.001, 0, 0
     private PIDController leftDriveVeloPID;
     private PIDController rightDriveVeloPID;
 
@@ -183,7 +184,7 @@ public class SampleTankDrive extends TankDrive {
         rightRear.setDirection(DcMotor.Direction.REVERSE);
 
         // TODO: if desired, use setLocalizer() to change the localization method
-        // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
+        // for instance, setLocalizer(n/ew ThreeTrackingWheelLocalizer(...));
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
