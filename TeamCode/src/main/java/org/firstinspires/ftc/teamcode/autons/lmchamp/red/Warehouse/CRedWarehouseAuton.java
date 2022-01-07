@@ -43,13 +43,13 @@ public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;
 
-// Motors
+/*// Motors
 private MotorEx leftFront, leftRear, rightRear, rightFront;
-//private MotorEx intakeMotor;
-//private ServoEx intakeServo;
+private MotorEx intakeMotor;
+private ServoEx intakeServo;
 private MotorEx liftMotor;
 private CRServo carouselServo;
-private ColorSensor colorSensor;
+private ColorSensor colorSensor;*/
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -66,7 +66,7 @@ private CapServos capServos;
 
     @Override
     public void robotInit() {
-        // Subsystems
+        /*// Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         //intakeMotor = new MotorEx(hardwareMap, "intake");
@@ -79,7 +79,7 @@ private CapServos capServos;
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         //intake = new Intake(intakeMotor, intakeServo, telemetry);
-        lift = new Lift(liftMotor, telemetry);
+        lift = new Lift(liftMotor, telemetry);*/
     }
 
 @Override
