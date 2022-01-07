@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
+import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.autons.lm2.blue.Warehouse.BlueWarehouseCommandC;
 import org.firstinspires.ftc.teamcode.autons.lm2.blue.Warehouse.BlueWarehouseCommandL;
@@ -44,8 +45,8 @@ public static double startPoseHeading = 0;
 
 // Motors
 private MotorEx leftFront, leftRear, rightRear, rightFront;
-private MotorEx intakeMotor;
-private ServoEx intakeServo;
+//private MotorEx intakeMotor;
+//private ServoEx intakeServo;
 private MotorEx liftMotor;
 private CRServo carouselServo;
 private ColorSensor colorSensor;
@@ -63,24 +64,23 @@ private Carousel carousel;
 private SensorColor sensorColor;
 private CapServos capServos;
 
-@Override
-public void robotInit() {
-    // Subsystems
-    drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
-    drivetrain.init();
-    intakeMotor = new MotorEx(hardwareMap, "intake");
-    liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+    @Override
+    public void robotInit() {
+        // Subsystems
+        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
+        drivetrain.init();
+        //intakeMotor = new MotorEx(hardwareMap, "intake");
+        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
 
-    //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
-    vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-    //armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
-    //dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-    sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        //armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
+        //dropServo = new SimpleServo(hardwareMap, "drop",0,360);
+        sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
 
-    drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-    intake = new Intake(intakeMotor, intakeServo, telemetry);
-    lift = new Lift(liftMotor, telemetry);
-}
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        //intake = new Intake(intakeMotor, intakeServo, telemetry);
+        lift = new Lift(liftMotor, telemetry);
+    }
 
 @Override
 public void disabledPeriodic() {

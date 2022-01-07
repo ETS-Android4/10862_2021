@@ -33,7 +33,6 @@ public class ArmServos extends SubsystemBase {
         this.telemetry = tl;
         this.packet = packet;
     }
-
     @Override
     public void periodic() {
         Util.logger(this, telemetry, Level.INFO, "Arm Servo Position: ", armServo.getPosition());

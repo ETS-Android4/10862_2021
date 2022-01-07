@@ -44,6 +44,7 @@ private MotorEx liftMotor;
 private CRServo carouselServo;
 private ServoEx dropServo, armServo;
 private ColorSensor colorSensor;
+private CapServos capServos;
 
 // Gamepad
 private GamepadEx driverGamepad;

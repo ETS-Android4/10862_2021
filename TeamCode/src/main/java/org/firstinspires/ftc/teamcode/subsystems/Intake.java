@@ -9,6 +9,7 @@ import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.HardwareMap;
 import org.firstinspires.ftc.teamcode.Util;
 
 import java.util.logging.Level;
