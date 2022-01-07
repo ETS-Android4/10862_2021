@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.lmchamp;
+package org.firstinspires.ftc.teamcode.autons;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
