@@ -97,13 +97,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CRedWarehouseCommandL(drivetrain, intake, lift, armServos, capServos))
+                        new CRedWarehouseCommandL(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CRedWarehouseCommandC(drivetrain, intake, lift, armServos, capServos))
+                        new CRedWarehouseCommandC(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new CRedWarehouseCommandR(drivetrain, intake, lift, armServos, capServos))
+                        new CRedWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
             }}, vision::getCurrentPosition)
     );

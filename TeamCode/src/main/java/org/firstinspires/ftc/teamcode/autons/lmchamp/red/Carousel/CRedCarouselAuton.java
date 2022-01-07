@@ -86,13 +86,13 @@ public class CRedCarouselAuton extends MatchOpMode {
         schedule(
                 new SelectCommand(new HashMap<Object, Command>() {{
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                            new CRedCarouselCommandL(drivetrain, intake, lift, armServos, carousel))
+                            new CRedCarouselCommandL(drivetrain, intake, lift, armServos, sensorColor, carousel))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                            new CRedCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
+                            new CRedCarouselCommandC(drivetrain, intake, lift, armServos, sensorColor, carousel))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                            new CRedCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
+                            new CRedCarouselCommandR(drivetrain, intake, lift, armServos, sensorColor, carousel))
                     );
                 }}, vision::getCurrentPosition)
         );

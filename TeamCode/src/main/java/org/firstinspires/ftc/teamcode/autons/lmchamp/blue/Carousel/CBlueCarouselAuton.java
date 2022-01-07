@@ -88,14 +88,14 @@ public void matchStart() {
             new SelectCommand(new HashMap<Object, Command>() {{
 
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel)
+                        new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, sensorColor, carousel)
             )
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CBlueCarouselCommandC(drivetrain, intake, lift, armServos, carousel))
+                        new CBlueCarouselCommandC(drivetrain, intake, lift, armServos, sensorColor, carousel))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel))
+                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, sensorColor, carousel))
                 );
             }}, vision::getCurrentPosition)
     );
