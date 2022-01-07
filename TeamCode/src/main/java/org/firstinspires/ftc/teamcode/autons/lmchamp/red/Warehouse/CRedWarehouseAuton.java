@@ -25,6 +25,7 @@ import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
+import org.firstinspires.ftc.teamcode.subsystems.CapServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
@@ -49,6 +50,7 @@ private MotorEx liftMotor;
 private CRServo carouselServo;
 private ServoEx dropServo, armServo;
 private ColorSensor colorSensor;
+private ServoEx capArmServo, clawServo;
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -61,6 +63,7 @@ private Vision vision;
 private ArmServos armServos;
 private Carousel carousel;
 private SensorColor sensorColor;
+private CapServos capServos;
 
 @Override
 public void robotInit() {
@@ -80,6 +83,7 @@ public void robotInit() {
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
     armServos = new ArmServos(armServo, dropServo, telemetry);
+    capServos = new CapServos(capArmServo, clawServo, telemetry);
 }
 
 @Override
@@ -93,13 +97,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos))
+                        new CRedWarehouseCommandL(drivetrain, intake, lift, armServos, capServos))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos))
+                        new CRedWarehouseCommandC(drivetrain, intake, lift, armServos, capServos))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos))
+                        new CRedWarehouseCommandR(drivetrain, intake, lift, armServos, capServos))
                 );
             }}, vision::getCurrentPosition)
     );

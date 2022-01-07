@@ -88,9 +88,6 @@ public void matchStart() {
             new SelectCommand(new HashMap<Object, Command>() {{
 
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        //new FirstHalfCommand(),
-                        //new LiftLowCommand(lift),
-                        //new EndOfAutonCommand()
                         new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel)
             )
                 );
