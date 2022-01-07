@@ -16,9 +16,10 @@ import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
+import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class CRedCarouselCommandR extends SequentialCommandGroup {
-    public CRedCarouselCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel) {
+    public CRedCarouselCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor colorSensor, Carousel carousel) {
         //declare variables here
 
 

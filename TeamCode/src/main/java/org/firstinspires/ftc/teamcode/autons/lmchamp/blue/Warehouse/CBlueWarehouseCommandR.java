@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class CBlueWarehouseCommandR extends SequentialCommandGroup {
-    public CBlueWarehouseCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos) {
+    public CBlueWarehouseCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor colorSensor) {
         //declare variables here
 
 
