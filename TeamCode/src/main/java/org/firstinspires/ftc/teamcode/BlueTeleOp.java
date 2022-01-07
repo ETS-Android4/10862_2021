@@ -82,7 +82,8 @@ public class BlueTeleOp extends MatchOpMode {
         drivetrain.init();
         intake = new Intake(intakeMotor, intakeServo, telemetry);
         lift = new Lift(liftMotor, telemetry);
-        armServos = new ArmServos(armServo, dropServo, telemetry, hw);
+        //TODO: Uncomment Line 86
+        //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
         carousel = new Carousel(hardwareMap, telemetry);
 
         //gamepad1.setJoystickDeadzone(0.0f);
