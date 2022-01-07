@@ -48,9 +48,7 @@ private MotorEx intakeMotor;
 private ServoEx intakeServo;
 private MotorEx liftMotor;
 private CRServo carouselServo;
-private ServoEx dropServo, armServo;
 private ColorSensor colorSensor;
-private ServoEx capArmServo, clawServo;
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -75,15 +73,13 @@ public void robotInit() {
 
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-    armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
-    dropServo = new SimpleServo(hardwareMap, "drop",0,360);
+    //armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
+    //dropServo = new SimpleServo(hardwareMap, "drop",0,360);
     sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
 
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
-    armServos = new ArmServos(armServo, dropServo, telemetry);
-    capServos = new CapServos(capArmServo, clawServo, telemetry);
 }
 
 @Override

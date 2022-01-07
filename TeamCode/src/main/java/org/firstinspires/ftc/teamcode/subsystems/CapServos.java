@@ -4,9 +4,12 @@ import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.HardwareMap;
 import org.firstinspires.ftc.teamcode.Util;
 
 import java.util.logging.Level;
@@ -27,13 +30,14 @@ public class CapServos extends SubsystemBase {
     private ServoEx capArmServo;
     private ServoEx clawServo;
 
-    public CapServos(ServoEx clawServo, ServoEx capArmServo, Telemetry tl) {
+    public CapServos(HardwareMap hw, Telemetry tl) {
         this.clawServo = clawServo;
-        this.telemetry = tl;
-        this.packet = packet;
-
         this.capArmServo = capArmServo;
 
+        //this.clawServo = new ServoEx(hw, "clawServo");
+
+        this.telemetry = tl;
+        this.packet = packet;
     }
 
     @Override

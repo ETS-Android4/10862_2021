@@ -28,11 +28,10 @@ public class ArmServos extends SubsystemBase {
 
     public ArmServos(ServoEx armServo, ServoEx dropServo, Telemetry tl) {
         this.armServo = armServo;
-        this.telemetry = tl;
-        this.packet = packet;
-
         this.dropServo = dropServo;
 
+        this.telemetry = tl;
+        this.packet = packet;
     }
 
     @Override
