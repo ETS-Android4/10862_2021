@@ -12,12 +12,8 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel.BlueCarouselCommandC;
-import org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel.BlueCarouselCommandL;
-import org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel.BlueCarouselCommandR;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -72,7 +68,7 @@ public void robotInit() {
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
-    armServos = new ArmServos(armServo, dropServo, telemetry);
+    armServos = new ArmServos(armServo, dropServo, telemetry, hw);
 }
 
 @Override

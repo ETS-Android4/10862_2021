@@ -12,7 +12,6 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
@@ -71,7 +70,7 @@ public class RedCarouselAuton extends MatchOpMode {
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         intake = new Intake(intakeMotor,  intakeServo, telemetry);
         lift = new Lift(liftMotor, telemetry);
-        armServos = new ArmServos(armServo, dropServo, telemetry);
+        armServos = new ArmServos(armServo, dropServo, telemetry, hw);
 
     }
 

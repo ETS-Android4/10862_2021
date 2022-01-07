@@ -4,6 +4,9 @@ import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Util;
 
@@ -26,9 +29,13 @@ public class ArmServos extends SubsystemBase {
     private ServoEx armServo;
     private ServoEx dropServo;
 
-    public ArmServos(ServoEx armServo, ServoEx dropServo, Telemetry tl) {
+    public ArmServos(ServoEx armServo, ServoEx dropServo, Telemetry tl, HardwareMap hw) {
         this.armServo = armServo;
         this.dropServo = dropServo;
+
+        //HardwareMap hardwareMap = null;
+        this.armServo = new SimpleServo(hw,"arm", 0, 360);
+        dropServo = new SimpleServo(hw, "drop",0,360);
 
         this.telemetry = tl;
         this.packet = packet;

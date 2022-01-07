@@ -2,15 +2,18 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.HardwareDevice;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.HardwareMap;
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 
 import java.util.logging.Level;
 
@@ -32,6 +35,10 @@ public class Intake extends SubsystemBase {
         this.intakeMotor = intakeMotor;
         this.intakeServo = intakeServo;
         this.telemetry = tl;
+    }
+
+    public void robotInit() {
+        //this.intakeMotor = new MotorEx(hardwareMap, "intake");
     }
 
     @Override

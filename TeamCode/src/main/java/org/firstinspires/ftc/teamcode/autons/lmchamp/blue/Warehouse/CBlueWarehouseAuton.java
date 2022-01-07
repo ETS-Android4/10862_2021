@@ -11,7 +11,6 @@ import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
@@ -45,6 +44,7 @@ private CRServo carouselServo;
 private ServoEx dropServo, armServo;
 private ColorSensor colorSensor;
 private CapServos capServos;
+private ServoEx capArmServo, clawServo;
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -74,8 +74,8 @@ public void robotInit() {
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
-    armServos = new ArmServos(armServo, dropServo, telemetry);
-    capServos = new CapServos(capArmServo, clawServo, telemetry);
+    //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
+    //capServos = new CapServos(capArmServo, clawServo, telemetry);
 }
 
 @Override
@@ -89,13 +89,13 @@ public void matchStart() {
     schedule(
             new SelectCommand(new HashMap<Object, Command>() {{
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandL(drivetrain, intake, lift, sensorColor, armServos))
+                        new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, colorSensor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandC(drivetrain, intake, lift, sensorColor, armServos))
+                        new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new CBlueWarehouseCommandR(drivetrain, intake, lift, sensorColor, armServos))
+                        new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
             }}, vision::getCurrentPosition)
     );
