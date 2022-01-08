@@ -4,9 +4,13 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftLowCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
@@ -28,7 +32,7 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
         addCommands(
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new CapArmMidCommand(capServos, drivetrain),
+                new CapArmLowCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 0, true),
                 new InstantCommand(capServos::capReset, capServos),
@@ -43,9 +47,17 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 0),
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new CapArmMidCommand(capServos, drivetrain),
+                new LiftLowCommand(lift),
+                new WaitCommand(1000),
+
+                new KindaSlowDriveForwardCommand(drivetrain, -4.5),
+                new DropFreightCommand(armServos),
+                new KindaSlowDriveForwardCommand(drivetrain, -0.5),
+                new WaitCommand(1000),
+                new InstantCommand(armServos::armUp,armServos),
 
                 new TurnToCommand(drivetrain, 0, true),
+                new LiftResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 22),
                 new TurnCommand(drivetrain,90),
                 new DriveForwardCommand(drivetrain, -45)

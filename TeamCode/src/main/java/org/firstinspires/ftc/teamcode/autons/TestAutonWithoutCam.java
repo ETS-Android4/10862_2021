@@ -50,7 +50,7 @@ public void robotInit() {
     liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
     armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
     dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-    lift = new Lift(liftMotor, telemetry, hw);
+    lift = new Lift(liftMotor, telemetry, hardwareMap);
 }
 @Override
     /*public void matchStart() {

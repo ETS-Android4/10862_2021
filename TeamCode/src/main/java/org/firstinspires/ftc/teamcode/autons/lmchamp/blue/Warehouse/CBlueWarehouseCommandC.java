@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
@@ -25,28 +26,18 @@ public class CBlueWarehouseCommandC extends SequentialCommandGroup {
 
 
         addCommands(
-                //Setup
                 new InstantCommand(armServos::armUp,armServos),
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new LiftMidCommand(lift),
-                new WaitCommand(1000),
+                new CapArmMidCommand(capServos, drivetrain),
 
-                new KindaSlowDriveForwardCommand(drivetrain, -4.5),
-                new DropFreightCommand(armServos),
-                new KindaSlowDriveForwardCommand(drivetrain, -0.5),
-                new WaitCommand(1000),
-                new InstantCommand(armServos::armUp,armServos),
-
-                new TurnToCommand(drivetrain, 0, true),
-                new LiftResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 22),
                 new TurnCommand(drivetrain,90),
                 new DriveForwardCommand(drivetrain, -40),
 
                 //intake
-                //new IntakeCommand(lift, intake, colorSensor),
+                new IntakeCommand(lift, intake, colorSensor, armServos),
 
                 new DriveForwardCommand(drivetrain, 40),
                 new TurnToCommand(drivetrain, 0),

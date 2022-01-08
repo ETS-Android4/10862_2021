@@ -26,7 +26,6 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
 
 
         addCommands(
-
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
                 new CapArmMidCommand(capServos, drivetrain),
@@ -44,9 +43,17 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 0),
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new CapArmMidCommand(capServos, drivetrain),
+                new LiftMidCommand(lift),
+                new WaitCommand(1000),
+
+                new KindaSlowDriveForwardCommand(drivetrain, -4.5),
+                new DropFreightCommand(armServos),
+                new KindaSlowDriveForwardCommand(drivetrain, -0.5),
+                new WaitCommand(1000),
+                new InstantCommand(armServos::armUp,armServos),
 
                 new TurnToCommand(drivetrain, 0, true),
+                new LiftResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 22),
                 new TurnCommand(drivetrain,90),
                 new DriveForwardCommand(drivetrain, -45)
