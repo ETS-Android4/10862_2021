@@ -1,21 +1,14 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 
 import java.util.logging.Level;
 
@@ -45,8 +38,10 @@ public class Lift extends SubsystemBase {
 
     private int liftPosition = 0;
 
-    public Lift(MotorEx liftMotor, Telemetry tl) {
+    public Lift(MotorEx liftMotor, Telemetry tl, HardwareMap hw) {
         this.liftMotor = liftMotor;
+        this.liftMotor = new MotorEx(hw, "lift");
+
         this.liftMotor.setDistancePerPulse(360 / CPR);
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);

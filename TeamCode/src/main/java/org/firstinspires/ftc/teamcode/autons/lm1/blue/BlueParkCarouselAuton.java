@@ -6,8 +6,8 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.autons.lm1.blue.Commands.BlueParkCarouselCommand;
-import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
-import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
+import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Autonomous(name = "Test Auton", group = "BLUE")

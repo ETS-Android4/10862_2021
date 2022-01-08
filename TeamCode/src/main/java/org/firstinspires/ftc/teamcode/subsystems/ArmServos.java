@@ -33,7 +33,6 @@ public class ArmServos extends SubsystemBase {
         this.armServo = armServo;
         this.dropServo = dropServo;
 
-        //HardwareMap hardwareMap = null;
         this.armServo = new SimpleServo(hw,"arm", 0, 360);
         this.dropServo = new SimpleServo(hw, "drop",0,360);
         this.telemetry = tl;
@@ -62,13 +61,11 @@ public class ArmServos extends SubsystemBase {
         boxCanMove = false;
         setArmServo(SERVO_POSITION_ARM_DROP);
     }
-    public void boxOpen() {
-        setDropServo(SERVO_POSITION_BOX_CLOSE);
-    }
-    public void boxClose() {
-        setDropServo(SERVO_POSITION_BOX_OPEN);
-    }
-    public void reset() {
+    public void boxOpen() { setDropServo(SERVO_POSITION_BOX_CLOSE); }
+    public void boxClose() { setDropServo(SERVO_POSITION_BOX_OPEN); }
+
+    public void reset()
+    {
         setArmServo(SERVO_POSITION_ARM_HOME);
         setDropServo(SERVO_POSITION_BOX_OPEN);
     }

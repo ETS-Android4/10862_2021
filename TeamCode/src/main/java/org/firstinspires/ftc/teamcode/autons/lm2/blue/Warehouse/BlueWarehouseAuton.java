@@ -14,8 +14,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
-import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
+import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
@@ -67,7 +67,7 @@ public void robotInit() {
 
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-    lift = new Lift(liftMotor, telemetry);
+    lift = new Lift(liftMotor, telemetry, hw);
     //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
 }
 

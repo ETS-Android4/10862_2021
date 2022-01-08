@@ -1,14 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -20,8 +17,8 @@ import org.firstinspires.ftc.teamcode.commands.InitializeCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
-import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
-import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
+import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
@@ -30,11 +27,13 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
-import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 @Config
 @TeleOp(name = "Blue TeleOp")
 public class BlueTeleOp extends MatchOpMode {
+    // Gamepads
+    private GamepadEx driverGamepad, operatorGamepad;
+
     // Motors and Servos
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;
     private MotorEx liftMotor;
@@ -44,9 +43,6 @@ public class BlueTeleOp extends MatchOpMode {
     private ServoEx intakeServo;
     private ColorSensor colorSensor;
     private ServoEx capArmServo, clawServo;
-
-    // Gamepad
-    private GamepadEx driverGamepad, operatorGamepad;
 
     // Subsystems
     private Drivetrain drivetrain;
@@ -58,13 +54,13 @@ public class BlueTeleOp extends MatchOpMode {
     private CapServos capServos;
 
     //Buttons
-    private Button intakeButton, halfSpeedButton, outtakeButton;
-    private Button slowModeTrigger;
-    public Button liftUpButton, liftDownButton;
-    public Button liftRestButton, liftLowButton, liftMidButton, liftHighButton;
-    public Button carouselRightButton, carouselLeftButton;
-    public Button resetLiftButton;
-    public Button dropBoxButton, resetBoxButton, upBoxButton;
+    private Button intakeTrigger, outtakeTrigger;
+    private Button slowModeBumper;
+    public Button liftManualUpButton, liftManualDownButton;
+    public Button liftLowButton, liftMidButton, liftHighButton;
+    public Button carouselRightTrigger, carouselLeftTrigger;
+    public Button resetEveryThingButton;
+    public Button dropFreightButton, resetBoxButton, upBoxButton;
     public Button intakeUpButton, intakeDownButton, intakeMiddleButton;
     public Button clawOpenButton, clawCloseButton;
     public Button capArmHighButton;
@@ -72,14 +68,16 @@ public class BlueTeleOp extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
-        drivetrain.init();
-        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-
-        //gamepad1.setJoystickDeadzone(0.0f);
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
+
+        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
+        drivetrain.init();
+        //liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+
+        //gamepad1.setJoystickDeadzone(0.0f);
+
+        //drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
 
@@ -88,41 +86,40 @@ public class BlueTeleOp extends MatchOpMode {
 
     @Override
     public void configureButtons() {
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         //slowmode for the drivetrain
-        slowModeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+        slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         //intake
-        outtakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
-        intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
+        outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
+        intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
 
-        //Intake Up
+        //Intake positions
         intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)). whenPressed(intake::servoUp);
-        //Intake Mid
         intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
-        //Intake Down
         intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)). whenPressed(intake::servoDown);
 
-        //lift
-        //Don't use any other D-Pad except down
-        liftUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP).whenPressed(lift::liftManual).whenReleased(lift::stopLift));
-        liftDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT).whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
+        //lift commands
+        liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT).whenPressed(lift::liftManual).whenReleased(lift::stopLift));
+        liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT).whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
 
-        //reset motion
-        resetLiftButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(
+        //reset everything
+        resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(
                 new LiftResetCommand(armServos, lift)
         );
 
+        //Lift positions
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
         liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
 
         //carousel
-        carouselLeftButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whenPressed(carousel::carouselLeft).whenReleased(carousel::stop));
-        carouselRightButton = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whenPressed(carousel::carouselRight).whenReleased(carousel::stop));
+        carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whenPressed(carousel::carouselLeft).whenReleased(carousel::stop));
+        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whenPressed(carousel::carouselRight).whenReleased(carousel::stop));
 
-        //drop motion
-        dropBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(
+        //Outaking the freight motion
+        dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(
                 new DropFreightCommand(armServos)
         );
 
@@ -150,10 +147,6 @@ public class BlueTeleOp extends MatchOpMode {
                 new InstantCommand(wobbleGoalArm::closeClaw, wobbleGoalArm)
         );
 
-        liftArmButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)).whenPressed(wobbleGoalArm::liftWobbleGoal);
-        lowerArmButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(wobbleGoalArm::placeWobbleGoal);
-
-
         (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> shooterWheels.adjustShooterRPM(75));
         (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)).whenPressed(() -> shooterWheels.adjustShooterRPM(-75));
         lowMidWobbleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)).whenPressed(() -> wobbleGoalArm.setWobbleGoal(-65));
@@ -162,7 +155,7 @@ public class BlueTeleOp extends MatchOpMode {
         (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)).whenPressed(wobbleGoalArm::liftArmManual).whenReleased(wobbleGoalArm::stopArm);
         (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)).whenPressed(wobbleGoalArm::lowerArmManual).whenReleased(wobbleGoalArm::stopArm);
  */
-        //drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
+
     }
 
     @Override

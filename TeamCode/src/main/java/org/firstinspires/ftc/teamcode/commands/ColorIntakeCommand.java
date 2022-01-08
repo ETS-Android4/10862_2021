@@ -19,7 +19,7 @@ public class ColorIntakeCommand extends SequentialCommandGroup {
                             new SequentialCommandGroup(
                                     new InstantCommand(intake::servoMid, intake),
                                     new InstantCommand(intake::outtake, intake),
-                                    new WaitCommand(500),
+                                    new WaitCommand(1000),
                                     new InstantCommand(intake::stop, intake),
                                     new InstantCommand(armServos::armUp, armServos)),
                             new InstantCommand(),

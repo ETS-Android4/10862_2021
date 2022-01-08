@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.autons.lmchamp.red.Carousel.CRedCarouselCo
 import org.firstinspires.ftc.teamcode.autons.lmchamp.red.Carousel.CRedCarouselCommandL;
 import org.firstinspires.ftc.teamcode.autons.lmchamp.red.Carousel.CRedCarouselCommandR;
 import org.firstinspires.ftc.teamcode.commands.InitializeCommand;
-import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
-import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
+import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
@@ -26,7 +26,6 @@ import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
-import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;

@@ -31,8 +31,6 @@ public class Intake extends SubsystemBase {
         this.intakeServo = intakeServo;
         this.telemetry = tl;
 
-        this.servoMid();
-
         this.intakeMotor = new MotorEx(hw, "intake");
         this.intakeServo = new SimpleServo(hw,"intakeServo",0,360);
     }
@@ -45,6 +43,7 @@ public class Intake extends SubsystemBase {
     private void set(double speed) {intakeMotor.set(speed); }
 
     public void intake() {set(INTAKE_SPEED); }
+
     public void outtake() {set(OUTTAKE_SPEED); }
 
     public void stop() {intakeMotor.stopMotor(); }
@@ -52,6 +51,8 @@ public class Intake extends SubsystemBase {
     public void setIntakeServo(double intakeServoPosition) {intakeServo.setPosition(intakeServoPosition);}
 
     public void servoUp() {setIntakeServo(UP_POSITION);}
+
     public void servoMid() {setIntakeServo(MID_POSITION); }
+
     public void servoDown() {setIntakeServo(DOWN_POSITION); }
 }

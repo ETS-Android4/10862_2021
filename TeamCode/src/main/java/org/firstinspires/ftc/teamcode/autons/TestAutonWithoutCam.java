@@ -10,8 +10,8 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
-import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
+import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -50,7 +50,7 @@ public void robotInit() {
     liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
     armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
     dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-    lift = new Lift(liftMotor, telemetry);
+    lift = new Lift(liftMotor, telemetry, hw);
 }
 @Override
     /*public void matchStart() {
