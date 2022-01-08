@@ -66,7 +66,7 @@ public void robotInit() {
     dropServo = new SimpleServo(hardwareMap, "drop",0,360);
 
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-    intake = new Intake(intakeMotor, intakeServo, telemetry);
+    intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
     lift = new Lift(liftMotor, telemetry);
     //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
 }

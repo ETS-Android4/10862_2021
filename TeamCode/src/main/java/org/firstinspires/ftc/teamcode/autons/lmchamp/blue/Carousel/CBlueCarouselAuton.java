@@ -13,8 +13,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.HardwareMap;
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.commands.InitializeCommand;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -61,23 +61,14 @@ private CapServos capServos;
 
 @Override
 public void robotInit() {
-    // Subsystems
     drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
     drivetrain.init();
-    intakeMotor = new MotorEx(hardwareMap, "intake");
-    liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-
-
-    //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
-    vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-    armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
-    dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-    intake = new Intake(intakeMotor, intakeServo, telemetry);
-    lift = new Lift(liftMotor, telemetry);
-    //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
-    //capServos = new CapServos(capArmServo, clawServo, telemetry);
+    liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+    vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+    //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
+
+    new InitializeCommand(armServos, lift, intake, capServos);
 }
 
 @Override

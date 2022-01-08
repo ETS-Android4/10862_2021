@@ -6,8 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
 public class LiftHighCommand extends SequentialCommandGroup {
-    private Lift lift;
-
+    //private Lift lift;
     public LiftHighCommand(Lift lift){
         addCommands(
                 new InstantCommand(lift::liftHigh, lift)

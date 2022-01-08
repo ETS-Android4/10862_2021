@@ -35,8 +35,7 @@ public class ArmServos extends SubsystemBase {
 
         //HardwareMap hardwareMap = null;
         this.armServo = new SimpleServo(hw,"arm", 0, 360);
-        dropServo = new SimpleServo(hw, "drop",0,360);
-
+        this.dropServo = new SimpleServo(hw, "drop",0,360);
         this.telemetry = tl;
         this.packet = packet;
     }

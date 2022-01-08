@@ -22,8 +22,8 @@ public class SensorColor implements HardwareDevice {
         this.colorSensor = colorSensor;
     }
 
-    public SensorColor(HardwareMap hardwareMap, Telemetry tl, String id) {
-        this(hardwareMap.get(ColorSensor.class, id));
+    public SensorColor(HardwareMap hardwareMap , Telemetry tl, String id) {
+        this(hardwareMap.get(ColorSensor.class, "colorSensor"));
         this.telemetry = tl;
     }
 

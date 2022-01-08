@@ -36,9 +36,9 @@ public class Carousel extends SubsystemBase {
 
     //public void set(double power) {carouselServo.set(power); }
 
-    public void carouselLeft() {carouselServo.set(CAROUSEL_LEFT_POWER); }
+    public void carouselLeft() {carouselServo.set(CAROUSEL_LEFT_POWER);}
 
-    public void carouselRight() {carouselServo.set(CAROUSEL_RIGHT_POWER); }
+    public void carouselRight() {carouselServo.set(CAROUSEL_RIGHT_POWER);}
 
-    public void stop() {carouselServo.stopMotor(); }
+    public void stop() {carouselServo.stopMotor();}
 }

@@ -1,23 +1,16 @@
 package org.firstinspires.ftc.teamcode.autons.lm1.red;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.Command;
-import com.arcrobotics.ftclib.command.SelectCommand;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
-import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
-
-import java.util.HashMap;
 
 @Disabled
 @Autonomous(name = "Red Spin", group = "RED")
@@ -46,7 +39,7 @@ public class RedSafeAuton extends MatchOpMode {
         drivetrain.init();
 
         intakeMotor = new MotorEx(hardwareMap, "intakeMotor");
-        intake = new Intake(intakeMotor, intakeServo, telemetry);
+        intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
 
         //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));

@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -15,6 +14,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.commands.InitializeCommand;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -60,20 +60,14 @@ public class CRedCarouselAuton extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-        //intakeMotor = new MotorEx(hardwareMap, "intake");
-        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-        //armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
-        //dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-        sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
-
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        intake = new Intake(intakeMotor, intakeServo, telemetry);
-        lift = new Lift(liftMotor, telemetry);
+        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
+
+        new InitializeCommand(armServos, lift, intake, capServos);
     }
 
     @Override

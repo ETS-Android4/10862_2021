@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -14,6 +16,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
+import org.firstinspires.ftc.teamcode.commands.InitializeCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
@@ -21,11 +24,13 @@ import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
+import org.firstinspires.ftc.teamcode.subsystems.CapServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
+import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 @Config
 @TeleOp(name = "Blue TeleOp")
@@ -38,6 +43,7 @@ public class BlueTeleOp extends MatchOpMode {
     private ServoEx armServo, dropServo;
     private ServoEx intakeServo;
     private ColorSensor colorSensor;
+    private ServoEx capArmServo, clawServo;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
@@ -49,6 +55,7 @@ public class BlueTeleOp extends MatchOpMode {
     private ArmServos armServos;
     private Carousel carousel;
     private SensorColor sensorColor;
+    private CapServos capServos;
 
     //Buttons
     private Button intakeButton, halfSpeedButton, outtakeButton;
@@ -59,32 +66,15 @@ public class BlueTeleOp extends MatchOpMode {
     public Button resetLiftButton;
     public Button dropBoxButton, resetBoxButton, upBoxButton;
     public Button intakeUpButton, intakeDownButton, intakeMiddleButton;
+    public Button clawOpenButton, clawCloseButton;
+    public Button capArmHighButton;
+    //TODO:Add clawarm buttons, maybe manual buttons
 
     @Override
     public void robotInit() {
-
-        // Intake hardware Initializations
-        intakeMotor = new MotorEx(hardwareMap, "intake");
-        intakeServo = new SimpleServo(hardwareMap,"intakeServo",0,360);
-
-        // Lift hardware initializations
-        liftMotor = new MotorEx(hardwareMap, "lift");
-
-        // Servos hardware initializations
-        armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
-        dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-
-        //color sensor hardware initialization
-        sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
-
-        // Subsystems
-        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap),telemetry);
+        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-        intake = new Intake(intakeMotor, intakeServo, telemetry);
-        lift = new Lift(liftMotor, telemetry);
-        //TODO: Uncomment Line 86
-        //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
-        carousel = new Carousel(hardwareMap, telemetry);
+        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
 
         //gamepad1.setJoystickDeadzone(0.0f);
         driverGamepad = new GamepadEx(gamepad1);
@@ -92,6 +82,8 @@ public class BlueTeleOp extends MatchOpMode {
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
+
+        new InitializeCommand(armServos, lift, intake, capServos);
     }
 
     @Override

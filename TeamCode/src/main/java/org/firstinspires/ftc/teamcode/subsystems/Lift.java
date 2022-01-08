@@ -15,6 +15,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 
 import java.util.logging.Level;
 
@@ -46,10 +47,8 @@ public class Lift extends SubsystemBase {
 
     public Lift(MotorEx liftMotor, Telemetry tl) {
         this.liftMotor = liftMotor;
-
-        this.liftMotor.setDistancePerPulse(360/CPR);
-
-        controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f,  getAngle(), getAngle());
+        this.liftMotor.setDistancePerPulse(360 / CPR);
+        controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
 
         this.telemetry = tl;

@@ -22,6 +22,8 @@ import org.firstinspires.ftc.teamcode.autons.lm2.blue.Warehouse.BlueWarehouseCom
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandC;
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandL;
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
+import org.firstinspires.ftc.teamcode.commands.InitializeCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -66,20 +68,14 @@ private CapServos capServos;
 
     @Override
     public void robotInit() {
-        /*// Subsystems
+        // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-        //intakeMotor = new MotorEx(hardwareMap, "intake");
-        liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-        //armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
-        //dropServo = new SimpleServo(hardwareMap, "drop",0,360);
         sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
-
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        //intake = new Intake(intakeMotor, intakeServo, telemetry);
-        lift = new Lift(liftMotor, telemetry);*/
+
+        new InitializeCommand(armServos, lift, intake, capServos);
     }
 
 @Override

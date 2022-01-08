@@ -10,7 +10,6 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
 import org.firstinspires.ftc.teamcode.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
@@ -45,21 +44,13 @@ private Carousel carousel;
 
 @Override
 public void robotInit() {
-    // Subsystems
     drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
     drivetrain.init();
-    intakeMotor = new MotorEx(hardwareMap, "intake");
+    drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-
-
-    //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
     dropServo = new SimpleServo(hardwareMap, "drop",0,360);
-
-    drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-    intake = new Intake(intakeMotor, intakeServo, telemetry);
     lift = new Lift(liftMotor, telemetry);
-    //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
 }
 @Override
     /*public void matchStart() {
