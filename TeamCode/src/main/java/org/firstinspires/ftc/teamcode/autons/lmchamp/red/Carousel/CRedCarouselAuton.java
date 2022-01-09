@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -44,6 +45,7 @@ public class CRedCarouselAuton extends MatchOpMode {
     private MotorEx liftMotor;
     private CRServo carouselServo;
     private ColorSensor colorSensor;
+    private ServoEx armServo, dropServo;
 
     // Gamepad
     private GamepadEx driverGamepad;
@@ -62,12 +64,20 @@ public class CRedCarouselAuton extends MatchOpMode {
     public void robotInit() {
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        intakeMotor = new MotorEx(hardwareMap, "intake");
         liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-        //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
 
-        new InitializeCommand(armServos, lift, intake, capServos);
+
+        //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        armServo = new SimpleServo(hardwareMap,"arm", 0, 360);
+        dropServo = new SimpleServo(hardwareMap, "drop",0,360);
+
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, telemetry, hardwareMap);
+        armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
+
     }
 
     @Override

@@ -6,11 +6,13 @@ import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
+import org.checkerframework.checker.units.qual.A;
 import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.InitializeCommand;
@@ -73,15 +75,20 @@ public class BlueTeleOp extends MatchOpMode {
 
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-        //liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+        intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, telemetry, hardwareMap);
+        armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
+        carousel = new Carousel(hardwareMap, telemetry);
+        capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
+        //liftMotor = new MotorEx(hardwareMap, "lift");
+
 
         //gamepad1.setJoystickDeadzone(0.0f);
 
         //drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
+        sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
         intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
-
-        new InitializeCommand(armServos, lift, intake, capServos);
     }
 
     @Override

@@ -67,7 +67,6 @@ public class CBlueWarehouseAuton extends MatchOpMode {
             vision = new Vision(hardwareMap, "Webcam 1", telemetry);
             //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
 
-            new InitializeCommand(armServos, lift, intake, capServos);
         }
 
         @Override

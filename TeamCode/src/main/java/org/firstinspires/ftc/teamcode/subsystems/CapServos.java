@@ -22,8 +22,8 @@ public class CapServos extends SubsystemBase {
     public static double SERVO_POSITION_AUTO_MID = 0.4;
     public static double SERVO_POSITION_AUTO_HIGH = 0;
     public static double SERVO_POSITION_AUTO_HOME = 0.1;
-    public static double SERVO_POSITION_AUTO_OPEN = 0.75;
-    public static double SERVO_POSITION_AUTO_CLOSE = 0.85;
+    public static double SERVO_POSITION_AUTO_OPEN = 0.38;
+    public static double SERVO_POSITION_AUTO_CLOSE = 0.84;
 
     private Telemetry telemetry;
     private TelemetryPacket packet;

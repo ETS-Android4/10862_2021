@@ -60,7 +60,6 @@ private CapServos capServos;
         sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-        new InitializeCommand(armServos, lift, intake, capServos);
     }
 
 @Override
