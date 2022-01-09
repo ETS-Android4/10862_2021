@@ -49,6 +49,7 @@ public class Lift extends SubsystemBase {
         this.telemetry = tl;
         automatic = false;
         setOffset();
+
     }
 
 

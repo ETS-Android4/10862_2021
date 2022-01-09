@@ -14,9 +14,9 @@ import java.util.logging.Level;
 
 @Config
 public class Intake extends SubsystemBase {
-    public static double INTAKE_SPEED = -1;
-    public static double OUTTAKE_SPEED = 1;
-    public static double UP_POSITION= 1;
+    public static double INTAKE_SPEED = 1;
+    public static double OUTTAKE_SPEED = -1;
+    public static double UP_POSITION= 0.88;
     public static double MID_POSITION = 0.88;
     public static double DOWN_POSITION= 0.7;
 
@@ -33,6 +33,8 @@ public class Intake extends SubsystemBase {
 
         this.intakeMotor = new MotorEx(hw, "intake");
         this.intakeServo = new SimpleServo(hw,"intakeServo",0,360);
+
+        this.intakeServo.setPosition(UP_POSITION);
     }
 
     @Override

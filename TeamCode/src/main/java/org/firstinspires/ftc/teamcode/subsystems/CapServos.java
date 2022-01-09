@@ -18,10 +18,10 @@ import java.util.logging.Level;
 @Config
 public class CapServos extends SubsystemBase {
 
-    public static double SERVO_POSITION_AUTO_LOW = 0.68;
-    public static double SERVO_POSITION_AUTO_MID = 0.4;
-    public static double SERVO_POSITION_AUTO_HIGH = 0;
-    public static double SERVO_POSITION_AUTO_HOME = 0.1;
+    public static double SERVO_POSITION_AUTO_LOW = 0.84;
+    public static double SERVO_POSITION_AUTO_MID = 0.71;
+    public static double SERVO_POSITION_AUTO_HIGH = 0.56;
+    public static double SERVO_POSITION_AUTO_HOME = 0;
     public static double SERVO_POSITION_AUTO_OPEN = 0.38;
     public static double SERVO_POSITION_AUTO_CLOSE = 0.84;
 
@@ -35,11 +35,14 @@ public class CapServos extends SubsystemBase {
         this.clawServo = clawServo;
         this.capArmServo = capArmServo;
 
-        this.capArmServo = new SimpleServo(hw,"clawServo", 0, 360);
-        this.clawServo = new SimpleServo(hw, "capArmServo",0,360);
+        this.capArmServo = new SimpleServo(hw,"capArmServo", 0, 270);
+        this.clawServo = new SimpleServo(hw, "clawServo",0,270);
 
         this.telemetry = tl;
         this.packet = packet;
+
+        this.capArmServo.setPosition(SERVO_POSITION_AUTO_HOME);
+        this.clawServo.setPosition(SERVO_POSITION_AUTO_CLOSE);
     }
 
     @Override
@@ -73,6 +76,6 @@ public class CapServos extends SubsystemBase {
 
     public void capReset() {
         setcapArmServo(SERVO_POSITION_AUTO_HOME);
-        setclawServo(SERVO_POSITION_AUTO_CLOSE);
+        setclawServo(SERVO_POSITION_AUTO_OPEN);
     }
 }

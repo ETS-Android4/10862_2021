@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
@@ -37,6 +38,8 @@ public class ArmServos extends SubsystemBase {
         this.dropServo = new SimpleServo(hw, "drop",0,360);
         this.telemetry = tl;
         this.packet = packet;
+
+        this.armServo.setPosition(SERVO_POSITION_ARM_HOME);
     }
     @Override
     public void periodic() {
