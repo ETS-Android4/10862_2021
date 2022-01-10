@@ -77,8 +77,6 @@ public class BlueTeleOp extends MatchOpMode {
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
         carousel = new Carousel(hardwareMap, telemetry);
         capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
-        //liftMotor = new MotorEx(hardwareMap, "lift");
-
 
         //gamepad1.setJoystickDeadzone(0.0f);
 

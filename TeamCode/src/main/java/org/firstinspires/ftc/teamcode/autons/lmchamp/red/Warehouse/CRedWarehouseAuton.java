@@ -5,7 +5,11 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
+import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
@@ -29,13 +33,15 @@ public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;
 
-/*// Motors
+//Motors and Servos
 private MotorEx leftFront, leftRear, rightRear, rightFront;
 private MotorEx intakeMotor;
 private ServoEx intakeServo;
 private MotorEx liftMotor;
 private CRServo carouselServo;
-private ColorSensor colorSensor;*/
+private ColorSensor colorSensor;
+private ServoEx capArmServo, clawServo;
+private ServoEx armServo, dropServo;
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -55,10 +61,14 @@ private CapServos capServos;
         // Subsystems
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-        sensorColor = new SensorColor(hardwareMap, telemetry,"colorSensor");
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, telemetry, hardwareMap);
+        armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
+        carousel = new Carousel(hardwareMap, telemetry);
+        capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
 
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     }
 
 @Override

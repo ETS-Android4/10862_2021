@@ -47,10 +47,10 @@ public class FFRectMarkerPipeline extends OpenCvPipeline {
          *For all the color spaces go to
          *https://docs.opencv.org/3.4/d8/d01/group__imgproc__color__conversions.html
          */
-        //Imgproc.cvtColor(input, matHSV, Imgproc.COLOR_RGB2HSV);
+        Imgproc.cvtColor(input, matHSV, Imgproc.COLOR_RGB2HSV);
 
         Mat display = new Mat();
-        //Core.extractChannel(matHSV, display, 1);
+        Core.extractChannel(matHSV, display, 1);
 
         //The points needed for the rectangles are calculated here
         Rect leftRect = new Rect(

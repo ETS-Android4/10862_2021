@@ -6,10 +6,10 @@ import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
@@ -32,41 +32,47 @@ import java.util.logging.Level;
 
 @Autonomous(name = "CBlue Warehouse", group = "BLUE")
 public class CBlueWarehouseAuton extends MatchOpMode {
-        public static double startPoseX = 0;
-        public static double startPoseY = 0;
-        public static double startPoseHeading = 0;
+    public static double startPoseX = 0;
+    public static double startPoseY = 0;
+    public static double startPoseHeading = 0;
 
-        // Motors
-        private MotorEx leftFront, leftRear, rightRear, rightFront;
-        private MotorEx intakeMotor;
-        private ServoEx intakeServo;
-        private MotorEx liftMotor;
-        private CRServo carouselServo;
-        private ColorSensor colorSensor;
+    //Motors and Servos
+    private MotorEx leftFront, leftRear, rightRear, rightFront;
+    private MotorEx intakeMotor;
+    private ServoEx intakeServo;
+    private MotorEx liftMotor;
+    private CRServo carouselServo;
+    private ColorSensor colorSensor;
+    private ServoEx capArmServo, clawServo;
+    private ServoEx armServo, dropServo;
 
         // Gamepad
-        private GamepadEx driverGamepad;
+    private GamepadEx driverGamepad;
 
+    // Subsystems
+    private Drivetrain drivetrain;
+    private Intake intake;
+    private Lift lift;
+    private Vision vision;
+    private ArmServos armServos;
+    private Carousel carousel;
+    private org.firstinspires.ftc.teamcode.subsystems.SensorColor sensorColor;
+    private CapServos capServos;
+
+    @Override
+    public void robotInit() {
         // Subsystems
-        private Drivetrain drivetrain;
-        private Intake intake;
-        private Lift lift;
-        private Vision vision;
-        private ArmServos armServos;
-        private Carousel carousel;
-        private org.firstinspires.ftc.teamcode.subsystems.SensorColor sensorColor;
-        private CapServos capServos;
+        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
+        drivetrain.init();
+        intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, telemetry, hardwareMap);
+        armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
+        carousel = new Carousel(hardwareMap, telemetry);
+        capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
 
-        @Override
-        public void robotInit() {
-            drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
-            drivetrain.init();
-            drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-            liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
-            vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-            //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
-
-        }
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+    }
 
         @Override
         public void disabledPeriodic() {
