@@ -24,9 +24,10 @@ public class Vision extends SubsystemBase {
         duckDetector = new FFRectDetector(hw, webcamName);
         duckDetector.init();
 
-        duckDetector.setLeftRectangle(0.015, 0.55);
-        duckDetector.setCenterRectangle(0.45, 0.55);
-        duckDetector.setRightRectangle(0.8, 0.55);
+        duckDetector.setLeftRectangle(0.15, 0.25);
+        duckDetector.setCenterRectangle(0.55, .25);
+        duckDetector.setRightRectangle(0.87, .25);
+        //y=0.55
         telemetry = tl;
         currentPos = duckDetector.getPosition();
     }
