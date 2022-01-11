@@ -62,5 +62,5 @@ public void robotInit() {
 public void matchStart() {
         schedule(
         new SequentialCommandGroup
-                (new SplineCommand(drivetrain, new Vector2d(-26, -30), 90, true)));
+                (new SplineCommand(drivetrain, new Vector2d(-26, -30), -90)));
         }};

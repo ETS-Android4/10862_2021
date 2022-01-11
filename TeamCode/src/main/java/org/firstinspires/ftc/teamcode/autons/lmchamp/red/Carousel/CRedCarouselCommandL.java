@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
@@ -24,12 +25,12 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 public class CRedCarouselCommandL extends SequentialCommandGroup {
     public CRedCarouselCommandL(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor colorSensor, CapServos capServos) {
         //declare variables here
-
+        //High
 
         addCommands(
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, -60, true),
-                new CapArmLowCommand(capServos, drivetrain),
+                new CapArmHighCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 360),
                 new DriveForwardCommand(drivetrain, 25),

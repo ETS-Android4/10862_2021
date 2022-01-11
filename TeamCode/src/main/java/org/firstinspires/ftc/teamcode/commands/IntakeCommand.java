@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.commands;
 
+        import static org.firstinspires.ftc.teamcode.subsystems.ArmServos.freightInBox;
+
         import com.arcrobotics.ftclib.command.ConditionalCommand;
         import com.arcrobotics.ftclib.command.InstantCommand;
         import com.arcrobotics.ftclib.command.ScheduleCommand;
         import com.arcrobotics.ftclib.command.SequentialCommandGroup;
         import com.arcrobotics.ftclib.command.WaitCommand;
+        import com.arcrobotics.ftclib.command.WaitUntilCommand;
         import com.qualcomm.robotcore.hardware.ColorSensor;
 
         import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
@@ -20,7 +23,14 @@ public class IntakeCommand extends SequentialCommandGroup {
 
         addCommands(
                 new InstantCommand(intake::servoDown, intake),
-                new InstantCommand(intake::intake, intake)
+                new InstantCommand(intake::intake, intake),
+                //new WaitUntilCommand(armServos::ArmServos.freightInBox),
+                new InstantCommand(intake::stop),
+                new InstantCommand(intake::outtake, intake),
+                new WaitCommand(500),
+                new InstantCommand(intake::stop, intake),
+                new InstantCommand(intake::servoUp,intake)
+
         );
     }
 }

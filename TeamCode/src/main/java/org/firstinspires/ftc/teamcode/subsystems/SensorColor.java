@@ -53,12 +53,6 @@ public class SensorColor implements HardwareDevice {
     public int green() {return colorSensor.green();}
     public int blue() {return colorSensor.blue();}
 
-    /*
-    public void checkColor(){
-        if((colorSensor.red() > 200) && (colorSensor.green() > 200)){
-            new ColorIntakeCommand();
-        }
-    }*/
 
     @Override
     public void disable() {colorSensor.close();}

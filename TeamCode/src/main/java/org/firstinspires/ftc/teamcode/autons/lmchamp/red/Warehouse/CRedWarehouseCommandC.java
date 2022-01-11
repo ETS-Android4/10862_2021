@@ -1,14 +1,18 @@
 package org.firstinspires.ftc.teamcode.autons.lmchamp.red.Warehouse;
 
 import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.arcrobotics.ftclib.command.ConditionalCommand;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
+import com.arcrobotics.ftclib.command.WaitUntilCommand;
 
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
@@ -25,41 +29,38 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 public class CRedWarehouseCommandC extends SequentialCommandGroup {
     public CRedWarehouseCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor colorSensor, CapServos capServos) {
         //declare variables here
-
+//kind of good
 
         addCommands(
                 new DriveForwardCommand(drivetrain, 24),
                 new TurnToCommand(drivetrain, 62,true),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                //new SplineCommand(drivetrain, new Vector2d(10, 13), 0),
-
                 new TurnToCommand(drivetrain, 0, true),
                 new InstantCommand(capServos::capReset, capServos),
-                new DriveForwardCommand(drivetrain, -22),
+                new DriveForwardCommand(drivetrain, -23),
                 new TurnToCommand(drivetrain,-93,true),
                 new DriveForwardCommand(drivetrain, 32),
 
                 //intake
                 //new IntakeCommand(lift, intake, colorSensor, armServos),
 
-                new TurnToCommand(drivetrain,-88,true),
+                //outOfWarehouse
+                new TurnToCommand(drivetrain,-87,true),
                 new DriveForwardCommand(drivetrain, -45),
-                new SplineCommand(drivetrain, new Vector2d(-15, -13), 0, true),
 
-                /*new TurnToCommand(drivetrain,-90,true),
-                new DriveForwardCommand(drivetrain, -45),
-                new TurnToCommand(drivetrain, 180),
+                new TurnToCommand(drivetrain,-90,true),
                 new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, -20),*/
-                new LiftMidCommand(lift),
-                new WaitCommand(1000),
 
-                new KindaSlowDriveForwardCommand(drivetrain, 4.5),
+                new TurnToCommand(drivetrain, -62),
+                //angle -62 or 298
+                new DriveForwardCommand(drivetrain, -2),
+                new LiftHighCommand(lift),
+                new WaitCommand(250),
+
                 new DropFreightCommand(armServos),
-                new KindaSlowDriveForwardCommand(drivetrain, 0.5),
-                new WaitCommand(1000),
-                new InstantCommand(armServos::armUp,armServos),
+                new WaitCommand(900),
+                new DriveForwardCommand(drivetrain, 2),
 
                 new TurnToCommand(drivetrain, 0, true),
                 new LiftResetCommand(armServos, lift),

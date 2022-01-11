@@ -27,12 +27,11 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 public class CRedWarehouseCommandL extends SequentialCommandGroup {
     public CRedWarehouseCommandL(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor colorSensor, CapServos capServos) {
         //declare variables here
-
-
+        //High
         addCommands(
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new CapArmLowCommand(capServos, drivetrain),
+                new CapArmHighCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 0, true),
                 new InstantCommand(capServos::capReset, capServos),
@@ -47,7 +46,7 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 0),
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new LiftLowCommand(lift),
+                new LiftHighCommand(lift),
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -4.5),

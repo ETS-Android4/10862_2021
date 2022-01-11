@@ -26,22 +26,22 @@ public class CRedCarouselCommandC extends SequentialCommandGroup {
 
 
         addCommands(
-                new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, -60, true),
+                new DriveForwardCommand(drivetrain, 24),
+                new TurnToCommand(drivetrain, 120, true),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 25),
-                new TurnToCommand(drivetrain, -90,true),
+                new TurnToCommand(drivetrain, 0),
+                new DriveForwardCommand(drivetrain, -23),
+                new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain,20),
 
-                new WaitCommand(1000),
+                new WaitCommand(300),
                 new KindaSlowDriveForwardCommand(drivetrain, 3),
                 new RightCarouselCommand(carousel),
 
+                new KindaSlowDriveForwardCommand(drivetrain, -3),
                 new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 25),
-                new InstantCommand(armServos::armUp,armServos)
+                new DriveForwardCommand(drivetrain, -25)
         );
     }
 }
