@@ -19,12 +19,12 @@ public class CapArmMidCommand extends SequentialCommandGroup {
 
         addCommands(
                 new InstantCommand(capServos::autoMid, capServos),
-                new WaitCommand(500),
-                new DriveForwardCommand(drivetrain, 7),
+                new WaitCommand(1000),
+                new DriveForwardCommand(drivetrain, 6.75),
                 new InstantCommand(capServos::clawOpen, capServos),
                 new WaitCommand(200),
                 new InstantCommand(capServos::clawClose, capServos),
-                new DriveForwardCommand(drivetrain, -7),
+                new DriveForwardCommand(drivetrain, -6.75),
                 new InstantCommand(capServos::capReset, capServos)
         );
     }}
