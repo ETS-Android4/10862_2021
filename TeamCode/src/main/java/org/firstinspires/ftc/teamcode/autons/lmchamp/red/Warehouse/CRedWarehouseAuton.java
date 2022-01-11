@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -69,6 +70,9 @@ private CapServos capServos;
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+
+        //TODO:Does this work?
+        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
     }
 
 @Override

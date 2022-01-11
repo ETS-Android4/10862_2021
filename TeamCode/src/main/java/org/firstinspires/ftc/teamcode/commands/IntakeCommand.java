@@ -20,8 +20,7 @@ public class IntakeCommand extends SequentialCommandGroup {
 
         addCommands(
                 new InstantCommand(intake::servoDown, intake),
-                new InstantCommand(intake::intake, intake),
-                new ColorIntakeCommand(lift, intake, colorSensor, armServos)
+                new InstantCommand(intake::intake, intake)
         );
     }
 }

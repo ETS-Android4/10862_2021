@@ -19,11 +19,12 @@ public class CapArmLowCommand extends SequentialCommandGroup {
 
         addCommands(
                 new InstantCommand(capServos::autoLow, capServos),
-                new DriveForwardCommand(drivetrain, -3),
+                new WaitCommand(500),
+                new DriveForwardCommand(drivetrain, 5),
                 new InstantCommand(capServos::clawOpen, capServos),
-                new WaitCommand(100),
+                new WaitCommand(200),
                 new InstantCommand(capServos::clawClose, capServos),
-                new DriveForwardCommand(drivetrain, 3),
+                new DriveForwardCommand(drivetrain, -5),
                 new InstantCommand(capServos::capReset, capServos)
         );
     }}
