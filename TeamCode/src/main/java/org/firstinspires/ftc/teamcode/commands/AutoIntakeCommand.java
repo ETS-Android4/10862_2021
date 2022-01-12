@@ -19,22 +19,22 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
     public AutoIntakeCommand(Lift lift, Intake intake, ArmServos armServos, Drivetrain drivetrain, SensorColor sensorColor) {
 
         addCommands(
-                new InstantCommand(intake::servoDown, intake),
-                new InstantCommand(intake::intake, intake),
-                new DriveForwardCommand(drivetrain,2),
-                new WaitUntilCommand(sensorColor::freightInBox).withTimeout(2000),
+                new InstantCommand(intake::servoDown),
+                new InstantCommand(intake::intake),
+                new DriveForwardCommand(drivetrain, 34),
+                new WaitUntilCommand(sensorColor::freightInBox).withTimeout(500),
                 new ConditionalCommand(
                         new SequentialCommandGroup(
-                                new InstantCommand(intake::stop),
-                                new InstantCommand(intake::servoUp,intake),
-                                new InstantCommand(armServos::armDrop),
+                                new InstantCommand(intake::outtake),
+                                new InstantCommand(intake::servoUp),
+                                new InstantCommand(armServos::armUp),
                                 new DriveForwardCommand(drivetrain, -2)
                         ),
                         new SequentialCommandGroup(
                                 new DriveForwardCommand(drivetrain,2),
-                                new InstantCommand(intake::stop),
-                                new InstantCommand(intake::servoUp,intake),
-                                new InstantCommand(armServos::armDrop),
+                                new InstantCommand(intake::outtake),
+                                new InstantCommand(intake::servoUp),
+                                new InstantCommand(armServos::armUp),
                                 new DriveForwardCommand(drivetrain, -4)
                         ),
                         sensorColor::freightInBox
