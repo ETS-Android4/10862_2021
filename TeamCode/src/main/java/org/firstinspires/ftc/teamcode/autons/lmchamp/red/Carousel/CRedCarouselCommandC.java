@@ -25,7 +25,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class CRedCarouselCommandC extends SequentialCommandGroup {
-    public CRedCarouselCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor colorSensor, CapServos capServos) {
+    public CRedCarouselCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
         //declare variables here
 
 
@@ -44,7 +44,7 @@ public class CRedCarouselCommandC extends SequentialCommandGroup {
 
                 new KindaSlowDriveForwardCommand(drivetrain, -4),
                 new TurnToCommand(drivetrain, 140),
-                new AutoIntakeCommand(lift, intake, armServos, drivetrain),
+                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new TurnToCommand(drivetrain,125),
                 new DriveForwardCommand(drivetrain, -27),
                 new AutoOuttakeCommand(lift, intake, armServos, drivetrain),

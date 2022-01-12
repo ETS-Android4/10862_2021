@@ -65,7 +65,9 @@ import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.kV;
  */
 @Config
 public class SampleTankDrive extends TankDrive {
+
     public static PIDCoefficients AXIAL_PID = new PIDCoefficients(8, 0, 0);
+
     //FollowerPid: 8 , 0, 0
     //SplineTest: 5, 0, 0.25
     public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.0017, 0, 0);
@@ -133,7 +135,6 @@ public class SampleTankDrive extends TankDrive {
         accelConstraint = new ProfileAccelerationConstraint(MAX_ACCEL);
         follower = new TankPIDVAFollower(AXIAL_PID, CROSS_TRACK_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
-
         poseHistory = new ArrayList<>();
 
         LynxModuleUtil.ensureMinimumFirmwareVersion(hardwareMap);

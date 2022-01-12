@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import android.graphics.Color;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -13,7 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 
 import java.util.logging.Level;
 
-public class SensorColor implements HardwareDevice {
+public class SensorColor extends SubsystemBase implements HardwareDevice {
 
     private ColorSensor colorSensor;
     private Telemetry telemetry;
@@ -53,6 +54,9 @@ public class SensorColor implements HardwareDevice {
     public int green() {return colorSensor.green();}
     public int blue() {return colorSensor.blue();}
 
+    public boolean freightInBox() {
+        return (red() > 150) && (green() > 150);
+    }
 
     @Override
     public void disable() {colorSensor.close();}

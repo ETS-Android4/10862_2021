@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.autons;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
@@ -79,6 +80,7 @@ public void robotInit() {
 
 public void matchStart() {
         schedule(
-        new SequentialCommandGroup
-                (new SplineCommand(drivetrain, new Vector2d(-15, -13), 300, true)));
+        new SequentialCommandGroup(
+                new SplineCommand(drivetrain, new Vector2d(-15, -13), 300, true)
+        ));
         }};
