@@ -34,21 +34,17 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
 
         addCommands(
                 new InstantCommand(capServos::autoMid),
-                new DriveForwardCommand(drivetrain, 24),
-                new TurnToCommand(drivetrain, 62,true),
+                new SplineCommand(drivetrain, new Vector2d(20,20), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 0, true),
-                new InstantCommand(capServos::capReset, capServos),
-                new DriveForwardCommand(drivetrain, -23),
-                new TurnToCommand(drivetrain,-93,true),
+                new InstantCommand(intake::servoDown),
+                new InstantCommand(intake::intake),
+
+                new SplineCommand(drivetrain, new Vector2d(0,-35), Math.toRadians(180)),
+                new TurnToCommand(drivetrain, 90),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-
-                //out df the Warehouse
-                new TurnToCommand(drivetrain,-87,true),
-                new DriveForwardCommand(drivetrain, -30),
-                new TurnToCommand(drivetrain, -150, true),
+                new SplineCommand(drivetrain, new Vector2d(20,20), Math.toRadians(180),true),
 
                 new LiftHighCommand(lift),
                 new DriveForwardCommand(drivetrain, -30),
