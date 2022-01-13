@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
@@ -22,25 +23,27 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class CRedCarouselCommandR extends SequentialCommandGroup {
-    public CRedCarouselCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor colorSensor, CapServos capServos) {
-
+    public CRedCarouselCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
+        //Low
         addCommands(
-                new DriveForwardCommand(drivetrain, -24),
-                new TurnToCommand(drivetrain, -60, true),
-                new CapArmHighCommand(capServos, drivetrain),
-
-                new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 25),
-                new TurnToCommand(drivetrain, -90,true),
-                new DriveForwardCommand(drivetrain,20),
+                new DriveForwardCommand(drivetrain, 24),
+                new TurnToCommand(drivetrain, -50, true),
+                new CapArmLowCommand(capServos, drivetrain),
 
                 new WaitCommand(1000),
-                new KindaSlowDriveForwardCommand(drivetrain, 3),
+                new TurnToCommand(drivetrain, 125, true),
+                new DriveForwardCommand(drivetrain, 27),
+
+                new WaitCommand(300),
+                new KindaSlowDriveForwardCommand(drivetrain, 4),
                 new RightCarouselCommand(carousel),
 
-                new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 25),
-                new InstantCommand(armServos::armUp,armServos)
+                new KindaSlowDriveForwardCommand(drivetrain, -4),
+                new TurnToCommand(drivetrain, 180, true),
+                new DriveForwardCommand(drivetrain, -25),
+
+                new TurnToCommand(drivetrain, 90),
+                new DriveForwardCommand(drivetrain, 5)
         );
     }
 }

@@ -1,21 +1,14 @@
 package org.firstinspires.ftc.teamcode.autons;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
@@ -26,8 +19,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
-@Autonomous(name = "TestAutonWithoutCam", group = "RED/BLUE")
-public class TestAutonWithoutCam extends MatchOpMode {
+@Autonomous(name = "SplineTestAuton", group = "RED/BLUE")
+public class SplineTestAuton extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;
@@ -53,7 +46,6 @@ private Carousel carousel;
 private CapServos capServos;
 private SensorColor sensorColor;
 
-
 @Override
 public void robotInit() {
     drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
@@ -66,26 +58,9 @@ public void robotInit() {
     //liftMotor = new MotorEx(hardwareMap, "lift");
     sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
 }
-@Override
-    /*public void matchStart() {
-        schedule(
-                new SequentialCommandGroup(
-                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel)));
-    }};*/
-
-/*public void matchStart() {
-    schedule(
-            new SequentialCommandGroup
-                    (
-                   new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos)
-                    ));
-            }};*/
 
 public void matchStart() {
         schedule(
-        new SequentialCommandGroup(
-                new SplineCommand(drivetrain, new Vector2d(15,60), Math.toRadians(90)),
-                new TurnToCommand(drivetrain, 90),
-                new SplineCommand(drivetrain, new Vector2d(0,0), Math.toRadians(180),true)
-        ));
+        new SequentialCommandGroup
+                (new SplineCommand(drivetrain, new Vector2d(-26, -30), -90)));
         }};

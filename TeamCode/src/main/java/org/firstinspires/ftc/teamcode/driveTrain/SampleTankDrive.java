@@ -65,12 +65,17 @@ import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.kV;
  */
 @Config
 public class SampleTankDrive extends TankDrive {
-    public static PIDCoefficients AXIAL_PID = new PIDCoefficients(0.009, 0, 0);
-    //5, 0, 0.25
-    public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.09, 0, 0);
-    //0.03, 0, 0
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(8.75, 0, 0);
-    //17.5, 00.03
+
+    public static PIDCoefficients AXIAL_PID = new PIDCoefficients(5, 0, 0);
+    //FollowerPid: 8 , 0, 0
+    //SplineTest: 5, 0, 0
+    public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.0017, 0, 0.35);
+    //FollowerPid: 0.0017 , 0, 0
+    //SplineTest: 0.0017, 0, 0.35
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(12, 0, 0);
+    //FollowerPid: 14.2 , 0, 0
+    //SplineTest: 14.5, 0, 0
+
     public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0);
     //0.001, 0, 0
     public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0);
@@ -129,7 +134,6 @@ public class SampleTankDrive extends TankDrive {
         accelConstraint = new ProfileAccelerationConstraint(MAX_ACCEL);
         follower = new TankPIDVAFollower(AXIAL_PID, CROSS_TRACK_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
-
         poseHistory = new ArrayList<>();
 
         LynxModuleUtil.ensureMinimumFirmwareVersion(hardwareMap);
@@ -148,7 +152,7 @@ public class SampleTankDrive extends TankDrive {
 
         // TODO: if your hub is mounted vertically, remap the IMU axes so that the z-axis points
         // upward (normal to the floor) using a command like the following:
-         BNO055IMUUtil.remapAxes(imu, AxesOrder.XZY, AxesSigns.NPN);
+        BNO055IMUUtil.remapAxes(imu, AxesOrder.XYZ, AxesSigns.NPN);
 
         // add/remove motors depending on your robot (e.g., 6WD)
         DcMotorEx leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
