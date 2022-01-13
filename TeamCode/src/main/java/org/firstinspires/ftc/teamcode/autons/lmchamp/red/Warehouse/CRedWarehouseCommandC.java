@@ -34,41 +34,18 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
 
         addCommands(
                 new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(20,20), Math.toRadians(0)),
+                new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
 
-                new SplineCommand(drivetrain, new Vector2d(0,-35), Math.toRadians(180)),
-                new TurnToCommand(drivetrain, 90),
-
+                new SplineCommand(drivetrain, new Vector2d(0,-30), 270),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new SplineCommand(drivetrain, new Vector2d(20,20), Math.toRadians(180),true),
+                new SplineCommand(drivetrain, new Vector2d(23,23), Math.toRadians(180),true),
 
                 new LiftHighCommand(lift),
-                new DriveForwardCommand(drivetrain, -30),
                 new DropFreightCommand(armServos),
-
-                new DriveForwardCommand(drivetrain, 30),
-                new LiftResetCommand(armServos, lift),
-                new TurnToCommand(drivetrain,-93, true),
-
-                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-
-                //outOfWarehouse
-                new TurnToCommand(drivetrain,-87,true),
-                new DriveForwardCommand(drivetrain, -30),
-                new TurnToCommand(drivetrain, -150, true),
-
-                new LiftHighCommand(lift),
-                new DriveForwardCommand(drivetrain, -30),
-
-                new DropFreightCommand(armServos),
-                new WaitCommand(250),
-
-                new DriveForwardCommand(drivetrain, 30),
-                new TurnCommand(drivetrain,90),
                 new LiftResetCommand(armServos, lift)
         );
     }
