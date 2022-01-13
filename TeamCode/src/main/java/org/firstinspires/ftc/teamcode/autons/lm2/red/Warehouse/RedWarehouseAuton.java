@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 @Disabled
 @Autonomous(name = "Red Warehouse", group = "RED")
-public class RedWarehouseAuton extends MatchOpMode {
+public class RedWarehouseAuton extends MatchOpMode{
     public static double startPoseX = 0;
     public static double startPoseY = 0;
     public static double startPoseHeading = 0;

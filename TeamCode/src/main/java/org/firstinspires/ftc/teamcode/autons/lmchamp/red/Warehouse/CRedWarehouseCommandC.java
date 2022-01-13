@@ -70,10 +70,10 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
 
                 new DropFreightCommand(armServos),
                 new WaitCommand(250),
-                new LiftResetCommand(armServos, lift),
 
                 new DriveForwardCommand(drivetrain, 30),
-                new TurnCommand(drivetrain,90)
+                new TurnCommand(drivetrain,90),
+                new LiftResetCommand(armServos, lift)
         );
     }
 }
