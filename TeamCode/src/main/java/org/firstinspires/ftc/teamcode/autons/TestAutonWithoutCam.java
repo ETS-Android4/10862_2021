@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowSplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
@@ -84,8 +85,13 @@ public void robotInit() {
 public void matchStart() {
         schedule(
         new SequentialCommandGroup(
-                new SplineCommand(drivetrain, new Vector2d(15,60), Math.toRadians(90)),
-                new TurnToCommand(drivetrain, 90),
-                new SplineCommand(drivetrain, new Vector2d(0,0), Math.toRadians(180),true)
+
+                new SlowSplineCommand(drivetrain, new Vector2d(25,25), 0),
+                new TurnToCommand(drivetrain, 180),
+
+                new SlowSplineCommand(drivetrain, new Vector2d(0,-30), 180+45),
+                new TurnToCommand(drivetrain, 270),
+
+                new SlowSplineCommand(drivetrain, new Vector2d(25,25), Math.toRadians(0),true)
         ));
         }};
