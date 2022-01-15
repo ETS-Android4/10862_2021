@@ -17,6 +17,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowSplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
@@ -90,6 +91,28 @@ public void matchStart() {
         schedule(
         new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
+                new DriveForwardCommand(drivetrain, 20),
+                new TurnToCommand(drivetrain, 310),
+
+                new DriveForwardCommand(drivetrain, 4),
+                new CapArmMidCommand(capServos, drivetrain),
+                new WaitCommand(300),
+                new DriveForwardCommand(drivetrain, -4),
+
+                new TurnToCommand(drivetrain, 225),
+                new DriveForwardCommand(drivetrain, 18),
+                new RightCarouselCommand(carousel),
+
+
+
+
+
+
+
+
+
+
+
                 new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
                 new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
