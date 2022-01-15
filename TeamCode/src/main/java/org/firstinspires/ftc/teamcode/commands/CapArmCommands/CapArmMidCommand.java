@@ -20,7 +20,6 @@ public class CapArmMidCommand extends SequentialCommandGroup {
 
         addCommands(
                 new InstantCommand(capServos::clawOpen, capServos),
-                //new WaitCommand(300),
                 new TurnToCommand(drivetrain,180),
                 new InstantCommand(capServos::capReset, capServos)
 

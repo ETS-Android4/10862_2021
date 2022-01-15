@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.ScheduleCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
@@ -18,13 +19,8 @@ public class CapArmLowCommand extends SequentialCommandGroup {
     public CapArmLowCommand(CapServos capServos, Drivetrain drivetrain) {
 
         addCommands(
-                new InstantCommand(capServos::autoLow, capServos),
-                new WaitCommand(500),
-                new DriveForwardCommand(drivetrain, 5),
                 new InstantCommand(capServos::clawOpen, capServos),
-                new WaitCommand(200),
-                new InstantCommand(capServos::clawClose, capServos),
-                new DriveForwardCommand(drivetrain, -5),
+                new TurnToCommand(drivetrain,180),
                 new InstantCommand(capServos::capReset, capServos)
         );
     }}

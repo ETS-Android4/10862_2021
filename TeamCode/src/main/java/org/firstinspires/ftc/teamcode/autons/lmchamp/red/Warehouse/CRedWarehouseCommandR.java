@@ -31,7 +31,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
         //declare variables here
         //Low
         addCommands(
-                new InstantCommand(capServos::autoMid),
+                new InstantCommand(capServos::autoLow),
                 new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
                 new CapArmLowCommand(capServos, drivetrain),
                 new SplineCommand(drivetrain, new Vector2d(0,-5), Math.toRadians(270)),

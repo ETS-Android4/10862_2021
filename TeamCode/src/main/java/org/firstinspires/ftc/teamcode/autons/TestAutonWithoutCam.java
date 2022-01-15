@@ -48,10 +48,8 @@ private MotorEx liftMotor;
 private CRServo carouselServo;
 private ServoEx dropServo, armServo;
 private ServoEx clawServo, capArmServo;
-
 // Gamepad
 private GamepadEx driverGamepad;
-
 // Subsystems
 private Drivetrain drivetrain;
 private Intake intake;
@@ -60,7 +58,6 @@ private ArmServos armServos;
 private Carousel carousel;
 private CapServos capServos;
 private SensorColor sensorColor;
-
 
 @Override
 public void robotInit() {
@@ -74,13 +71,13 @@ public void robotInit() {
     //liftMotor = new MotorEx(hardwareMap, "lift");
     sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
 }
+
 @Override
     /*public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
                         new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel)));
     }};*/
-
 /*public void matchStart() {
     schedule(
             new SequentialCommandGroup
@@ -93,44 +90,44 @@ public void matchStart() {
         schedule(
         new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
+                new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
-                new SplineCommand(drivetrain, new Vector2d(0,-5), Math.toRadians(270)),
-                new TurnToCommand(drivetrain, 267),
-
+                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
+                new TurnToCommand(drivetrain, 93),
+//
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
                 new DriveForwardCommand(drivetrain,32),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain,273),
+                new TurnToCommand(drivetrain,87),
                 new DriveForwardCommand(drivetrain,-32),
                 new LiftHighCommand(lift),
 
-                new TurnToCommand(drivetrain, 215),
+                new TurnToCommand(drivetrain, 155),
                 new DriveForwardCommand(drivetrain, -30),
 
                 new DropFreightCommand(armServos),
                 new LiftResetCommand(armServos, lift),
 
-                new SplineCommand(drivetrain, new Vector2d(0,-5), Math.toRadians(270)),
-                new TurnToCommand(drivetrain, 267),
-
+                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
+                new TurnToCommand(drivetrain, 93),
+//
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
                 new DriveForwardCommand(drivetrain,32),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain,273),
+                new TurnToCommand(drivetrain,87),
                 new DriveForwardCommand(drivetrain,-32),
                 new LiftHighCommand(lift),
 
-                new TurnToCommand(drivetrain, 215),
+                new TurnToCommand(drivetrain, 155),
                 new DriveForwardCommand(drivetrain, -30),
 
                 new DropFreightCommand(armServos),
                 new LiftResetCommand(armServos, lift),
 
-                new SplineCommand(drivetrain, new Vector2d(13,-30), Math.toRadians(270))
+                new SplineCommand(drivetrain, new Vector2d(-30,13), Math.toRadians(90))
         ));
         }};
