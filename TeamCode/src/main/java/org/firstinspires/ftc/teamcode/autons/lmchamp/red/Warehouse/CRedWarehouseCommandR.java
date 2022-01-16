@@ -29,11 +29,11 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 public class CRedWarehouseCommandR extends SequentialCommandGroup {
     public CRedWarehouseCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor sensorColor, CapServos capServos) {
         //declare variables here
-        //Low
+        //High
         addCommands(
-                new InstantCommand(capServos::autoLow),
+                new InstantCommand(capServos::autoHigh),
                 new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
-                new CapArmLowCommand(capServos, drivetrain),
+                new CapArmHighCommand(capServos, drivetrain),
                 new SplineCommand(drivetrain, new Vector2d(0,-5), Math.toRadians(270)),
                 new TurnToCommand(drivetrain, 267),
 

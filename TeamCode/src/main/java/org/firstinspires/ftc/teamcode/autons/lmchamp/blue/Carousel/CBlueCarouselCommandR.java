@@ -26,14 +26,14 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class CBlueCarouselCommandR extends SequentialCommandGroup {
     public CBlueCarouselCommandR(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
-//Low
+//High
         addCommands(
-                new InstantCommand(capServos::autoLow),
+                new InstantCommand(capServos::autoHigh),
                 new DriveForwardCommand(drivetrain, 20),
                 new TurnToCommand(drivetrain, 60, true),
 
                 new DriveForwardCommand(drivetrain, 8),
-                new CapArmLowCommand(capServos, drivetrain),
+                new CapArmHighCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 235),
                 new DriveForwardCommand(drivetrain, 27),
