@@ -17,8 +17,11 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowSplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
@@ -92,65 +95,37 @@ public void matchStart() {
         new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
                 new DriveForwardCommand(drivetrain, 20),
-                new TurnToCommand(drivetrain, 310),
+                new TurnToCommand(drivetrain, 60, true),
 
-                new DriveForwardCommand(drivetrain, 4),
+                new DriveForwardCommand(drivetrain, 8),
                 new CapArmMidCommand(capServos, drivetrain),
-                new WaitCommand(300),
-                new DriveForwardCommand(drivetrain, -4),
 
-                new TurnToCommand(drivetrain, 225),
-                new DriveForwardCommand(drivetrain, 18),
-                new RightCarouselCommand(carousel),
+                new TurnToCommand(drivetrain, 235),
+                new DriveForwardCommand(drivetrain, 27),
+                new KindaSlowDriveForwardCommand(drivetrain, 4),
+                new LeftCarouselCommand(carousel),
 
+                new DriveForwardCommand(drivetrain, -6),
+                new TurnToCommand(drivetrain, 210),
 
-
-
-
-
-
-
-
-
-
-                new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
-                new CapArmMidCommand(capServos, drivetrain),
-                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
-                new TurnToCommand(drivetrain, 93),
-//
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,32),
+                new DriveForwardCommand(drivetrain,6),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain,87),
-                new DriveForwardCommand(drivetrain,-32),
+                new TurnToCommand(drivetrain, 245),
+                new DriveForwardCommand(drivetrain,-33),
+                new InstantCommand(intake::servoUp),
                 new LiftHighCommand(lift),
 
-                new TurnToCommand(drivetrain, 155),
-                new DriveForwardCommand(drivetrain, -30),
-
+                new WaitCommand(500),
+                new DriveForwardCommand(drivetrain,-3),
                 new DropFreightCommand(armServos),
                 new LiftResetCommand(armServos, lift),
 
-                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
-                new TurnToCommand(drivetrain, 93),
-//
-                new InstantCommand(intake::servoDown),
-                new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,32),
-                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
+                new TurnToCommand(drivetrain, 90),
+                new DriveForwardCommand(drivetrain, -28),
 
-                new TurnToCommand(drivetrain,87),
-                new DriveForwardCommand(drivetrain,-32),
-                new LiftHighCommand(lift),
-
-                new TurnToCommand(drivetrain, 155),
-                new DriveForwardCommand(drivetrain, -30),
-
-                new DropFreightCommand(armServos),
-                new LiftResetCommand(armServos, lift),
-
-                new SplineCommand(drivetrain, new Vector2d(-30,13), Math.toRadians(90))
+                new InstantCommand(intake::stop)
         ));
         }};
