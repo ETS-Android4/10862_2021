@@ -4,10 +4,12 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftLowCommand;
@@ -28,24 +30,40 @@ public class CRedCarouselCommandL extends SequentialCommandGroup {
         //Low
 
         addCommands(
-                new DriveForwardCommand(drivetrain, 24),
-                new TurnToCommand(drivetrain, -50, true),
-                new CapArmHighCommand(capServos, drivetrain),
+                new InstantCommand(capServos::autoLow),
+                new DriveForwardCommand(drivetrain, 20),
+                new TurnToCommand(drivetrain, 305),
 
-                new WaitCommand(1000),
-                new TurnToCommand(drivetrain, 125, true),
-                new DriveForwardCommand(drivetrain, 27),
+                new DriveForwardCommand(drivetrain, 10),
+                new CapArmLowCommand(capServos, drivetrain),
 
-                new WaitCommand(300),
-                new KindaSlowDriveForwardCommand(drivetrain, 4),
+                new TurnToCommand(drivetrain, 125),
+                new DriveForwardCommand(drivetrain, 22),
+                new KindaSlowDriveForwardCommand(drivetrain, 5),
                 new RightCarouselCommand(carousel),
 
-                new KindaSlowDriveForwardCommand(drivetrain, -4),
-                new TurnToCommand(drivetrain, 180, true),
-                new DriveForwardCommand(drivetrain, -25),
+                new DriveForwardCommand(drivetrain, -6),
+                new TurnToCommand(drivetrain, 132),
 
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 5)
+                new InstantCommand(intake::servoDown),
+                new InstantCommand(intake::intake),
+                new DriveForwardCommand(drivetrain,5),
+                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
+
+                new TurnToCommand(drivetrain, 125),
+                new DriveForwardCommand(drivetrain,-30),
+                new InstantCommand(intake::servoUp),
+                new LiftHighCommand(lift),
+
+                new WaitCommand(500),
+                new DriveForwardCommand(drivetrain,-2),
+                new DropFreightCommand(armServos),
+                new LiftResetCommand(armServos, lift),
+
+                new TurnToCommand(drivetrain, 270),
+                new DriveForwardCommand(drivetrain, -32),
+
+                new InstantCommand(intake::stop)
         );
     }
 }

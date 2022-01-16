@@ -28,34 +28,41 @@ public class CRedCarouselCommandC extends SequentialCommandGroup {
     public CRedCarouselCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
         //declare variables here
 
-
         addCommands(
-                new DriveForwardCommand(drivetrain, 24),
-                new TurnToCommand(drivetrain, -50, true),
+                new InstantCommand(capServos::autoMid),
+                new DriveForwardCommand(drivetrain, 20),
+                new TurnToCommand(drivetrain, 305),
+
+                new DriveForwardCommand(drivetrain, 10),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new WaitCommand(1000),
-                new TurnToCommand(drivetrain, 125, true),
-                new DriveForwardCommand(drivetrain, 27),
-
-                new WaitCommand(300),
-                new KindaSlowDriveForwardCommand(drivetrain, 4),
+                new TurnToCommand(drivetrain, 125),
+                new DriveForwardCommand(drivetrain, 22),
+                new KindaSlowDriveForwardCommand(drivetrain, 5),
                 new RightCarouselCommand(carousel),
 
-                new KindaSlowDriveForwardCommand(drivetrain, -4),
-                new TurnToCommand(drivetrain, 140),
+                new DriveForwardCommand(drivetrain, -6),
+                new TurnToCommand(drivetrain, 132),
+
+                new InstantCommand(intake::servoDown),
+                new InstantCommand(intake::intake),
+                new DriveForwardCommand(drivetrain,5),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new TurnToCommand(drivetrain,125),
-                new DriveForwardCommand(drivetrain, -27),
-                new AutoOuttakeCommand(lift, intake, armServos, drivetrain),
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 18)
 
-                /*new TurnToCommand(drivetrain, 180, true),
-                new DriveForwardCommand(drivetrain, -25),
+                new TurnToCommand(drivetrain, 125),
+                new DriveForwardCommand(drivetrain,-30),
+                new InstantCommand(intake::servoUp),
+                new LiftHighCommand(lift),
 
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 5)*/
+                new WaitCommand(500),
+                new DriveForwardCommand(drivetrain,-2),
+                new DropFreightCommand(armServos),
+                new LiftResetCommand(armServos, lift),
+
+                new TurnToCommand(drivetrain, 270),
+                new DriveForwardCommand(drivetrain, -32),
+
+                new InstantCommand(intake::stop)
         );
     }
 }

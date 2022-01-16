@@ -95,36 +95,36 @@ public void matchStart() {
         new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
                 new DriveForwardCommand(drivetrain, 20),
-                new TurnToCommand(drivetrain, 60, true),
+                new TurnToCommand(drivetrain, 305),
 
-                new DriveForwardCommand(drivetrain, 8),
+                new DriveForwardCommand(drivetrain, 10),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 235),
-                new DriveForwardCommand(drivetrain, 27),
-                new KindaSlowDriveForwardCommand(drivetrain, 4),
-                new LeftCarouselCommand(carousel),
+                new TurnToCommand(drivetrain, 125),
+                new DriveForwardCommand(drivetrain, 22),
+                new KindaSlowDriveForwardCommand(drivetrain, 5),
+                new RightCarouselCommand(carousel),
 
                 new DriveForwardCommand(drivetrain, -6),
-                new TurnToCommand(drivetrain, 210),
+                new TurnToCommand(drivetrain, 132),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,6),
+                new DriveForwardCommand(drivetrain,5),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain, 245),
-                new DriveForwardCommand(drivetrain,-33),
+                new TurnToCommand(drivetrain, 125),
+                new DriveForwardCommand(drivetrain,-30),
                 new InstantCommand(intake::servoUp),
                 new LiftHighCommand(lift),
 
                 new WaitCommand(500),
-                new DriveForwardCommand(drivetrain,-3),
+                new DriveForwardCommand(drivetrain,-2),
                 new DropFreightCommand(armServos),
                 new LiftResetCommand(armServos, lift),
 
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, -28),
+                new TurnToCommand(drivetrain, 270),
+                new DriveForwardCommand(drivetrain, -32),
 
                 new InstantCommand(intake::stop)
         ));
