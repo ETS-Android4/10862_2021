@@ -91,17 +91,16 @@ public void robotInit() {
             }};*/
 
 public void matchStart() {
-        schedule(
-        new SequentialCommandGroup(
+        schedule(new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
                 new DriveForwardCommand(drivetrain, 20),
-                new TurnToCommand(drivetrain, 305),
+                new TurnToCommand(drivetrain, 310),
 
                 new DriveForwardCommand(drivetrain, 10),
                 new CapArmMidCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 125),
-                new DriveForwardCommand(drivetrain, 22),
+                new DriveForwardCommand(drivetrain, 26),
                 new KindaSlowDriveForwardCommand(drivetrain, 5),
                 new RightCarouselCommand(carousel),
 
@@ -124,7 +123,7 @@ public void matchStart() {
                 new LiftResetCommand(armServos, lift),
 
                 new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, -32),
+                new DriveForwardCommand(drivetrain, -35),
 
                 new InstantCommand(intake::stop)
         ));
