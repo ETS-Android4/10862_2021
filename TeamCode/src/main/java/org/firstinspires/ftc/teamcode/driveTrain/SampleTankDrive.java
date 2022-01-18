@@ -41,6 +41,7 @@ import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigu
 
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 
+
 import org.firstinspires.ftc.teamcode.roadrunnerext.ImprovedRamsete;
 import org.firstinspires.ftc.teamcode.rrExt.RamseteConstants;
 import org.firstinspires.ftc.teamcode.util.AxesSigns;
@@ -163,7 +164,7 @@ public class SampleTankDrive extends TankDrive {
         DcMotorEx rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         DcMotorEx rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
 
-        motors = Arrays.asList(leftFront, leftRear, rightFront, rightRear);
+        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
         leftMotors = Arrays.asList(leftFront, leftRear);
         rightMotors = Arrays.asList(rightFront, rightRear);
 
