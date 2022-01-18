@@ -16,6 +16,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
     }
 }
 
@@ -37,7 +38,7 @@ repositories {
     }
 }
 
-dependencies {
+dependencies {//wait
     doc 'org.firstinspires.ftc:Hardware:6.2.0'
     doc 'org.firstinspires.ftc:RobotCore:6.2.0'
     doc 'org.firstinspires.ftc:FtcCommon:6.2.0'

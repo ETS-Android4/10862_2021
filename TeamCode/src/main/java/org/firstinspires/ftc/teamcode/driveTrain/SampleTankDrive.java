@@ -10,6 +10,7 @@ import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.control.PIDFController;
 import com.acmerobotics.roadrunner.drive.DriveSignal;
 import com.acmerobotics.roadrunner.drive.TankDrive;
+import com.acmerobotics.roadrunner.followers.RamseteFollower;
 import com.acmerobotics.roadrunner.followers.TankPIDVAFollower;
 import com.acmerobotics.roadrunner.followers.TrajectoryFollower;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -32,12 +33,16 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+
+import org.firstinspires.ftc.teamcode.roadrunnerext.ImprovedRamsete;
+import org.firstinspires.ftc.teamcode.rrExt.RamseteConstants;
 import org.firstinspires.ftc.teamcode.util.AxesSigns;
 import org.firstinspires.ftc.teamcode.util.BNO055IMUUtil;
 import org.firstinspires.ftc.teamcode.util.DashboardUtil;
@@ -65,21 +70,13 @@ import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.kV;
  */
 @Config
 public class SampleTankDrive extends TankDrive {
-
-    public static PIDCoefficients AXIAL_PID = new PIDCoefficients(8, 0, 0);
-    //FollowerPid: 8 , 0, 0
-    //SplineTest: 5, 0, 0
-    public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.0017, 0, 0);
-    //FollowerPid: 0.0017 , 0, 0
-    //SplineTest: 0.0017, 0, 0.35
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(14.2, 0, 0);
-    //FollowerPid: 14.2 , 0, 0
-    //SplineTest: 14.5, 0, 0
-
-    public static PIDCoefficients LEFT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0);
-    //0.001, 0, 0
-    public static PIDCoefficients RIGHT_DRIVE_PID =new PIDCoefficients(0.001, 0, 0);
-    //0.001, 0, 0
+    //public static PIDCoefficients AXIAL_PID = new PIDCoefficients(5, 0, 0); //7,0,1
+    //public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.04, 0, 0); //0.06,0,0
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(14, 0, 0.6); //14.5,0,1
+    /*
+        public static PIDCoefficients LEFT_DRIVE_PID = new PIDCoefficients(0.01, 0, 0);
+        public static PIDCoefficients RIGHT_DRIVE_PID = new PIDCoefficients(0.01, 0, 0);
+     */
     private PIDController leftDriveVeloPID;
     private PIDController rightDriveVeloPID;
 
@@ -117,9 +114,10 @@ public class SampleTankDrive extends TankDrive {
 
         dashboard = FtcDashboard.getInstance();
         dashboard.setTelemetryTransmissionInterval(25);
-
+/*
         leftDriveVeloPID = new PIDController(LEFT_DRIVE_PID.kP, LEFT_DRIVE_PID.kI, LEFT_DRIVE_PID.kD);
         rightDriveVeloPID = new PIDController(RIGHT_DRIVE_PID.kP, RIGHT_DRIVE_PID.kI, RIGHT_DRIVE_PID.kD);
+ */
         clock = NanoClock.system();
 
         mode = Mode.IDLE;
@@ -132,8 +130,13 @@ public class SampleTankDrive extends TankDrive {
                 new TankVelocityConstraint(MAX_VEL, TRACK_WIDTH)
         ));
         accelConstraint = new ProfileAccelerationConstraint(MAX_ACCEL);
-        follower = new TankPIDVAFollower(AXIAL_PID, CROSS_TRACK_PID,
+        /*
+            follower = new TankPIDVAFollower(AXIAL_PID, CROSS_TRACK_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
+         */
+
+        follower = new ImprovedRamsete();
+
         poseHistory = new ArrayList<>();
 
         LynxModuleUtil.ensureMinimumFirmwareVersion(hardwareMap);
@@ -160,7 +163,7 @@ public class SampleTankDrive extends TankDrive {
         DcMotorEx rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
         DcMotorEx rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
 
-        motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
+        motors = Arrays.asList(leftFront, leftRear, rightFront, rightRear);
         leftMotors = Arrays.asList(leftFront, leftRear);
         rightMotors = Arrays.asList(rightFront, rightRear);
 
@@ -168,6 +171,10 @@ public class SampleTankDrive extends TankDrive {
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
             motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
             motor.setMotorType(motorConfigurationType);
+
+            //new
+            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
 
         if (RUN_USING_ENCODER) {
@@ -187,7 +194,7 @@ public class SampleTankDrive extends TankDrive {
         rightRear.setDirection(DcMotor.Direction.REVERSE);
 
         // TODO: if desired, use setLocalizer() to change the localization method
-        // for instance, setLocalizer(n/ew ThreeTrackingWheelLocalizer(...));
+        // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -290,7 +297,10 @@ public class SampleTankDrive extends TankDrive {
 
                 double targetOmega = targetState.getV();
                 double targetAlpha = targetState.getA();
-                setDriveSignal(new DriveSignal(new Pose2d(0, 0, targetOmega + correction), new Pose2d(0, 0, targetAlpha
+                setDriveSignal(new DriveSignal(new Pose2d(
+                        0, 0, targetOmega + correction
+                ), new Pose2d(
+                        0, 0, targetAlpha
                 )));
 
                 if (t >= turnProfile.duration()) {
@@ -376,41 +386,43 @@ public class SampleTankDrive extends TankDrive {
 
         setDrivePower(vel);
     }
-
-    @Override
-    public void setDriveSignal(@NotNull DriveSignal driveSignal) {
-        List<Double> velocities = TankKinematics.robotToWheelVelocities(driveSignal.getVel(), TRACK_WIDTH);
-        List<Double> accelerations = TankKinematics.robotToWheelVelocities(driveSignal.getAccel(), TRACK_WIDTH);
-        List<Double> feedforwards = Kinematics.calculateMotorFeedforward(velocities, accelerations, kV, kA, kStatic);
-        leftDriveVeloPID.setPID(LEFT_DRIVE_PID.kP, LEFT_DRIVE_PID.kI, LEFT_DRIVE_PID.kD);
-        rightDriveVeloPID.setPID(RIGHT_DRIVE_PID.kP, RIGHT_DRIVE_PID.kI, RIGHT_DRIVE_PID.kD);
-        double leftOutput = feedforwards.get(0) + leftDriveVeloPID.calculate(getWheelVelocities().get(0), velocities.get(0));
-        double rightOutput = feedforwards.get(1) + leftDriveVeloPID.calculate(getWheelVelocities().get(1), velocities.get(1));
-        setMotorPowers(leftOutput, rightOutput);
-    }
-
+    /*
+        @Override
+        public void setDriveSignal(@NotNull DriveSignal driveSignal) {
+            List<Double> velocities = TankKinematics.robotToWheelVelocities(driveSignal.getVel(), TRACK_WIDTH);
+            List<Double> accelerations = TankKinematics.robotToWheelVelocities(driveSignal.getAccel(), TRACK_WIDTH);
+            List<Double> feedforwards = Kinematics.calculateMotorFeedforward(velocities, accelerations, kV, kA, kStatic);
+            leftDriveVeloPID.setPID(LEFT_DRIVE_PID.kP, LEFT_DRIVE_PID.kI, LEFT_DRIVE_PID.kD);
+            rightDriveVeloPID.setPID(RIGHT_DRIVE_PID.kP, RIGHT_DRIVE_PID.kI, RIGHT_DRIVE_PID.kD);
+            double leftOutput = feedforwards.get(0) + leftDriveVeloPID.calculate(getWheelVelocities().get(0), velocities.get(0));
+            double rightOutput = feedforwards.get(1) + leftDriveVeloPID.calculate(getWheelVelocities().get(1), velocities.get(1));
+            setMotorPowers(leftOutput, rightOutput);
+        }
+     */
     @NonNull
     @Override
     public List<Double> getWheelPositions() {
-        double leftSum = 0, rightSum = 0;
-        for (DcMotorEx leftMotor : leftMotors) {
-            leftSum += encoderTicksToInches(leftMotor.getCurrentPosition());
-        }
-        for (DcMotorEx rightMotor : rightMotors) {
-            rightSum += encoderTicksToInches(rightMotor.getCurrentPosition());
-        }
-        return Arrays.asList(leftSum / leftMotors.size(), rightSum / rightMotors.size());
+        /*
+            double leftSum = 0, rightSum = 0;
+            for (DcMotorEx leftMotor : leftMotors) {
+                leftSum += encoderTicksToInches(leftMotor.getCurrentPosition());
+            }
+            for (DcMotorEx rightMotor : rightMotors) {
+                rightSum += encoderTicksToInches(rightMotor.getCurrentPosition());
+            }
+            return Arrays.asList(leftSum / leftMotors.size(), rightSum / rightMotors.size());
+         */
+        double leftSum = encoderTicksToInches(leftMotors.get(0).getCurrentPosition());
+        double rightSum = -encoderTicksToInches(rightMotors.get(0).getCurrentPosition());
+
+        return Arrays.asList(leftSum, rightSum);
     }
 
     public List<Double> getWheelVelocities() {
-        double leftSum = 0, rightSum = 0;
-        for (DcMotorEx leftMotor : leftMotors) {
-            leftSum += encoderTicksToInches(leftMotor.getVelocity());
-        }
-        for (DcMotorEx rightMotor : rightMotors) {
-            rightSum += encoderTicksToInches(rightMotor.getVelocity());
-        }
-        return Arrays.asList(leftSum / leftMotors.size(), rightSum / rightMotors.size());
+        double leftSum = encoderTicksToInches(leftMotors.get(0).getVelocity());
+        double rightSum = -encoderTicksToInches(rightMotors.get(0).getVelocity());
+
+        return Arrays.asList(leftSum, rightSum);
     }
 
     @Override
