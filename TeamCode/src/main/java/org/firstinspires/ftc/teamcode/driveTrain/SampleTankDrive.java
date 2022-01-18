@@ -403,7 +403,7 @@ public class SampleTankDrive extends TankDrive {
     @NonNull
     @Override
     public List<Double> getWheelPositions() {
-        /*
+
             double leftSum = 0, rightSum = 0;
             for (DcMotorEx leftMotor : leftMotors) {
                 leftSum += encoderTicksToInches(leftMotor.getCurrentPosition());
@@ -412,11 +412,11 @@ public class SampleTankDrive extends TankDrive {
                 rightSum += encoderTicksToInches(rightMotor.getCurrentPosition());
             }
             return Arrays.asList(leftSum / leftMotors.size(), rightSum / rightMotors.size());
-         */
-        double leftSum = encoderTicksToInches(leftMotors.get(0).getCurrentPosition());
+
+        /*double leftSum = encoderTicksToInches(leftMotors.get(0).getCurrentPosition());
         double rightSum = -encoderTicksToInches(rightMotors.get(0).getCurrentPosition());
 
-        return Arrays.asList(leftSum, rightSum);
+        return Arrays.asList(leftSum, rightSum);*/
     }
 
     public List<Double> getWheelVelocities() {
