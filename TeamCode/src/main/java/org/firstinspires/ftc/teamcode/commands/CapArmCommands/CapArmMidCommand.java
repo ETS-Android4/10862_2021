@@ -13,9 +13,6 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import java.time.Instant;
 
 public class CapArmMidCommand extends SequentialCommandGroup {
-    private CapServos capServo;
-    private Drivetrain drivetrain;
-
     public CapArmMidCommand(CapServos capServos, Drivetrain drivetrain) {
 
         addCommands(

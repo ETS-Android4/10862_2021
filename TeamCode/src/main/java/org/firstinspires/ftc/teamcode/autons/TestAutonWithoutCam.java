@@ -95,7 +95,7 @@ public void matchStart() {
                 new InstantCommand(capServos::autoMid),
                 new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
-                new SplineCommand(drivetrain, new Vector2d(0,-5), Math.toRadians(270)),
+                new SplineCommand(drivetrain, new Vector2d(-2,-8), Math.toRadians(270)),
                 new TurnToCommand(drivetrain, 267),
 
                 new InstantCommand(intake::servoDown),

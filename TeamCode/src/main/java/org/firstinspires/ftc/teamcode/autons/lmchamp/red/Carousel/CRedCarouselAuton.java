@@ -72,8 +72,6 @@ public class CRedCarouselAuton extends MatchOpMode {
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-
-        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
     }
 
     @Override

@@ -7,6 +7,8 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.command.WaitUntilCommand;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
@@ -27,6 +29,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
+import java.util.logging.Level;
+
 public class CRedWarehouseCommandC extends SequentialCommandGroup {
     public CRedWarehouseCommandC(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor sensorColor, CapServos capServos) {
         //declare variables here
@@ -35,7 +39,9 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(capServos::autoMid),
                 new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
+                //this one doesn't run
                 new CapArmMidCommand(capServos, drivetrain),
+                new InstantCommand(capServos::capReset),
                 new SplineCommand(drivetrain, new Vector2d(0,-5), Math.toRadians(270)),
                 new TurnToCommand(drivetrain, 267),
 

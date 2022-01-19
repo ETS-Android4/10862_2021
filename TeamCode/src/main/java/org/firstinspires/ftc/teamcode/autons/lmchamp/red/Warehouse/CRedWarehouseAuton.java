@@ -73,7 +73,7 @@ private CapServos capServos;
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         //TODO:Does this work?
-        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
+        //intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
     }
 
 @Override
