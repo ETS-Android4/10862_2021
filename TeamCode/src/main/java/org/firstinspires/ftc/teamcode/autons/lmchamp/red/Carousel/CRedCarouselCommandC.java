@@ -31,26 +31,28 @@ public class CRedCarouselCommandC extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(capServos::autoMid),
                 new DriveForwardCommand(drivetrain, 20),
-                new TurnToCommand(drivetrain, 305),
+                new TurnToCommand(drivetrain, 320),
 
                 new DriveForwardCommand(drivetrain, 10),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 125),
-                new DriveForwardCommand(drivetrain, 22),
+                new TurnToCommand(drivetrain, 130),
+                new DriveForwardCommand(drivetrain, 35),
                 new KindaSlowDriveForwardCommand(drivetrain, 5),
                 new RightCarouselCommand(carousel),
 
-                new DriveForwardCommand(drivetrain, -6),
-                new TurnToCommand(drivetrain, 132),
+                new DriveForwardCommand(drivetrain, -7),
+                new TurnToCommand(drivetrain, 140),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,5),
+                new DriveForwardCommand(drivetrain, 6),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new TurnToCommand(drivetrain, 125),
-                new DriveForwardCommand(drivetrain,-30),
+                new DriveForwardCommand(drivetrain,-31),
+                new InstantCommand(intake::stop),
+
                 new InstantCommand(intake::servoUp),
                 new LiftHighCommand(lift),
 
@@ -60,9 +62,7 @@ public class CRedCarouselCommandC extends SequentialCommandGroup {
                 new LiftResetCommand(armServos, lift),
 
                 new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, -32),
-
-                new InstantCommand(intake::stop)
+                new DriveForwardCommand(drivetrain, -32)
         );
     }
 }
