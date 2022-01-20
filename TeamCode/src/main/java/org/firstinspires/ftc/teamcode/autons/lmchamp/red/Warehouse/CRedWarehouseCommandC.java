@@ -39,10 +39,8 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(capServos::autoMid),
                 new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
-                //this one doesn't run
                 new CapArmMidCommand(capServos, drivetrain),
-                new InstantCommand(capServos::capReset),
-                new SplineCommand(drivetrain, new Vector2d(0,-5), Math.toRadians(270)),
+                new SplineCommand(drivetrain, new Vector2d(-2,-8), Math.toRadians(270)),
                 new TurnToCommand(drivetrain, 267),
 
                 new InstantCommand(intake::servoDown),
