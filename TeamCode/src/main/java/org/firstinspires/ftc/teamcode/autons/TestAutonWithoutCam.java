@@ -94,25 +94,25 @@ public void matchStart() {
         schedule(new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
                 new DriveForwardCommand(drivetrain, 20),
-                new TurnToCommand(drivetrain, 320),
+                new TurnToCommand(drivetrain, 60, true),
 
                 new DriveForwardCommand(drivetrain, 10),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 130),
+                new TurnToCommand(drivetrain, 235),
                 new DriveForwardCommand(drivetrain, 35),
                 new KindaSlowDriveForwardCommand(drivetrain, 5),
-                new RightCarouselCommand(carousel),
+                new LeftCarouselCommand(carousel),
 
                 new DriveForwardCommand(drivetrain, -7),
-                new TurnToCommand(drivetrain, 140),
+                new TurnToCommand(drivetrain, 210),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain, 6),
+                new DriveForwardCommand(drivetrain,6),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain, 125),
+                new TurnToCommand(drivetrain, 210),
                 new DriveForwardCommand(drivetrain,-31),
                 new InstantCommand(intake::stop),
 
@@ -124,8 +124,7 @@ public void matchStart() {
                 new DropFreightCommand(armServos),
                 new LiftResetCommand(armServos, lift),
 
-                new TurnToCommand(drivetrain, 270),
+                new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, -32)
-
         ));
         }};

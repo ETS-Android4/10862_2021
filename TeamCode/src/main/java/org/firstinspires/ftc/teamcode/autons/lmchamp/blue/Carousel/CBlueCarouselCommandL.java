@@ -34,15 +34,15 @@ public class CBlueCarouselCommandL extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, 20),
                 new TurnToCommand(drivetrain, 60, true),
 
-                new DriveForwardCommand(drivetrain, 8),
-                new CapArmLowCommand(capServos, drivetrain),
+                new DriveForwardCommand(drivetrain, 10),
+                new CapArmMidCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 235),
-                new DriveForwardCommand(drivetrain, 27),
-                new KindaSlowDriveForwardCommand(drivetrain, 4),
+                new DriveForwardCommand(drivetrain, 35),
+                new KindaSlowDriveForwardCommand(drivetrain, 5),
                 new LeftCarouselCommand(carousel),
 
-                new DriveForwardCommand(drivetrain, -6),
+                new DriveForwardCommand(drivetrain, -7),
                 new TurnToCommand(drivetrain, 210),
 
                 new InstantCommand(intake::servoDown),
@@ -50,20 +50,20 @@ public class CBlueCarouselCommandL extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain,6),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain, 245),
-                new DriveForwardCommand(drivetrain,-33),
+                new TurnToCommand(drivetrain, 210),
+                new DriveForwardCommand(drivetrain,-31),
+                new InstantCommand(intake::stop),
+
                 new InstantCommand(intake::servoUp),
                 new LiftHighCommand(lift),
 
                 new WaitCommand(500),
-                new DriveForwardCommand(drivetrain,-3),
+                new DriveForwardCommand(drivetrain,-2),
                 new DropFreightCommand(armServos),
                 new LiftResetCommand(armServos, lift),
 
                 new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, -28),
-
-                new InstantCommand(intake::stop)
+                new DriveForwardCommand(drivetrain, -32)
         );
     }
 }
