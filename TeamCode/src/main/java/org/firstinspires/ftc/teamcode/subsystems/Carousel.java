@@ -17,8 +17,8 @@ import java.util.logging.Level;
 
 @Config
 public class Carousel extends SubsystemBase {
-    public static double CAROUSEL_LEFT_POWER = -.5;
-    public static double CAROUSEL_RIGHT_POWER = .5;
+    public static double CAROUSEL_LEFT_POWER = -1;
+    public static double CAROUSEL_RIGHT_POWER = 1;
 
     Telemetry telemetry;
     private CRServo carouselServo;
@@ -34,7 +34,7 @@ public class Carousel extends SubsystemBase {
         Util.logger(this, telemetry, Level.INFO, "Carousel Servo Speed: ", carouselServo.get());
     }
 
-    //public void set(double power) {carouselServo.set(power); }
+    public void set(double power) {carouselServo.set(power); }
 
     public void carouselLeft() {carouselServo.set(CAROUSEL_LEFT_POWER);}
 

@@ -117,8 +117,8 @@ public class BlueTeleOp extends MatchOpMode {
         liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
 
         //carousel
-        carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whenPressed(carousel::carouselLeft).whenReleased(carousel::stop));
-        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whenPressed(carousel::carouselRight).whenReleased(carousel::stop));
+        carouselLeftTrigger = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_STICK_BUTTON).whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
+        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(carousel::carouselRight).whenReleased(carousel::stop));
 
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(
