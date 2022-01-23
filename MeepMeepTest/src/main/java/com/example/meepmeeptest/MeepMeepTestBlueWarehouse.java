@@ -16,16 +16,16 @@ public class MeepMeepTestBlueWarehouse {
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
                                 .splineTo(new Vector2d(25,-20), Math.toRadians(0))
-                                .splineTo(new Vector2d(-35,-8), Math.toRadians(90))
+                                .splineTo(new Vector2d(-5,35), Math.toRadians(90))
                                 .forward(5)
                                 .splineTo(new Vector2d(25,-20), Math.toRadians(0))
-                                .splineTo(new Vector2d(-5,0), Math.toRadians(90))
+                                .splineTo(new Vector2d(-5,35), Math.toRadians(90))
                                 .forward(5)
                                 .splineTo(new Vector2d(25,-20), Math.toRadians(0))
-                                .splineTo(new Vector2d(-5,0), Math.toRadians(90))
+                                .splineTo(new Vector2d(-5,35), Math.toRadians(90))
                                 .forward(5)
                                 .splineTo(new Vector2d(25,-20), Math.toRadians(0))
-                                .splineTo(new Vector2d(-5,0), Math.toRadians(90))
+                                .splineTo(new Vector2d(-5,35), Math.toRadians(90))
                                 .build()
                 );
 

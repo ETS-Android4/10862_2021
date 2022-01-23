@@ -31,7 +31,7 @@ public class CBlueWarehouseCommandC extends SequentialCommandGroup {
                 new InstantCommand(capServos::autoMid),
                 new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
-                new SplineCommand(drivetrain, new Vector2d(-35,-8), Math.toRadians(90)),
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
@@ -43,7 +43,7 @@ public class CBlueWarehouseCommandC extends SequentialCommandGroup {
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
@@ -55,7 +55,7 @@ public class CBlueWarehouseCommandC extends SequentialCommandGroup {
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
@@ -67,7 +67,7 @@ public class CBlueWarehouseCommandC extends SequentialCommandGroup {
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90))
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90))
         );
     }
 }

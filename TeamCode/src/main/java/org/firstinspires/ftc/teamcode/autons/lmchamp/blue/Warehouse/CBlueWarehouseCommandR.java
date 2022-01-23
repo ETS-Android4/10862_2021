@@ -33,43 +33,43 @@ public class CBlueWarehouseCommandR extends SequentialCommandGroup {
                 new InstantCommand(capServos::autoLow),
                 new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
                 new CapArmLowCommand(capServos, drivetrain),
-                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
-                new TurnToCommand(drivetrain, 93),
-//
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
+
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,32),
+                new DriveForwardCommand(drivetrain,5),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain,87),
-                new DriveForwardCommand(drivetrain,-32),
                 new LiftHighCommand(lift),
-
-                new TurnToCommand(drivetrain, 155),
-                new DriveForwardCommand(drivetrain, -30),
-
+                new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
                 new DropFreightCommand(armServos),
-                new LiftResetCommand(armServos, lift),
 
-                new SplineCommand(drivetrain, new Vector2d(-5,0), Math.toRadians(90)),
-                new TurnToCommand(drivetrain, 93),
-//
+                new LiftResetCommand(armServos, lift),
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
+
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,32),
+                new DriveForwardCommand(drivetrain,5),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
-                new TurnToCommand(drivetrain,87),
-                new DriveForwardCommand(drivetrain,-32),
                 new LiftHighCommand(lift),
-
-                new TurnToCommand(drivetrain, 155),
-                new DriveForwardCommand(drivetrain, -30),
-
+                new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
                 new DropFreightCommand(armServos),
-                new LiftResetCommand(armServos, lift),
 
-                new SplineCommand(drivetrain, new Vector2d(-30,13), Math.toRadians(90))
+                new LiftResetCommand(armServos, lift),
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
+
+                new InstantCommand(intake::servoDown),
+                new InstantCommand(intake::intake),
+                new DriveForwardCommand(drivetrain,5),
+                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
+
+                new LiftHighCommand(lift),
+                new SplineCommand(drivetrain, new Vector2d(25,   -20), Math.toRadians(0)),
+                new DropFreightCommand(armServos),
+
+                new LiftResetCommand(armServos, lift),
+                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90))
         );
     }
 }
