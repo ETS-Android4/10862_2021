@@ -15,16 +15,24 @@ public class MeepMeepTestBlueCarousel {
                 .setConstraints(55, 55, Math.toRadians(300.704976), Math.toRadians(300.704976), 14.5)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
-                                .splineTo(new Vector2d(-8,-35), Math.toRadians(267))
-
-                                /*splineTo(new Vector2d(10, 10), 0)
-                                .turn(Math.toRadians(90))
-                                .splineTo(new Vector2d(25, -15), 0)
-                                .waitSeconds(3)
-                                .turn(Math.toRadians(45))
+                                .forward(20)
+                                .turn(Math.toRadians(60))
                                 .forward(10)
-                                .strafeRight(5)
-                                .turn(Math.toRadians(90))*/
+                                .turn(Math.toRadians(235))
+                                .forward(35)
+                                //Slow forward
+                                .forward(5)
+                                .forward(-7)
+                                .turn(Math.toRadians(210))
+                                .forward(6)
+                                .turn(Math.toRadians(210))
+                                .forward(31)
+
+                                //Wait time
+
+                                .forward(-2)
+                                .turn(Math.toRadians(90))
+                                .forward(-32)
                                 .build()
                 );
 

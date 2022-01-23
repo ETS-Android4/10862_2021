@@ -15,17 +15,17 @@ public class MeepMeepTestBlueWarehouse {
                 .setConstraints(55, 55, Math.toRadians(300.704976), Math.toRadians(300.704976), 14.5)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
+                                .splineTo(new Vector2d(25,-20), Math.toRadians(0))
+                                .splineTo(new Vector2d(-35,-8), Math.toRadians(90))
                                 .forward(5)
-
-
-                                /*splineTo(new Vector2d(10, 10), 0)
-                                .turn(Math.toRadians(90))
-                                .splineTo(new Vector2d(25, -15), 0)
-                                .waitSeconds(3)
-                                .turn(Math.toRadians(45))
-                                .forward(10)
-                                .strafeRight(5)
-                                .turn(Math.toRadians(90))*/
+                                .splineTo(new Vector2d(25,-20), Math.toRadians(0))
+                                .splineTo(new Vector2d(-5,0), Math.toRadians(90))
+                                .forward(5)
+                                .splineTo(new Vector2d(25,-20), Math.toRadians(0))
+                                .splineTo(new Vector2d(-5,0), Math.toRadians(90))
+                                .forward(5)
+                                .splineTo(new Vector2d(25,-20), Math.toRadians(0))
+                                .splineTo(new Vector2d(-5,0), Math.toRadians(90))
                                 .build()
                 );
 
