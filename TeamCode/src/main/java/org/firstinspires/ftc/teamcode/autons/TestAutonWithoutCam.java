@@ -93,9 +93,9 @@ public void robotInit() {
 public void matchStart() {
         schedule(new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(23.5,   -20), Math.toRadians(0)),
+                new SplineCommand(drivetrain, new Vector2d(20,25), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
-                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-35), Math.toRadians(267)),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
@@ -103,34 +103,34 @@ public void matchStart() {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
-                new SplineCommand(drivetrain, new Vector2d(24.5,   -19), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(20,25.5), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-35), Math.toRadians(270)),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,7),
+                new DriveForwardCommand(drivetrain, 5),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
-                new SplineCommand(drivetrain, new Vector2d(24.5,   -19), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(20,25.5), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-5,35), Math.toRadians(90)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-35), Math.toRadians(270)),
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,10),
+                new DriveForwardCommand(drivetrain, 5),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
-                new SplineCommand(drivetrain, new Vector2d(24.5,   -19), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(20,25.5), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-10,35), Math.toRadians(90))
+                new SplineCommand(drivetrain, new Vector2d(-9,-35), Math.toRadians(270))
         ));
         }};
