@@ -85,13 +85,13 @@ public class CBlueWarehouseAuton extends MatchOpMode {
             schedule(
                     new SelectCommand(new HashMap<Object, Command>() {{
                         put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                                new CRedCarouselCommandL(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+                                new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, sensorColor, capServos))
                         );
                         put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                                new CRedCarouselCommandC(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+                                new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, sensorColor, capServos))
                         );
                         put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                                new CRedCarouselCommandR(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+                                new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos))
                         );
                     }}, vision::getCurrentPosition)
             );
