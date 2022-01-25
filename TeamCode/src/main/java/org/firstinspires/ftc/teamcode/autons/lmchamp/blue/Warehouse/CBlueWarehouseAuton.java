@@ -88,7 +88,7 @@ public class CBlueWarehouseAuton extends MatchOpMode {
                                 new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, sensorColor, capServos))
                         );
                         put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                                new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                                new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos, sensorColor, capServos))
                         );
                         put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                                 new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos))
