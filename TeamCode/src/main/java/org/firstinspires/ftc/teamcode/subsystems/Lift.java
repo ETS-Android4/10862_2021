@@ -137,6 +137,10 @@ public class Lift extends SubsystemBase {
         liftPosition = 4;
     }
 
+    public void liftEncoderReset() {
+        RESTING_POSITION = 0;
+    }
+
     public void setLift(double angle) {
         automatic = true;
         controller.setSetPoint(angle);

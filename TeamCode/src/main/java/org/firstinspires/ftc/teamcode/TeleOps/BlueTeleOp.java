@@ -63,6 +63,7 @@ public class BlueTeleOp extends MatchOpMode {
     public Button intakeUpButton, intakeDownButton, intakeMiddleButton;
     public Button clawOpenButton, clawCloseButton;
     public Button capArmHighButton;
+    public Button slideResetButton;
     //TODO:Add clawarm buttons, maybe manual buttons
 
     @Override
@@ -129,7 +130,7 @@ public class BlueTeleOp extends MatchOpMode {
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)).whenPressed(armServos::armUp);
         resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(armServos::armHome);
 
-
+        slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> liftMotor.liftEncoderReset);
 /*
         singleFeedButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)).whenPressed(new FeedRingsCommand(feeder, 1));
         // TRIPLE SHOT SPEED *********************
