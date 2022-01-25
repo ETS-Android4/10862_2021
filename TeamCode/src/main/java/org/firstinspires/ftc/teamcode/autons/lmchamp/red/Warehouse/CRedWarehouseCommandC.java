@@ -42,7 +42,8 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain,5),
+                //new DriveForwardCommand(drivetrain,5),
+                //Maybe remove
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
@@ -54,7 +55,7 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain, 5),
+                new DriveForwardCommand(drivetrain, 7),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
@@ -66,7 +67,7 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
 
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new DriveForwardCommand(drivetrain, 5),
+                new DriveForwardCommand(drivetrain, 9),
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
