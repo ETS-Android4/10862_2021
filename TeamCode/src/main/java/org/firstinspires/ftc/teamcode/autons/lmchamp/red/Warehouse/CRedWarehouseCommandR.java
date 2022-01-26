@@ -42,7 +42,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(17.3,20), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(17.4,20), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
@@ -53,7 +53,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(17.3,20), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(17.4,20), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
@@ -64,7 +64,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(17.3,20), Math.toRadians(10), true),
+                new SplineCommand(drivetrain, new Vector2d(17.4,20), Math.toRadians(10), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
