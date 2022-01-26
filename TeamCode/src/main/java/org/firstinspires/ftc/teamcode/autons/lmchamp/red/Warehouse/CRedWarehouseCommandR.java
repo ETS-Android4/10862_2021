@@ -32,7 +32,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
         //High
         addCommands(
                 new InstantCommand(capServos::autoHigh),
-                new SplineCommand(drivetrain, new Vector2d(24.5,25), Math.toRadians(0)),
+                new SplineCommand(drivetrain, new Vector2d(23.5,25), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
                 new InstantCommand(intake::servoDown),
@@ -42,7 +42,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(15,18.5), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(17.3,20), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
@@ -53,7 +53,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(15,18.5), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(17.3,20), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
@@ -64,7 +64,7 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(15,18.5), Math.toRadians(10), true),
+                new SplineCommand(drivetrain, new Vector2d(17.3,20), Math.toRadians(10), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
