@@ -15,6 +15,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.autons.lm2.blue.Carousel.BlueCarouselCommandR;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -29,12 +30,11 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
-
 @Autonomous(name = "CBlue Carousel", group = "BLUE")
 public class CBlueCarouselAuton extends MatchOpMode {
-public static double startPoseX = 0;
-public static double startPoseY = 0;
-public static double startPoseHeading = 0;
+    public static double startPoseX = 0;
+    public static double startPoseY = 0;
+    public static double startPoseHeading = 0;
 
     //Motors and Servos
     private MotorEx leftFront, leftRear, rightRear, rightFront;
@@ -46,56 +46,55 @@ public static double startPoseHeading = 0;
     private ServoEx capArmServo, clawServo;
     private ServoEx armServo, dropServo;
 
-// Gamepad
-private GamepadEx driverGamepad;
+    // Gamepad
+    private GamepadEx driverGamepad;
 
-// Subsystems
-private Drivetrain drivetrain;
-private Intake intake;
-private Lift lift;
-private Vision vision;
-private ArmServos armServos;
-private Carousel carousel;
-private SensorColor sensorColor;
-private CapServos capServos;
-
-@Override
-public void robotInit() {
     // Subsystems
-    drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
-    drivetrain.init();
-    intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-    lift = new Lift(liftMotor, telemetry, hardwareMap);
-    armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
-    carousel = new Carousel(hardwareMap, telemetry);
-    capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
+    private Drivetrain drivetrain;
+    private Intake intake;
+    private Lift lift;
+    private Vision vision;
+    private ArmServos armServos;
+    private Carousel carousel;
+    private SensorColor sensorColor;
+    private CapServos capServos;
 
-    vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-    drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-}
 
-@Override
-public void disabledPeriodic() {
-    Util.logger(this, telemetry, Level.INFO, "Current Position", vision.getCurrentPosition());
-    vision.periodic();
-}
+    @Override
+    public void robotInit() {
+        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
+        drivetrain.init();
+        intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, telemetry, hardwareMap);
+        armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
+        carousel = new Carousel(hardwareMap, telemetry);
+        capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
 
-@Override
-public void matchStart() {
-    schedule(
-            new SelectCommand(new HashMap<Object, Command>() {{
+        sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+    }
 
-                put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                        new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos)
-            )
-                );
-                put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                        new CBlueCarouselCommandC(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
-                );
-                put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
-                );
-            }}, vision::getCurrentPosition)
-    );
+    @Override
+    public void disabledPeriodic() {
+        Util.logger(this, telemetry, Level.INFO, "Current Position", vision.getCurrentPosition());
+        vision.periodic();
+    }
+
+    @Override
+    public void matchStart() {
+        schedule(
+                new SelectCommand(new HashMap<Object, Command>() {{
+                    put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
+                            new CBlueCarouselCommandL(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+                    );
+                    put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
+                            new CBlueCarouselCommandC(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+                    );
+                    put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
+                            new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+                    );
+                }}, vision::getCurrentPosition)
+        );
     }
 }
