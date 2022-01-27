@@ -31,7 +31,7 @@ public class CBlueWarehouseCommandR extends SequentialCommandGroup {
         //Low
         addCommands(
                 new InstantCommand(capServos::autoLow),
-                new SplineCommand(drivetrain, new Vector2d(23.5,   -20.5), Math.toRadians(0)),
+                new SplineCommand(drivetrain, new Vector2d(24,   -20.5), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
                 new InstantCommand(intake::servoDown),
@@ -61,7 +61,7 @@ public class CBlueWarehouseCommandR extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
-                new SplineCommand(drivetrain, new Vector2d(20,   -15), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(19,   -14), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),

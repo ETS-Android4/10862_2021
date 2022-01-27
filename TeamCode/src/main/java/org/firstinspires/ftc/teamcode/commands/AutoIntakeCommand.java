@@ -23,12 +23,14 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                 new ConditionalCommand(
                         new SequentialCommandGroup(
                                 new InstantCommand(intake::outtake),
+
                                 new InstantCommand(intake::servoUp),
                                 new InstantCommand(armServos::armUp),
                                 new DriveForwardCommand(drivetrain, -2)
                         ),
                         new SequentialCommandGroup(
-                                new DriveForwardCommand(drivetrain,2),
+                                //new TurnToCommand(drivetrain,2),
+                                new DriveForwardCommand(drivetrain,4),
                                 new InstantCommand(intake::outtake),
                                 new InstantCommand(intake::servoUp),
                                 new InstantCommand(armServos::armUp),
