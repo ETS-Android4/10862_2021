@@ -42,7 +42,7 @@ public class CBlueWarehouseCommandL extends SequentialCommandGroup {
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
-                new SplineCommand(drivetrain, new Vector2d(20,   -15), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(19,   -15), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
@@ -52,7 +52,7 @@ public class CBlueWarehouseCommandL extends SequentialCommandGroup {
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
-                new SplineCommand(drivetrain, new Vector2d(20,   -15), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(19,   -15), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
@@ -63,11 +63,11 @@ public class CBlueWarehouseCommandL extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
 
                 new LiftHighCommand(lift),
-                new SplineCommand(drivetrain, new Vector2d(19,   -14), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(19,   -15), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-10,48), Math.toRadians(90))
+                new SplineCommand(drivetrain, new Vector2d(-10,44), Math.toRadians(90))
         );
     }
 }
