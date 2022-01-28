@@ -43,6 +43,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 
 
 import org.firstinspires.ftc.teamcode.roadrunnerext.ImprovedRamsete;
+import org.firstinspires.ftc.teamcode.rrExt.ImprovedTankDrive;
 import org.firstinspires.ftc.teamcode.rrExt.RamseteConstants;
 import org.firstinspires.ftc.teamcode.util.AxesSigns;
 import org.firstinspires.ftc.teamcode.util.BNO055IMUUtil;
@@ -70,7 +71,7 @@ import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.kV;
  * Simple tank drive hardware implementation for REV hardware.
  */
 @Config
-public class SampleTankDrive extends TankDrive {
+public class SampleTankDrive extends ImprovedTankDrive {
     //public static PIDCoefficients AXIAL_PID = new PIDCoefficients(5, 0, 0); //7,0,1
     //public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0.04, 0, 0); //0.06,0,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(14, 0, 0.6); //14.5,0,1
@@ -111,7 +112,7 @@ public class SampleTankDrive extends TankDrive {
     private VoltageSensor batteryVoltageSensor;
 
     public SampleTankDrive(HardwareMap hardwareMap) {
-        super(kV, kA, kStatic, TRACK_WIDTH);
+        super(kV, kA, kStatic, TRACK_WIDTH, hardwareMap.voltageSensor.iterator().next());
 
         dashboard = FtcDashboard.getInstance();
         dashboard.setTelemetryTransmissionInterval(25);
