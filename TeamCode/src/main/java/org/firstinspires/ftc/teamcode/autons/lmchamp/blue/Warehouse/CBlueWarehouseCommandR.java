@@ -66,7 +66,7 @@ public class CBlueWarehouseCommandR extends SequentialCommandGroup {
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-10,44), Math.toRadians(90))
+                new SplineCommand(drivetrain, new Vector2d(-10,42), Math.toRadians(90))
         );
     }
 }
