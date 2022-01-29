@@ -36,7 +36,7 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
         //declare variables here
         addCommands(
                 new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(21.5,27), Math.toRadians(0)),
+                new SplineCommand(drivetrain, new Vector2d(21,27), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
                 new SplineCommand(drivetrain, new Vector2d(-8,-37), Math.toRadians(272)),
@@ -68,7 +68,7 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(16.2,17.5), Math.toRadians(10), true),
+                new SplineCommand(drivetrain, new Vector2d(16.2,17), Math.toRadians(10), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
