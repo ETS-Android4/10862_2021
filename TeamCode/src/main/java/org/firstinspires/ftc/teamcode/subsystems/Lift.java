@@ -33,7 +33,7 @@ public class Lift extends SubsystemBase {
     public static int RESTING_POSITION = 0;
     public static int LOW_POSITION = -300;
     public static int MID_POSITION = -600;
-    public static int HIGH_POSITION = -1500;
+    public static int HIGH_POSITION = -1570;
     public static int CAP_POSITION = 0;
 
     private int liftPosition = 0;

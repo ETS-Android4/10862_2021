@@ -39,36 +39,36 @@ public class CRedWarehouseCommandC extends SequentialCommandGroup {
                 new SplineCommand(drivetrain, new Vector2d(21,27), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new SplineCommand(drivetrain, new Vector2d(-8,-37), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-36.5), Math.toRadians(272)),
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(16.5,18.1), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(16.5,19.3), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-8,-38), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-38.5), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(16.2,18.1), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(16.2,19.3), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-8,-43), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-40), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(16.2,17), Math.toRadians(10), true),
+                new SplineCommand(drivetrain, new Vector2d(16,18.7), Math.toRadians(0), true),
                 new DropFreightCommand(armServos),
 
                 new LiftResetCommand(armServos, lift),
