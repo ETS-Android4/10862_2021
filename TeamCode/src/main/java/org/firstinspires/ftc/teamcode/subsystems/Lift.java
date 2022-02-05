@@ -17,7 +17,7 @@ public class Lift extends SubsystemBase {
     private Telemetry telemetry;
     private MotorEx liftMotor;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0008, .00008, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.005, 0.0008, 0, 0);
     //0.015\
 
     //public static double ARM_OFFSET = 0;
@@ -31,9 +31,9 @@ public class Lift extends SubsystemBase {
     private double encoderOffset = 0;
 
     public static int RESTING_POSITION = 0;
-    public static int LOW_POSITION = -300;
-    public static int MID_POSITION = -600;
-    public static int HIGH_POSITION = -1570;
+    public static int LOW_POSITION = -600;
+    public static int MID_POSITION = -1700;
+    public static int HIGH_POSITION = -3200;
     public static int CAP_POSITION = 0;
 
     private int liftPosition = 0;
