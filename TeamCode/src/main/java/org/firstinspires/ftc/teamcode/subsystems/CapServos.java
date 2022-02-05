@@ -36,7 +36,7 @@ public class CapServos extends SubsystemBase {
         this.capArmServo = capArmServo;
 
         this.capArmServo = new SimpleServo(hw,"capArmServo", 0, 270);
-        this.clawServo = new SimpleServo(hw, "clawServo",0,270);
+        this.clawServo = new SimpleServo(hw, "clawServoGrabber",0,270);
 
         this.telemetry = tl;
         this.packet = packet;
@@ -47,7 +47,7 @@ public class CapServos extends SubsystemBase {
 
     @Override
     public void periodic() {
-        Util.logger(this, telemetry, Level.INFO, "Claw Servo Position: ", clawServo.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Grabber Servo Position: ", clawServo.getPosition());
         Util.logger(this, telemetry, Level.INFO, "Cap Arm Servo Position: ", capArmServo.getPosition());
     }
 

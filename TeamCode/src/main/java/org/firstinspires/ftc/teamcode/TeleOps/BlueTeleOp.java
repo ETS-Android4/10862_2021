@@ -64,7 +64,6 @@ public class BlueTeleOp extends MatchOpMode {
     public Button clawOpenButton, clawCloseButton;
     public Button capArmHighButton;
     public Button slideResetButton;
-    //TODO:Add clawarm buttons, maybe manual buttons
 
     @Override
     public void robotInit() {
@@ -129,6 +128,7 @@ public class BlueTeleOp extends MatchOpMode {
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)).whenPressed(armServos::armUp);
         resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(armServos::armHome);
+
 
         //TODO:Fix the slide reset button
         //slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> liftMotor.adjustliftPosition);

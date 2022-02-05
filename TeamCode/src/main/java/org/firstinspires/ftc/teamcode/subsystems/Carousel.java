@@ -24,7 +24,7 @@ public class Carousel extends SubsystemBase {
     private CRServo carouselServo;
 
     public Carousel(HardwareMap hw, Telemetry tl) {
-        this.carouselServo = new CRServo(hw, "carouselServo");
+        this.carouselServo = new CRServo(hw, "duckServo");
         this.telemetry = tl;
         carouselServo.setInverted(true);
     }
