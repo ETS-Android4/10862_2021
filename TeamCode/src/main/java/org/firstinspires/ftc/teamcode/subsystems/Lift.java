@@ -53,7 +53,7 @@ public class Lift extends SubsystemBase {
 
         //Lift Motor Two
         this.liftMotorTwo = liftMotor;
-        this.liftMotorTwo = new MotorEx(hw, "lift");
+        this.liftMotorTwo = new MotorEx(hw, "liftTwo");
 
         this.liftMotorTwo.setDistancePerPulse(360 / CPR);
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
@@ -92,7 +92,7 @@ public class Lift extends SubsystemBase {
 
     private double getEncoderDistance() {
         return liftMotorOne.getDistance() - encoderOffset;
-        return liftMotorTwo.getDistance() - encoderOffset;
+        //return liftMotorTwo.getDistance() - encoderOffset;
     }
 
     public void liftManual() {

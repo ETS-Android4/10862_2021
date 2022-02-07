@@ -16,9 +16,9 @@ import java.util.logging.Level;
 @Config
 public class ArmServos extends SubsystemBase {
 
-    public static double SERVO_POSITION_ARM_HOME =0.68;
-    public static double SERVO_POSITION_ARM_UP = 0.4;
-    public static double SERVO_POSITION_ARM_DROP = 0;
+    public static double SERVO_POSITION_ARM_HOME =0;
+    public static double SERVO_POSITION_ARM_UP = 0.3;
+    public static double SERVO_POSITION_ARM_DROP = 0.75;
     public static double SERVO_POSITION_BOX_OPEN = 0.75;
     public static double SERVO_POSITION_BOX_CLOSE = 0.85;
 
@@ -42,6 +42,7 @@ public class ArmServos extends SubsystemBase {
         this.packet = packet;
 
         this.armServo.setPosition(SERVO_POSITION_ARM_HOME);
+        this.dropServo.setPosition(SERVO_POSITION_BOX_OPEN);
     }
     @Override
     public void periodic() {
