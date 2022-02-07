@@ -15,10 +15,10 @@ import java.util.logging.Level;
 @Config
 public class Lift extends SubsystemBase {
     private Telemetry telemetry;
-    private MotorEx liftMotor;
+    private MotorEx liftMotorOne;
+    private MotorEx liftMotorTwo;
 
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.005, 0.0008, 0, 0);
-    //0.015\
 
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
@@ -39,10 +39,11 @@ public class Lift extends SubsystemBase {
     private int liftPosition = 0;
 
     public Lift(MotorEx liftMotor, Telemetry tl, HardwareMap hw) {
-        this.liftMotor = liftMotor;
-        this.liftMotor = new MotorEx(hw, "lift");
+        //Lift Motor One
+        this.liftMotorOne = liftMotor;
+        this.liftMotorOne = new MotorEx(hw, "lift");
 
-        this.liftMotor.setDistancePerPulse(360 / CPR);
+        this.liftMotorOne.setDistancePerPulse(360 / CPR);
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
 
@@ -50,6 +51,17 @@ public class Lift extends SubsystemBase {
         automatic = false;
         setOffset();
 
+        //Lift Motor Two
+        this.liftMotorTwo = liftMotor;
+        this.liftMotorTwo = new MotorEx(hw, "lift");
+
+        this.liftMotorTwo.setDistancePerPulse(360 / CPR);
+        controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
+        controller.setTolerance(10);
+
+        this.telemetry = tl;
+        automatic = false;
+        setOffset();
     }
 
 
@@ -65,27 +77,39 @@ public class Lift extends SubsystemBase {
         if (automatic) {
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
             double output = controller.calculate(getAngle());
-            liftMotor.set(output);
+            liftMotorOne.set(output);
         }
-        Util.logger(this, telemetry, Level.INFO, "arm encoder pos: ", liftMotor.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", liftMotorOne.getCurrentPosition());
+
+        if (automatic) {
+            controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
+            double output = controller.calculate(getAngle());
+            liftMotorTwo.set(output);
+        }
+        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", liftMotorOne.getCurrentPosition());
     }
 
+
     private double getEncoderDistance() {
-        return liftMotor.getDistance() - encoderOffset;
+        return liftMotorOne.getDistance() - encoderOffset;
+        return liftMotorTwo.getDistance() - encoderOffset;
     }
 
     public void liftManual() {
         automatic = false;
-        liftMotor.set(UP_SPEED);
+        liftMotorOne.set(UP_SPEED);
+        liftMotorTwo.set(UP_SPEED);
     }
 
     public void lowerLiftManual() {
         automatic = false;
-        liftMotor.set(DOWN_SPEED);
+        liftMotorOne.set(DOWN_SPEED);
+        liftMotorOne.set(DOWN_SPEED);
     }
 
     public void stopLift() {
-        liftMotor.stopMotor();
+        liftMotorOne.stopMotor();
+        liftMotorTwo.stopMotor();
         controller.setSetPoint(getAngle());
         automatic = false;
     }
@@ -95,7 +119,7 @@ public class Lift extends SubsystemBase {
     }
 
     public void resetEncoder() {
-        encoderOffset = liftMotor.getDistance();
+        encoderOffset = liftMotorOne.getDistance();
     }
 
     public double getAngle() {
