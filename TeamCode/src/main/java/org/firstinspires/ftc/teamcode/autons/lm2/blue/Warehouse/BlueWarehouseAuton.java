@@ -37,7 +37,7 @@ public static double startPoseHeading = 0;
 private MotorEx leftFront, leftRear, rightRear, rightFront;
 private MotorEx intakeMotor;
 private ServoEx intakeServo;
-private MotorEx liftMotor;
+private MotorEx liftMotor, liftMotor2;
 private CRServo carouselServo;
 private ServoEx dropServo, armServo;
 
@@ -67,7 +67,7 @@ public void robotInit() {
 
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-    lift = new Lift(liftMotor, telemetry, hardwareMap);
+    lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
     //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
 }
 
