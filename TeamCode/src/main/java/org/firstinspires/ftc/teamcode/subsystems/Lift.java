@@ -4,6 +4,7 @@ import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
@@ -42,10 +43,13 @@ public class Lift extends SubsystemBase {
 
     public Lift(MotorEx liftMotor, MotorEx liftMotor2, Telemetry tl, HardwareMap hw) {
         this.liftMotor = liftMotor;
-        this.liftMotor = liftMotor;
+        this.liftMotor2 = liftMotor2;
 
         this.liftMotor = new MotorEx(hw, "lift");
         this.liftMotor2 = new MotorEx(hw, "lift2");
+
+        //Reverse lift motor
+        //  liftMotor2.setInverted(true);
 
         this.liftMotor.setDistancePerPulse(360 / CPR);
         this.liftMotor2.setDistancePerPulse(360 / CPR);
@@ -61,7 +65,6 @@ public class Lift extends SubsystemBase {
         setOffset();
     }
 
-
     public void toggleAutomatic() {
         automatic = !automatic;
     }
@@ -76,12 +79,12 @@ public class Lift extends SubsystemBase {
             double output = controller.calculate(getAngle());
             liftMotor.set(output);
         }
+        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", liftMotor.getCurrentPosition());
         if (automatic) {
             controller2.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
             double output = controller.calculate(getAngle());
             liftMotor2.set(output);
         }
-        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", liftMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", liftMotor2.getCurrentPosition());
     }
 
@@ -117,8 +120,7 @@ public class Lift extends SubsystemBase {
     }
 
     public void resetEncoder() {
-        encoderOffset = liftMotor.getDistance();
-        encoderOffset1 = liftMotor2.getDistance();
+        liftEncoderReset();
     }
 
     public double getAngle() {

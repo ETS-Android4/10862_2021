@@ -73,13 +73,12 @@ public class BlueTeleOp extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-        lift = new Lift(liftMotor, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
         carousel = new Carousel(hardwareMap, telemetry);
         capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
 
         //gamepad1.setJoystickDeadzone(0.0f);
-
         //drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
@@ -127,7 +126,8 @@ public class BlueTeleOp extends MatchOpMode {
 
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)).whenPressed(armServos::armUp);
-        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(armServos::armHome);
+
+        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(lift::resetEncoder);
 
 
         //TODO:Fix the slide reset button

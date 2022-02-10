@@ -74,7 +74,7 @@ public class RedTeleOp extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-        lift = new Lift(liftMotor, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
         carousel = new Carousel(hardwareMap, telemetry);
         capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
@@ -92,46 +92,60 @@ public class RedTeleOp extends MatchOpMode {
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         //slowmode for the drivetrain
-        slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+        slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         //intake
-        outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(intake::outtake).whenReleased(intake::stop));
-        intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(intake::intake).whenReleased(intake::stop));
+        outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+                .whileHeld(intake::outtake).whenReleased(intake::stop));
+        intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+                .whileHeld(intake::intake).whenReleased(intake::stop));
 
-        //Intake positions
-        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)). whenPressed(intake::servoUp);
-        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
-        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)). whenPressed(intake::servoDown);
+        /*//Intake positions
+        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
+                .whenPressed(intake::servoUp);
+        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
+                .whenPressed(intake::servoMid);
+        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+                .whenPressed(intake::servoDown);*/
 
         //lift commands
-        liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT).whenPressed(lift::liftManual).whenReleased(lift::stopLift));
-        liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT).whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
+        liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
+                .whenPressed(lift::liftManual).whenReleased(lift::stopLift));
+        liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
+                .whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
 
         //reset everything
-        resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)).whenPressed(
-                new LiftResetCommand(armServos, lift)
-        );
+        resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
+                .whenPressed(new LiftResetCommand(armServos, lift));
 
         //Lift positions
-        liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X).whenPressed(lift::liftLow));
-        liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B).whenPressed(lift::liftMid));
-        liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y).whenPressed(lift::liftHigh));
+        liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+                .whenPressed(lift::liftLow));
+        liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+                .whenPressed(lift::liftMid));
+        liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
+                .whenPressed(lift::liftHigh));
 
         //carousel
-        carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER).whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
-        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER).whileHeld(carousel::carouselRight).whenReleased(carousel::stop));
+        carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+                .whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
+        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+                .whileHeld(carousel::carouselRight).whenReleased(carousel::stop));
 
         //Outaking the freight motion
-        dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(
-                new DropFreightCommand(armServos)
-        );
+        dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
+                .whenPressed(new DropFreightCommand(armServos));
 
         //Box servos stuff
-        upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)).whenPressed(armServos::armUp);
-        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)).whenPressed(armServos::armHome);
+        upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
+                .whenPressed(armServos::armUp);
+        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                .whenPressed(armServos::armHome);
 
         //TODO:Fix the slide reset button
-        //slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> liftMotor.adjustliftPosition);
+        slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
+                .whenPressed(() -> liftMotor.resetEncoder());
 /*
         singleFeedButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)).whenPressed(new FeedRingsCommand(feeder, 1));
         // TRIPLE SHOT SPEED *********************

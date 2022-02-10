@@ -396,6 +396,7 @@ public class SampleTankDrive extends ImprovedTankDrive {
             List<Double> feedforwards = Kinematics.calculateMotorFeedforward(velocities, accelerations, kV, kA, kStatic);
             leftDriveVeloPID.setPID(LEFT_DRIVE_PID.kP, LEFT_DRIVE_PID.kI, LEFT_DRIVE_PID.kD);
             rightDriveVeloPID.setPID(RIGHT_DRIVE_PID.kP, RIGHT_DRIVE_PID.kI, RIGHT_DRIVE_PID.kD);
+            DriveVeloPID.setPID(RIGHT_DRIVE_PID.kP, RIGHT_DRIVE_PID.kI, RIGHT_DRIVE_PID.kD);
             double leftOutput = feedforwards.get(0) + leftDriveVeloPID.calculate(getWheelVelocities().get(0), velocities.get(0));
             double rightOutput = feedforwards.get(1) + leftDriveVeloPID.calculate(getWheelVelocities().get(1), velocities.get(1));
             setMotorPowers(leftOutput, rightOutput);
