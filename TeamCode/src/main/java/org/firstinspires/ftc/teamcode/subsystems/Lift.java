@@ -31,13 +31,19 @@ public class Lift extends SubsystemBase {
     public static double DOWN_SPEED = 0.75;
 
     private double encoderOffset = 0;
-    private double encoderOffset1 = 0;
+    private double encoderOffset2 = 0;
 
     public static int RESTING_POSITION = 0;
     public static int LOW_POSITION = -350;
     public static int MID_POSITION = -700;
     public static int HIGH_POSITION = -1100;
     public static int CAP_POSITION = 0;
+
+    public static int RESTING_POSITION2 = 0;
+    public static int LOW_POSITION2 = 350;
+    public static int MID_POSITION2 = 700;
+    public static int HIGH_POSITION2 = 1100;
+    public static int CAP_POSITION2 = 0;
 
     private int liftPosition = 0;
 
@@ -49,7 +55,7 @@ public class Lift extends SubsystemBase {
         this.liftMotor2 = new MotorEx(hw, "lift2");
 
         //Reverse lift motor
-        //  liftMotor2.setInverted(true);
+        //this.liftMotor2.setInverted(true);
 
         this.liftMotor.setDistancePerPulse(360 / CPR);
         this.liftMotor2.setDistancePerPulse(360 / CPR);
@@ -57,7 +63,7 @@ public class Lift extends SubsystemBase {
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
 
-        controller2 = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
+        controller2 = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle2(), getAngle2());
         controller2.setTolerance(10);
 
         this.telemetry = tl;
@@ -76,23 +82,26 @@ public class Lift extends SubsystemBase {
     public void periodic() {
         if (automatic) {
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
+
+
+            controller2.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller2.getSetPoint())));
+
             double output = controller.calculate(getAngle());
+            double output2 = controller2.calculate(getAngle2());
+
             liftMotor.set(output);
+            liftMotor2.set(output2);
         }
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", liftMotor.getCurrentPosition());
-        if (automatic) {
-            controller2.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
-            double output = controller.calculate(getAngle());
-            liftMotor2.set(output);
-        }
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", liftMotor2.getCurrentPosition());
     }
 
     private double getEncoderDistance() {
         return liftMotor.getDistance() - encoderOffset;
-        //ok so you can only return one value in a function
-        //if you want both the encoder values you'll need a seperate function (getEncoderDistance1 and getEncoderDistance2 or something like that)
-        //return liftMotor2.getDistance() - encoderOffset1;
+    }
+
+    private double getEncoderDistance2(){
+        return liftMotor2.getDistance() -encoderOffset2;
     }
 
     public void liftManual() {
@@ -111,7 +120,7 @@ public class Lift extends SubsystemBase {
         liftMotor.stopMotor();
         controller.setSetPoint(getAngle());
         liftMotor2.stopMotor();
-        controller2.setSetPoint(getAngle());
+        controller2.setSetPoint(getAngle2());
         automatic = false;
     }
 
@@ -127,7 +136,12 @@ public class Lift extends SubsystemBase {
         return getEncoderDistance();
     }
 
-    /************************************************************************************************/
+    public double getAngle2(){
+        return getEncoderDistance2();
+    }
+
+    /****************************************************************************************/
+
     public void liftResting() {
         automatic = true;
         controller.setSetPoint(RESTING_POSITION);
@@ -156,7 +170,6 @@ public class Lift extends SubsystemBase {
     }
 
     public void liftEncoderReset() {
-
         RESTING_POSITION = 0;
     }
 
@@ -169,12 +182,15 @@ public class Lift extends SubsystemBase {
     public boolean atTargetAngle() {
         return controller.atSetPoint();
     }
+    public boolean atTargetAngle2(){
+        return controller2.atSetPoint();
+    }
 
 
     public void setOffset() {
         resetEncoder();
         controller.setSetPoint(getAngle());
-        controller2.setSetPoint(getAngle());
+        controller2.setSetPoint(getAngle2());
     }
 
     public void moveUp() {
@@ -203,5 +219,5 @@ public class Lift extends SubsystemBase {
         } else if(liftPosition == 3) {
             liftHigh();
         }
-        }
     }
+}

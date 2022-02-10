@@ -70,8 +70,9 @@ public class ArmServos extends SubsystemBase {
         freightInBox = false;
         setArmServo(SERVO_POSITION_ARM_DROP);
     }
-    public void boxOpen() { setDropServo(SERVO_POSITION_BOX_CLOSE); }
-    public void boxClose() { setDropServo(SERVO_POSITION_BOX_OPEN); }
+    public void boxOpen() { setDropServo(SERVO_POSITION_BOX_OPEN); }
+    public void boxClose() { setDropServo(SERVO_POSITION_BOX_CLOSE);
+    }
 
     public void reset()
     {

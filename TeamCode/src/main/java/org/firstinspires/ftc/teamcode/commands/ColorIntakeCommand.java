@@ -13,25 +13,18 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class ColorIntakeCommand extends SequentialCommandGroup {
 
-    public ColorIntakeCommand(Lift lift, Intake intake, SensorColor colorSensor, ArmServos armServos) {
+    public ColorIntakeCommand(Intake intake, SensorColor colorSensor, ArmServos armServos) {
 
-            addCommands(
-                    new ConditionalCommand(
-                            new SequentialCommandGroup(
-                                    new InstantCommand(armServos::boxClose, armServos)
-                                    /*new InstantCommand(intake::intake, intake),
-                                    new WaitCommand(250),
-                                    new InstantCommand(intake::stop, intake),
-                                    new WaitCommand(500),
-                                    new InstantCommand(armServos::armUp, armServos),
-                                    new InstantCommand(intake::servoMid, intake),
-                                    new InstantCommand(intake::outtake, intake),
-                                    new WaitCommand(1000),
-                                    new InstantCommand(intake::stop, intake)*/
-                            ),
-                            new InstantCommand(),
-                            () -> (colorSensor.freightInBox()) && (ArmServos.boxCanMove)
-                    )
-            );
+        addCommands(
+                new ConditionalCommand(
+                        new SequentialCommandGroup(
+                                new InstantCommand(armServos::boxClose, armServos),
+                                new InstantCommand(armServos::armUp, armServos),
+                                new InstantCommand(intake::stop, intake)),
+
+                        new InstantCommand(),
+                        () -> (colorSensor.freightInBox()) && (ArmServos.boxCanMove)
+                )
+        );
     }
 }

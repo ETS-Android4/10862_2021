@@ -59,6 +59,7 @@ public void robotInit() {
     drivetrain.init();
     intakeMotor = new MotorEx(hardwareMap, "intake");
     liftMotor = new MotorEx(hardwareMap, "lift", Motor.GoBILDA.RPM_117);
+    liftMotor2 = new MotorEx(hardwareMap, "lift2", Motor.GoBILDA.RPM_117);
 
     //drivetrain.setPoseEstimate(Trajectories.BlueLeftTape.startPose);
     vision = new Vision(hardwareMap, "Webcam 1", telemetry);
@@ -67,6 +68,7 @@ public void robotInit() {
 
     drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
+    //lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
     lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
     //armServos = new ArmServos(armServo, dropServo, telemetry, hw);
 }

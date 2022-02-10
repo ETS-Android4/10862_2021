@@ -73,7 +73,7 @@ public class BlueTeleOp extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-        lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
         carousel = new Carousel(hardwareMap, telemetry);
         capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
@@ -82,7 +82,7 @@ public class BlueTeleOp extends MatchOpMode {
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
-        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
+        intake.setDefaultCommand(new ColorIntakeCommand(intake, sensorColor, armServos));
     }
 
     @Override
@@ -109,7 +109,6 @@ public class BlueTeleOp extends MatchOpMode {
                 .whenPressed(lift::liftManual).whenReleased(lift::stopLift));
         liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
                 .whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
-
 
         //reset everything
         resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))

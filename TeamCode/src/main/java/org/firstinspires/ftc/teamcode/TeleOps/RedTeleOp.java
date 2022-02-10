@@ -35,7 +35,7 @@ public class RedTeleOp extends MatchOpMode {
 
     // Motors and Servos
     private MotorEx leftFront,  leftRear, rightRear,  rightFront;
-    private MotorEx liftMotor;
+    private MotorEx liftMotor, liftMotor2;
     private MotorEx intakeMotor;
     private CRServo carouselServo;
     private ServoEx armServo, dropServo;
@@ -74,7 +74,7 @@ public class RedTeleOp extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
         drivetrain.init();
         intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-        lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
+        lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
         carousel = new Carousel(hardwareMap, telemetry);
         capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
@@ -84,7 +84,7 @@ public class RedTeleOp extends MatchOpMode {
         //drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
-        intake.setDefaultCommand(new ColorIntakeCommand(lift, intake, sensorColor, armServos));
+        intake.setDefaultCommand(new ColorIntakeCommand(intake, sensorColor, armServos));
     }
 
     @Override
