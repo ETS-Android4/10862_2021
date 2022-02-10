@@ -100,9 +100,12 @@ public class BlueTeleOp extends MatchOpMode {
                 .whileHeld(intake::intake).whenReleased(intake::stop));
 
         /*//Intake positions
-        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)). whenPressed(intake::servoUp);
-        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)). whenPressed(intake::servoMid);
-        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)). whenPressed(intake::servoDown);*/
+        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
+            . whenPressed(intake::servoUp);
+        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
+            . whenPressed(intake::servoMid);
+        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+            . whenPressed(intake::servoDown);*/
 
         //lift commands
         liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)

@@ -170,7 +170,7 @@ public class Lift extends SubsystemBase {
     }
 
     public void liftEncoderReset() {
-        RESTING_POSITION = 0;
+        liftPosition = 0;
     }
 
     public void setLift(double angle) {
