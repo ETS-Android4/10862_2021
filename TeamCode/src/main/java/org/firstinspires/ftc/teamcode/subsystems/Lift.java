@@ -55,7 +55,7 @@ public class Lift extends SubsystemBase {
         this.liftMotor2 = new MotorEx(hw, "lift2");
 
         //Reverse lift motor
-        //this.liftMotor2.setInverted(true);
+        this.liftMotor2.setInverted(true);
 
         this.liftMotor.setDistancePerPulse(360 / CPR);
         this.liftMotor2.setDistancePerPulse(360 / CPR);
