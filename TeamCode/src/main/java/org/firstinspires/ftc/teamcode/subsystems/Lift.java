@@ -19,7 +19,7 @@ public class Lift extends SubsystemBase {
     private MotorEx liftMotor;
     private MotorEx liftMotor2;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.005, 0.0008, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0005, 0.0008, 0, 0);
 
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
@@ -27,8 +27,8 @@ public class Lift extends SubsystemBase {
     private boolean automatic;
 
     public static double CPR = 384.5;
-    public static double UP_SPEED = -0.75;
-    public static double DOWN_SPEED = 0.75;
+    public static double UP_SPEED = -0.25;
+    public static double DOWN_SPEED = 0.25;
 
     private double encoderOffset = 0;
     private double encoderOffset2 = 0;
@@ -146,6 +146,7 @@ public class Lift extends SubsystemBase {
         automatic = true;
         controller.setSetPoint(RESTING_POSITION);
         controller2.setSetPoint(RESTING_POSITION);
+        liftPosition = 0;
     }
 
     public void liftLow() {

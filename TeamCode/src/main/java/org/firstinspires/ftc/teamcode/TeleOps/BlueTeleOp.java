@@ -87,7 +87,6 @@ public class BlueTeleOp extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        //drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         //slowmode for the drivetrain
         slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))

@@ -33,7 +33,6 @@ public class Intake extends SubsystemBase {
 
         this.intakeMotor = new MotorEx(hw, "intake");
         this.intakeServo = new SimpleServo(hw,"intakeServo",0,360);
-
         this.intakeServo.setPosition(UP_POSITION);
     }
 
