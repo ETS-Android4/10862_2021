@@ -14,8 +14,8 @@ import java.util.logging.Level;
 
 @Config
 public class Intake extends SubsystemBase {
-    public static double INTAKE_SPEED = 1;
-    public static double OUTTAKE_SPEED = -1;
+    public static double INTAKE_SPEED = -1;
+    public static double OUTTAKE_SPEED = 1;
     public static double UP_POSITION= 0.85;
     public static double MID_POSITION = 0.85;
     public static double DOWN_POSITION= 0.68;
