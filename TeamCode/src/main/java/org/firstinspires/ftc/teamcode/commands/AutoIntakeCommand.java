@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 public class AutoIntakeCommand extends SequentialCommandGroup {
 
     public AutoIntakeCommand(Lift lift, Intake intake, ArmServos armServos, Drivetrain drivetrain, SensorColor sensorColor) {
-
+        addRequirements(lift, intake, armServos, drivetrain, sensorColor);
         addCommands(
                 new WaitUntilCommand(sensorColor::freightInBox).withTimeout(200),
                 new ConditionalCommand(

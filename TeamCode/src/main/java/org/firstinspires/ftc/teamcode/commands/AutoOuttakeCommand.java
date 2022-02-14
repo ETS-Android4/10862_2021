@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 public class AutoOuttakeCommand extends SequentialCommandGroup {
 
     public AutoOuttakeCommand(Lift lift, Intake intake, ArmServos armServos, Drivetrain drivetrain) {
-
+        addRequirements(lift, intake, armServos, drivetrain);
         addCommands(
                 new LiftHighCommand(lift),
                 new DropFreightCommand(armServos, drivetrain),

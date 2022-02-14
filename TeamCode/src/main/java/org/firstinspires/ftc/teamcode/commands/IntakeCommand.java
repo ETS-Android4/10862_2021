@@ -20,7 +20,7 @@ package org.firstinspires.ftc.teamcode.commands;
 public class IntakeCommand extends SequentialCommandGroup {
 
     public IntakeCommand(Lift lift, Intake intake, SensorColor colorSensor, ArmServos armServos) {
-
+        addRequirements(lift, intake, armServos);
         addCommands(
                 new InstantCommand(intake::intake, intake),
                 new InstantCommand(intake::stop),

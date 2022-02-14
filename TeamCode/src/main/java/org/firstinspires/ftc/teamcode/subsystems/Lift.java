@@ -23,7 +23,6 @@ public class Lift extends SubsystemBase {
 
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
-    private PIDFController controller2;
     private boolean automatic;
 
     public static double CPR = 384.5;
@@ -56,7 +55,7 @@ public class Lift extends SubsystemBase {
 
         //Reverse lift motor
         this.liftMotor.setInverted(true);
-        this.liftMotor2.setInverted(true);
+        //this.liftMotor2.setInverted(true);
 
         this.liftMotor.resetEncoder();
         this.liftMotor2.resetEncoder();
@@ -66,9 +65,6 @@ public class Lift extends SubsystemBase {
 
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
-
-        controller2 = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle2(), getAngle2());
-        controller2.setTolerance(10);
 
         this.telemetry = tl;
         automatic = false;
@@ -87,14 +83,10 @@ public class Lift extends SubsystemBase {
         if (automatic) {
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
 
-
-            controller2.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller2.getSetPoint())));
-
             double output = controller.calculate(getAngle());
-            double output2 = controller2.calculate(getAngle2());
 
             liftMotor.set(output);
-            liftMotor2.set(output2);
+            liftMotor2.set(output);
         }
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", liftMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", liftMotor2.getCurrentPosition());
@@ -124,7 +116,6 @@ public class Lift extends SubsystemBase {
         liftMotor.stopMotor();
         controller.setSetPoint(getAngle());
         liftMotor2.stopMotor();
-        controller2.setSetPoint(getAngle2());
         automatic = false;
     }
 
@@ -150,7 +141,6 @@ public class Lift extends SubsystemBase {
     public void liftResting() {
         automatic = true;
         controller.setSetPoint(RESTING_POSITION);
-        controller2.setSetPoint(RESTING_POSITION2);
         liftPosition = 0;
     }
 
@@ -162,21 +152,18 @@ public class Lift extends SubsystemBase {
     public void liftLow() {
         automatic = true;
         controller.setSetPoint(LOW_POSITION);
-        controller2.setSetPoint(LOW_POSITION2);
         liftPosition = 1;
     }
 
     public void liftMid() {
         automatic = true;
         controller.setSetPoint(MID_POSITION);
-        controller2.setSetPoint(MID_POSITION2);
         liftPosition = 2;
     }
 
     public void liftHigh() {
         automatic = true;
         controller.setSetPoint(HIGH_POSITION);
-        controller2.setSetPoint(HIGH_POSITION2);
         liftPosition = 3;
     }
 
@@ -187,21 +174,16 @@ public class Lift extends SubsystemBase {
     public void setLift(double angle) {
         automatic = true;
         controller.setSetPoint(angle);
-        controller2.setSetPoint(angle);
     }
 
     public boolean atTargetAngle() {
         return controller.atSetPoint();
-    }
-    public boolean atTargetAngle2(){
-        return controller2.atSetPoint();
     }
 
 
     public void setOffset() {
         resetEncoder();
         controller.setSetPoint(getAngle());
-        controller2.setSetPoint(getAngle2());
     }
 
     public void moveUp() {

@@ -15,6 +15,7 @@ public class DropFreightCommand extends SequentialCommandGroup {
     private ArmServos armServos;
 
     public DropFreightCommand(ArmServos armServos, Drivetrain drivetrain){
+        addRequirements(armServos, drivetrain);
         addCommands(
                 new InstantCommand(armServos::boxOpen),
                 new DriveForwardCommand(drivetrain, -4)

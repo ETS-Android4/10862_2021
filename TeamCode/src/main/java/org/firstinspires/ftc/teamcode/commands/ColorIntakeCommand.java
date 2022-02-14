@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 public class ColorIntakeCommand extends SequentialCommandGroup {
 
     public ColorIntakeCommand(Intake intake, SensorColor colorSensor, ArmServos armServos) {
-
+        addRequirements(intake, colorSensor, armServos);
         addCommands(
                 new ConditionalCommand(
                         new SequentialCommandGroup(
