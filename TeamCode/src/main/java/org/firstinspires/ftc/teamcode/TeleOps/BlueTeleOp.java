@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.TeleOpDropFreightCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 
@@ -132,7 +133,7 @@ public class BlueTeleOp extends MatchOpMode {
 
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                .whenPressed(new DropFreightCommand(armServos,drivetrain));
+                .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
 
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))

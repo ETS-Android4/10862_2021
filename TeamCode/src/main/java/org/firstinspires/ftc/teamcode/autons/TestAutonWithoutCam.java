@@ -97,7 +97,7 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(21,27), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new SplineCommand(drivetrain, new Vector2d(-8,-36.5), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6,-36.5), Math.toRadians(272)),
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
 
@@ -110,7 +110,7 @@ public void matchStart()
                 new LiftResetCommand(armServos, lift),
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-8,-38.5), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6,-38.5), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
@@ -121,7 +121,7 @@ public void matchStart()
                 new LiftResetCommand(armServos, lift),
                 new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-8,-40), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6,-40), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
@@ -130,6 +130,6 @@ public void matchStart()
                 new DropFreightCommand(armServos, drivetrain),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-9,-43), Math.toRadians(270))
+                new SplineCommand(drivetrain, new Vector2d(-7,-43), Math.toRadians(270))
                 ));
         }};

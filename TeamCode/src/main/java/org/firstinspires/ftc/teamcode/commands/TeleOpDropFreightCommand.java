@@ -11,14 +11,15 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 
 import java.time.Instant;
 
-public class DropFreightCommand extends SequentialCommandGroup {
+public class TeleOpDropFreightCommand extends SequentialCommandGroup {
     private ArmServos armServos;
 
-    public DropFreightCommand(ArmServos armServos, Drivetrain drivetrain){
+    public TeleOpDropFreightCommand(ArmServos armServos, Drivetrain drivetrain){
         addRequirements(armServos, drivetrain);
         addCommands(
-                new InstantCommand(armServos::boxOpen)
-                );
+                new InstantCommand(armServos::boxOpen),
+                new DriveForwardCommand(drivetrain, 6)
+        );
     }
 
 }
