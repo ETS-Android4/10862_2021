@@ -31,7 +31,7 @@ public class RedWarehouseCommandR extends SequentialCommandGroup {
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -5),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
                 new WaitCommand(1000),
                 new InstantCommand(armServos::armUp,armServos),
 

@@ -30,7 +30,7 @@ public class BlueCarouselCommandL extends SequentialCommandGroup {
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -6.5),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
                 new WaitCommand(3000),
                 new DriveForwardCommand(drivetrain, 4),
                 new InstantCommand(armServos::armUp,armServos),

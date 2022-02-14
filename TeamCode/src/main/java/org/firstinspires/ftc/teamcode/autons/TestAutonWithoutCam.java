@@ -105,7 +105,7 @@ public void matchStart()
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
                 new SplineCommand(drivetrain, new Vector2d(16.5,19.3), Math.toRadians(0), true),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
 
                 new LiftResetCommand(armServos, lift),
                 new InstantCommand(intake::servoDown),
@@ -116,7 +116,7 @@ public void matchStart()
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
                 new SplineCommand(drivetrain, new Vector2d(16.2,19.3), Math.toRadians(0), true),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
 
                 new LiftResetCommand(armServos, lift),
                 new InstantCommand(intake::servoDown),
@@ -127,7 +127,7 @@ public void matchStart()
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
                 new SplineCommand(drivetrain, new Vector2d(16,18.7), Math.toRadians(0), true),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
 
                 new LiftResetCommand(armServos, lift),
                 new SplineCommand(drivetrain, new Vector2d(-9,-43), Math.toRadians(270))

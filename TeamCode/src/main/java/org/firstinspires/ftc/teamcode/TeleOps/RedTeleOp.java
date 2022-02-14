@@ -64,7 +64,6 @@ public class RedTeleOp extends MatchOpMode {
     public Button clawOpenButton, clawCloseButton;
     public Button capArmHighButton;
     public Button slideResetButton;
-    //TODO:Add clawarm buttons, maybe manual buttons
 
     @Override
     public void robotInit() {
@@ -80,8 +79,7 @@ public class RedTeleOp extends MatchOpMode {
         capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
 
         //gamepad1.setJoystickDeadzone(0.0f);
-
-        //drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
         intake.setDefaultCommand(new ColorIntakeCommand(intake, sensorColor, armServos));
@@ -89,7 +87,6 @@ public class RedTeleOp extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
 
         //slowmode for the drivetrain
         slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
@@ -103,11 +100,11 @@ public class RedTeleOp extends MatchOpMode {
 
         /*//Intake positions
         intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
-                .whenPressed(intake::servoUp);
+            . whenPressed(intake::servoUp);
         intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                .whenPressed(intake::servoMid);
+            . whenPressed(intake::servoMid);
         intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(intake::servoDown);*/
+            . whenPressed(intake::servoDown);*/
 
         //lift commands
         liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
@@ -135,59 +132,25 @@ public class RedTeleOp extends MatchOpMode {
 
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                .whenPressed(new DropFreightCommand(armServos));
+                .whenPressed(new DropFreightCommand(armServos,drivetrain));
 
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
                 .whenPressed(armServos::armUp);
-        resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whenPressed(armServos::armHome);
 
+        /*resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                .whenPressed(lift::resetEncoder);*/
         //TODO:Fix the slide reset button
-        slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
-                .whenPressed(() -> liftMotor.resetEncoder());
-/*
-        singleFeedButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)).whenPressed(new FeedRingsCommand(feeder, 1));
-        // TRIPLE SHOT SPEED *********************
-        tripleFeedButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER)).whenPressed(new SmartFeedRingsCommand(feeder, shooterWheels,4,30));
-        shootButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER)).toggleWhenPressed(
-                new InstantCommand(() -> shooterWheels.setShooterRPM(ShooterWheels.TARGET_SPEED), shooterWheels),
-                new InstantCommand(() -> shooterWheels.setShooterRPM(0), shooterWheels));
-        (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_STICK_BUTTON)).whileHeld(new VisionCommand(drivetrain, vision, 30));
-        powershotButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B)).toggleWhenPressed(
-                new InstantCommand(() -> shooterWheels.setShooterRPM(2900), shooterWheels),
-                new InstantCommand(() -> shooterWheels.setShooterRPM(0), shooterWheels));
-        intakeButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)).whileHeld(intake::intake).whenReleased(intake::stop);
-        outtakeButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X)).whileHeld(intake::outtake).whenReleased(intake::stop);
-
-        toggleClawButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A)).toggleWhenPressed(
-                new InstantCommand(wobbleGoalArm::openClaw, wobbleGoalArm),
-                new InstantCommand(wobbleGoalArm::closeClaw, wobbleGoalArm)
-        );
-
-        (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> shooterWheels.adjustShooterRPM(75));
-        (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)).whenPressed(() -> shooterWheels.adjustShooterRPM(-75));
-        lowMidWobbleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)).whenPressed(() -> wobbleGoalArm.setWobbleGoal(-65));
-        (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_STICK_BUTTON)).toggleWhenPressed(new InstantCommand(intake::dropIntake, intake), new InstantCommand(intake::liftIntake, intake));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
-        (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)).whenPressed(wobbleGoalArm::liftArmManual).whenReleased(wobbleGoalArm::stopArm);
-        (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)).whenPressed(wobbleGoalArm::lowerArmManual).whenReleased(wobbleGoalArm::stopArm);
- */
+        //slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> liftMotor.adjustliftPosition);
 
     }
 
     @Override
-    public void matchLoop() {
-    }
-
+    public void matchLoop() { }
     @Override
-    public void disabledPeriodic() {
-    }
-
+    public void disabledPeriodic() { }
     @Override
-    public void matchStart() {
-    }
-
+    public void matchStart() { }
     @Override
     public void robotPeriodic() {
         sensorColor.periodic();

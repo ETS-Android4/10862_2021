@@ -19,7 +19,7 @@ public class AutoOuttakeCommand extends SequentialCommandGroup {
 
         addCommands(
                 new LiftHighCommand(lift),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
                 new DriveForwardCommand(drivetrain, -4),
                 new WaitCommand(500),
                 new LiftResetCommand(armServos, lift)

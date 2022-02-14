@@ -22,9 +22,7 @@ public class IntakeCommand extends SequentialCommandGroup {
     public IntakeCommand(Lift lift, Intake intake, SensorColor colorSensor, ArmServos armServos) {
 
         addCommands(
-                new InstantCommand(intake::servoDown, intake),
                 new InstantCommand(intake::intake, intake),
-                //new WaitUntilCommand(armServos::ArmServos.freightInBox),
                 new InstantCommand(intake::stop),
                 new InstantCommand(intake::outtake, intake),
                 new WaitCommand(500),

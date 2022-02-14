@@ -31,7 +31,7 @@ public class BlueWarehouseCommandC extends SequentialCommandGroup {
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -4.5),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
                 new KindaSlowDriveForwardCommand(drivetrain, -0.5),
                 new WaitCommand(1000),
                 new InstantCommand(armServos::armUp,armServos),

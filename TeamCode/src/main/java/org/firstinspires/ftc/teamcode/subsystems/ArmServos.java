@@ -16,9 +16,9 @@ import java.util.logging.Level;
 @Config
 public class ArmServos extends SubsystemBase {
 
-    public static double SERVO_POSITION_ARM_HOME =0;
-    public static double SERVO_POSITION_ARM_UP = 0.3;
-    public static double SERVO_POSITION_ARM_DROP = 0.75;
+    public static double SERVO_POSITION_ARM_HOME =0.23;
+    public static double SERVO_POSITION_ARM_UP = 0.6;
+    public static double SERVO_POSITION_ARM_DROP = 0.95;
     public static double SERVO_POSITION_BOX_OPEN = 0.75;
     public static double SERVO_POSITION_BOX_CLOSE = 0.85;
 

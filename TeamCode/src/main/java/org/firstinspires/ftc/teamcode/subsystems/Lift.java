@@ -19,7 +19,7 @@ public class Lift extends SubsystemBase {
     private MotorEx liftMotor;
     private MotorEx liftMotor2;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0005, 0.0008, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.005, 0.0008, 0, 0);
 
     //public static double ARM_OFFSET = 0;
     private PIDFController controller;
@@ -33,16 +33,16 @@ public class Lift extends SubsystemBase {
     private double encoderOffset = 0;
     private double encoderOffset2 = 0;
 
-    public static int RESTING_POSITION = 0;
+    public static int RESTING_POSITION = 150;
     public static int LOW_POSITION = -350;
     public static int MID_POSITION = -700;
-    public static int HIGH_POSITION = -1100;
+    public static int HIGH_POSITION = -1600;
     public static int CAP_POSITION = 0;
 
-    public static int RESTING_POSITION2 = 0;
+    public static int RESTING_POSITION2 = -150;
     public static int LOW_POSITION2 = 350;
     public static int MID_POSITION2 = 700;
-    public static int HIGH_POSITION2 = 1100;
+    public static int HIGH_POSITION2 = 1600;
     public static int CAP_POSITION2 = 0;
 
     private int liftPosition = 0;
@@ -55,7 +55,11 @@ public class Lift extends SubsystemBase {
         this.liftMotor2 = new MotorEx(hw, "lift2");
 
         //Reverse lift motor
+        this.liftMotor.setInverted(true);
         this.liftMotor2.setInverted(true);
+
+        this.liftMotor.resetEncoder();
+        this.liftMotor2.resetEncoder();
 
         this.liftMotor.setDistancePerPulse(360 / CPR);
         this.liftMotor2.setDistancePerPulse(360 / CPR);
@@ -142,31 +146,37 @@ public class Lift extends SubsystemBase {
 
     /****************************************************************************************/
 
+
     public void liftResting() {
         automatic = true;
         controller.setSetPoint(RESTING_POSITION);
-        controller2.setSetPoint(RESTING_POSITION);
+        controller2.setSetPoint(RESTING_POSITION2);
         liftPosition = 0;
+    }
+
+    public void encoderReset() {
+        liftMotor.resetEncoder();
+        liftMotor2.resetEncoder();
     }
 
     public void liftLow() {
         automatic = true;
         controller.setSetPoint(LOW_POSITION);
-        controller2.setSetPoint(LOW_POSITION);
+        controller2.setSetPoint(LOW_POSITION2);
         liftPosition = 1;
     }
 
     public void liftMid() {
         automatic = true;
         controller.setSetPoint(MID_POSITION);
-        controller2.setSetPoint(MID_POSITION);
+        controller2.setSetPoint(MID_POSITION2);
         liftPosition = 2;
     }
 
     public void liftHigh() {
         automatic = true;
         controller.setSetPoint(HIGH_POSITION);
-        controller2.setSetPoint(HIGH_POSITION);
+        controller2.setSetPoint(HIGH_POSITION2);
         liftPosition = 3;
     }
 

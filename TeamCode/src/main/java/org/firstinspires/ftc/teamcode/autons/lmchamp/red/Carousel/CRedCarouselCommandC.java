@@ -58,7 +58,7 @@ public class CRedCarouselCommandC extends SequentialCommandGroup {
 
                 new WaitCommand(500),
                 new DriveForwardCommand(drivetrain,-2),
-                new DropFreightCommand(armServos),
+                new DropFreightCommand(armServos, drivetrain),
                 new LiftResetCommand(armServos, lift),
 
                 new TurnToCommand(drivetrain, 270),

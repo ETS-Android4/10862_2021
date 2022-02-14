@@ -22,19 +22,16 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                 new WaitUntilCommand(sensorColor::freightInBox).withTimeout(200),
                 new ConditionalCommand(
                         new SequentialCommandGroup(
+                                new InstantCommand(armServos::boxClose),
                                 new InstantCommand(intake::outtake),
-
-                                new InstantCommand(intake::servoUp),
                                 new InstantCommand(armServos::armUp),
                                 new DriveForwardCommand(drivetrain, -2)
                         ),
                         new SequentialCommandGroup(
-                                //new TurnToCommand(drivetrain,2),
-                                new DriveForwardCommand(drivetrain,4),
+                                new DriveForwardCommand(drivetrain,6),
                                 new InstantCommand(intake::outtake),
-                                new InstantCommand(intake::servoUp),
                                 new InstantCommand(armServos::armUp),
-                                new DriveForwardCommand(drivetrain, -4)
+                                new DriveForwardCommand(drivetrain, -6)
                         ),
                         sensorColor::freightInBox
                 )

@@ -132,7 +132,7 @@ public class BlueTeleOp extends MatchOpMode {
 
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                .whenPressed(new DropFreightCommand(armServos));
+                .whenPressed(new DropFreightCommand(armServos,drivetrain));
 
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
