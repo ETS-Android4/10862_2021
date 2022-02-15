@@ -97,8 +97,8 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(21,27), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new SplineCommand(drivetrain, new Vector2d(-6,-36.5), Math.toRadians(272)),
-                new InstantCommand(intake::servoDown),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-37), Math.toRadians(272)),
+                new InstantCommand(armServos::boxOpen),
                 new InstantCommand(intake::intake),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
@@ -108,9 +108,8 @@ public void matchStart()
                 new DropFreightCommand(armServos, drivetrain),
 
                 new LiftResetCommand(armServos, lift),
-                new InstantCommand(intake::servoDown),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-6,-38.5), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-39), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
@@ -119,9 +118,7 @@ public void matchStart()
                 new DropFreightCommand(armServos, drivetrain),
 
                 new LiftResetCommand(armServos, lift),
-                new InstantCommand(intake::servoDown),
-                new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-6,-40), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-41), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
@@ -130,6 +127,6 @@ public void matchStart()
                 new DropFreightCommand(armServos, drivetrain),
 
                 new LiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-7,-43), Math.toRadians(270))
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-43), Math.toRadians(270))
                 ));
         }};

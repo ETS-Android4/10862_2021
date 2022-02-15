@@ -29,6 +29,7 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                         ),
                         new SequentialCommandGroup(
                                 new DriveForwardCommand(drivetrain,6),
+                                new InstantCommand(armServos::boxClose),
                                 new InstantCommand(intake::outtake),
                                 new InstantCommand(armServos::armUp),
                                 new DriveForwardCommand(drivetrain, -6)
