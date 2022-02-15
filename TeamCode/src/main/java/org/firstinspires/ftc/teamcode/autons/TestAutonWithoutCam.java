@@ -82,17 +82,17 @@ public void matchStart()
     {
         schedule(new SequentialCommandGroup(
                 new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(21,27), Math.toRadians(0)),
+                new SplineCommand(drivetrain, new Vector2d(21,28), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-37), Math.toRadians(272)),
                 new InstantCommand(armServos::boxOpen),
                 new InstantCommand(intake::intake),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-36), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(16.5,19.3), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(16.5,18), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),
@@ -102,16 +102,16 @@ public void matchStart()
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(16.2,19.3), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(16.2,18), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-41), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-42), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
                 new WaitCommand(100),
-                new SplineCommand(drivetrain, new Vector2d(16,18.7), Math.toRadians(0), true),
+                new SplineCommand(drivetrain, new Vector2d(16,18), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),

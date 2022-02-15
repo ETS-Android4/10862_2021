@@ -17,8 +17,8 @@ public class TeleOpDropFreightCommand extends SequentialCommandGroup {
     public TeleOpDropFreightCommand(ArmServos armServos, Drivetrain drivetrain){
         addRequirements(armServos, drivetrain);
         addCommands(
-                new InstantCommand(armServos::boxPush),
                 new InstantCommand(armServos::armDrop),
+                new InstantCommand(armServos::boxPush),
                 new DriveForwardCommand(drivetrain, 6)
         );
     }

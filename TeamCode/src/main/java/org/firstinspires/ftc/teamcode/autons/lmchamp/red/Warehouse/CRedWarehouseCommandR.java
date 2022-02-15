@@ -27,9 +27,9 @@ public class CRedWarehouseCommandR extends SequentialCommandGroup {
                 new SplineCommand(drivetrain, new Vector2d(23.5,26), Math.toRadians(10)),
                 new CapArmHighCommand(capServos, drivetrain),
 
-                new SplineCommand(drivetrain, new Vector2d(-8,-36.5), Math.toRadians(272)),
                 new InstantCommand(armServos::boxOpen),
                 new InstantCommand(intake::intake),
+                new SplineCommand(drivetrain, new Vector2d(-8,-36.5), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new InstantCommand(armServos::boxOpen),
