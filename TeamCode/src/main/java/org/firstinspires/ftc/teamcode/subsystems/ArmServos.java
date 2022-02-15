@@ -17,16 +17,17 @@ import java.util.logging.Level;
 public class ArmServos extends SubsystemBase {
 
     public static double SERVO_POSITION_ARM_HOME =0.23;
-    public static double SERVO_POSITION_ARM_UP = 0.6;
-    public static double SERVO_POSITION_ARM_DROP = 1;
+    public static double SERVO_POSITION_ARM_UP = 0.3;
+    public static double SERVO_POSITION_ARM_DROP = 0.95;
 
-
-    public static double SERVO_POSITION_BOX_OPEN = 0.17;
+    public static double SERVO_POSITION_BOX_OPEN = 0.31;
     public static double SERVO_POSITION_BOX_PUSH = 0;
+    public static double SERVO_POSITION_BOX_CLOSE = 0.53;
 
-    public static double SERVO_POSITION_BOX_CLOSE = 0.33;
-    public static double SERVO_POSITION_BOX_CLOSE_BALL = 0.3;
-    public static double SERVO_POSITION_BOX_CLOSE_CUBE = 0.36;
+
+
+    public static double SERVO_POSITION_BOX_CLOSE_BALL = 0.5;
+    public static double SERVO_POSITION_BOX_CLOSE_CUBE = 0.55;
 
     public static boolean boxCanMove;
     public static boolean freightInBox;
@@ -41,7 +42,7 @@ public class ArmServos extends SubsystemBase {
         this.armServo = armServo;
         this.dropServo = dropServo;
 
-        this.armServo = new SimpleServo(hw,"arm", 0, 360);
+        this.armServo = new SimpleServo(hw,"arm", 0, 270);
         this.dropServo = new SimpleServo(hw, "drop",0,360);
         this.telemetry = tl;
         this.packet = packet;
@@ -78,8 +79,12 @@ public class ArmServos extends SubsystemBase {
     public void boxOpen() { setDropServo(SERVO_POSITION_BOX_OPEN); }
     public void boxClose() { setDropServo(SERVO_POSITION_BOX_CLOSE); }
     public void boxPush() { setDropServo(SERVO_POSITION_BOX_PUSH); }
+
     public void boxBall() { setDropServo(SERVO_POSITION_BOX_CLOSE_BALL); }
     public void boxCube() { setDropServo(SERVO_POSITION_BOX_CLOSE_CUBE); }
+
+    public void boxUp() { setDropServo(dropServo.getPosition()+0.08); }
+    public void boxDown() { setDropServo(dropServo.getPosition()-0.08); }
 
 
     public void reset()

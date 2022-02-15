@@ -65,6 +65,9 @@ public class BlueTeleOp extends MatchOpMode {
     public Button clawOpenButton, clawCloseButton;
     public Button capArmHighButton;
     public Button slideResetButton;
+    public Button intakeClawUpButton;
+    public Button intakeClawDownButton;
+    public Button resetClawServoBumper;
 
     @Override
     public void robotInit() {
@@ -101,8 +104,8 @@ public class BlueTeleOp extends MatchOpMode {
 
 
         //Intake Trigger makes bow go down
-        intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                .whileHeld(armServos::armHome).whenReleased(intake::stop));
+        /*intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+                .whileHeld(armServos::armHome).whenReleased(intake::stop));*/
 
         /*//Intake positions
         intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
@@ -139,16 +142,24 @@ public class BlueTeleOp extends MatchOpMode {
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
                 .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
+        resetClawServoBumper = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                .whenPressed(armServos::boxOpen);
+
 
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
-                .whenPressed(armServos::armUp);
+                .whenPressed(armServos::armUp).whenPressed(armServos::boxClose);
 
         /*resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                 .whenPressed(lift::resetEncoder);*/
+
         //TODO:Fix the slide reset button
         //slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> liftMotor.adjustliftPosition);
 
+        intakeClawUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)
+                .whenPressed(armServos::boxUp));
+        intakeClawDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)
+                .whenPressed(armServos::boxDown));
     }
 
     @Override

@@ -10,7 +10,7 @@ public class LiftResetCommandT extends SequentialCommandGroup {
         public LiftResetCommandT(ArmServos armServos, Lift lift){
         addCommands(
                 new InstantCommand(lift::liftResting, lift),
-                new InstantCommand(armServos::armUp, armServos),
+                new InstantCommand(armServos::armHome, armServos),
                 new InstantCommand(armServos::boxOpen, armServos)
         );
     }
