@@ -20,8 +20,10 @@ public class ColorIntakeCommand extends SequentialCommandGroup {
                         new SequentialCommandGroup(
                                 new InstantCommand(armServos::boxClose),
                                 new WaitCommand(200),
-                                new InstantCommand(armServos::armDrop),
-                                new InstantCommand(intake::stop)),
+                                new InstantCommand(armServos::armUp),
+                                new InstantCommand(intake::stop),
+                                new WaitCommand(500),
+                                new InstantCommand(armServos::armDrop)),
 
                         new InstantCommand(),
                         () -> (colorSensor.freightInBox()) && (ArmServos.boxCanMove)
