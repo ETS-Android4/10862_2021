@@ -1,33 +1,21 @@
 package org.firstinspires.ftc.teamcode.autons;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
-import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
-import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowSplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
@@ -107,7 +95,7 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(16.5,19.3), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new InstantCommand(intake::intake),
                 new SplineCommand(drivetrain, new Vector2d(-6.5,-39), Math.toRadians(272)),
 
@@ -117,7 +105,7 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(16.2,19.3), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new SplineCommand(drivetrain, new Vector2d(-6.5,-41), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
@@ -126,7 +114,7 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(16,18.7), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new SplineCommand(drivetrain, new Vector2d(-6.5,-43), Math.toRadians(270))
                 ));
         }};

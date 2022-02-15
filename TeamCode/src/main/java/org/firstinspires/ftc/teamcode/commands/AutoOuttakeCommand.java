@@ -1,13 +1,11 @@
 package org.firstinspires.ftc.teamcode.commands;
 
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
@@ -22,7 +20,7 @@ public class AutoOuttakeCommand extends SequentialCommandGroup {
                 new DropFreightCommand(armServos, drivetrain),
                 new DriveForwardCommand(drivetrain, -4),
                 new WaitCommand(500),
-                new LiftResetCommand(armServos, lift)
+                new AutoLiftResetCommand(armServos, lift)
         );
     }
 }

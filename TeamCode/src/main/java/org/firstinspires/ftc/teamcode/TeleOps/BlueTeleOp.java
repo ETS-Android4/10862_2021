@@ -12,10 +12,10 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
-import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommandT;
 import org.firstinspires.ftc.teamcode.commands.TeleOpDropFreightCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -99,6 +99,11 @@ public class BlueTeleOp extends MatchOpMode {
         intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
                 .whileHeld(intake::intake).whenReleased(intake::stop));
 
+
+        //Intake Trigger makes bow go down
+        intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+                .whileHeld(armServos::armHome).whenReleased(intake::stop));
+
         /*//Intake positions
         intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
             . whenPressed(intake::servoUp);
@@ -115,7 +120,7 @@ public class BlueTeleOp extends MatchOpMode {
 
         //reset everything
         resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
-                .whenPressed(new LiftResetCommand(armServos, lift));
+                .whenPressed(new LiftResetCommandT(armServos, lift));
 
         //Lift positions
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)

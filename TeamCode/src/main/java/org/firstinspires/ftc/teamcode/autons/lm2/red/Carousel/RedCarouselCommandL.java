@@ -5,7 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftLowCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
@@ -35,7 +35,7 @@ public class RedCarouselCommandL extends SequentialCommandGroup {
                 new InstantCommand(armServos::armUp,armServos),
 
                 new TurnToCommand(drivetrain, 360),
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 25),
                 new TurnToCommand(drivetrain, -90,true),
                 new DriveForwardCommand(drivetrain,20),

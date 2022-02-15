@@ -5,7 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
@@ -38,7 +38,7 @@ public class RedWarehouseCommandR extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, 2),
 
                 new TurnToCommand(drivetrain, 0),
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new DriveForwardCommand(drivetrain, 23),
                 new TurnCommand(drivetrain,85),
                 new DriveForwardCommand(drivetrain, 45)

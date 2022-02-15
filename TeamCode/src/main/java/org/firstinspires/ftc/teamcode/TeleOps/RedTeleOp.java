@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
@@ -114,7 +114,7 @@ public class RedTeleOp extends MatchOpMode {
 
         //reset everything
         resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
-                .whenPressed(new LiftResetCommand(armServos, lift));
+                .whenPressed(new AutoLiftResetCommand(armServos, lift));
 
         //Lift positions
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)

@@ -6,20 +6,11 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftLowCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -46,7 +37,7 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
                 new SplineCommand(drivetrain, new Vector2d(16.5,19.3), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new InstantCommand(intake::intake),
                 new SplineCommand(drivetrain, new Vector2d(-8,-38.5), Math.toRadians(272)),
 
@@ -56,7 +47,7 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
                 new SplineCommand(drivetrain, new Vector2d(16.2,19.3), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new InstantCommand(intake::intake),
                 new SplineCommand(drivetrain, new Vector2d(-8,-40), Math.toRadians(272)),
 
@@ -66,7 +57,7 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
                 new SplineCommand(drivetrain, new Vector2d(16,18.7), Math.toRadians(0), true),
                 new DropFreightCommand(armServos, drivetrain),
 
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
                 new SplineCommand(drivetrain, new Vector2d(-9,-43), Math.toRadians(270))
         );
     }

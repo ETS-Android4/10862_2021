@@ -5,15 +5,11 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
-import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftLowCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
@@ -60,7 +56,7 @@ public class CBlueCarouselCommandL extends SequentialCommandGroup {
                 new WaitCommand(500),
                 new DriveForwardCommand(drivetrain,-2),
                 new DropFreightCommand(armServos, drivetrain),
-                new LiftResetCommand(armServos, lift),
+                new AutoLiftResetCommand(armServos, lift),
 
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, -32)
