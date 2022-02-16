@@ -20,7 +20,7 @@ public class ArmServos extends SubsystemBase {
     public static double SERVO_POSITION_ARM_UP = 0.3;
     public static double SERVO_POSITION_ARM_DROP = 1;
 
-    public static double SERVO_POSITION_BOX_OPEN = 0.31;
+    public static double SERVO_POSITION_BOX_OPEN = 0.45;
     public static double SERVO_POSITION_BOX_PUSH = 0;
     public static double SERVO_POSITION_BOX_CLOSE = 0.53;
 
@@ -57,9 +57,9 @@ public class ArmServos extends SubsystemBase {
     }
 
     public void setArmServo(double armServoPosition) {
-        armServo.setPosition(armServoPosition);
-    }
-    public void setDropServo(double dropServoPosition){ dropServo.setPosition(dropServoPosition);}
+        armServo.setPosition(armServoPosition);}
+    public void setDropServo(double dropServoPosition){
+        dropServo.setPosition(dropServoPosition);}
 
     public void armHome() {
         boxCanMove = true;
@@ -83,8 +83,8 @@ public class ArmServos extends SubsystemBase {
     public void boxBall() { setDropServo(SERVO_POSITION_BOX_CLOSE_BALL); }
     public void boxCube() { setDropServo(SERVO_POSITION_BOX_CLOSE_CUBE); }
 
-    public void boxUp() { setDropServo(dropServo.getPosition()+0.08); }
-    public void boxDown() { setDropServo(dropServo.getPosition()-0.08); }
+    public void boxUp() { setDropServo(dropServo.getPosition()+0.1); }
+    public void boxDown() { setDropServo(dropServo.getPosition()-0.1); }
 
 
     public void reset()

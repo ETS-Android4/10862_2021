@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -124,6 +125,8 @@ public class BlueTeleOp extends MatchOpMode {
         //reset everything
         resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
                 .whenPressed(new LiftResetCommandT(armServos, lift));
+        resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
+                .whenPressed(new InstantCommand(lift::liftResting, lift));
 
         //Lift positions
         liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
