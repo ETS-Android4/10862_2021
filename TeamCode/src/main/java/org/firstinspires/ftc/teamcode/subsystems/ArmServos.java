@@ -18,9 +18,11 @@ public class ArmServos extends SubsystemBase {
 
     public static double SERVO_POSITION_ARM_HOME =0.23;
     public static double SERVO_POSITION_ARM_UP = 0.3;
+    public static double SERVO_POSITION_ARM_HALF_DROP = 0.9;
     public static double SERVO_POSITION_ARM_DROP = 1;
 
     public static double SERVO_POSITION_BOX_OPEN = 0.45;
+    public static double SERVO_POSITION_BOX_AUTO_PUSH = 0.15;
     public static double SERVO_POSITION_BOX_PUSH = 0;
     public static double SERVO_POSITION_BOX_CLOSE = 0.53;
 
@@ -76,9 +78,16 @@ public class ArmServos extends SubsystemBase {
         freightInBox = false;
         setArmServo(SERVO_POSITION_ARM_DROP);
     }
+    public void armHalfDrop() {
+        boxCanMove = false;
+        freightInBox = false;
+        setArmServo(SERVO_POSITION_ARM_HALF_DROP);
+    }
+
     public void boxOpen() { setDropServo(SERVO_POSITION_BOX_OPEN); }
     public void boxClose() { setDropServo(SERVO_POSITION_BOX_CLOSE); }
     public void boxPush() { setDropServo(SERVO_POSITION_BOX_PUSH); }
+    public void boxAutoPush() { setDropServo(SERVO_POSITION_BOX_AUTO_PUSH); }
 
     public void boxBall() { setDropServo(SERVO_POSITION_BOX_CLOSE_BALL); }
     public void boxCube() { setDropServo(SERVO_POSITION_BOX_CLOSE_CUBE); }
