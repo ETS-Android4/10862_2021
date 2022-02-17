@@ -19,7 +19,7 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
     public AutoIntakeCommand(Lift lift, Intake intake, ArmServos armServos, Drivetrain drivetrain, SensorColor sensorColor) {
         addRequirements(lift, intake, armServos, drivetrain, sensorColor);
         addCommands(
-                new WaitUntilCommand(sensorColor::freightInBox).withTimeout(500),
+                new WaitUntilCommand(sensorColor::freightInBox).withTimeout(700),
                 new ConditionalCommand(
                         new SequentialCommandGroup(
                                 new InstantCommand(armServos::boxClose),
@@ -35,7 +35,8 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                                 new DriveForwardCommand(drivetrain, -3)
                         ),
                         sensorColor::freightInBox
-                )
+                ),
+                new InstantCommand(armServos::boxClose)
 
         );
     }

@@ -87,7 +87,7 @@ public void matchStart()
 
                 new InstantCommand(armServos::boxOpen),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-32), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-33), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
@@ -98,7 +98,7 @@ public void matchStart()
 
                 new AutoLiftResetCommand(armServos, lift),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-35), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-33), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
@@ -108,7 +108,7 @@ public void matchStart()
                 new DropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-39), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-36), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift),
@@ -118,6 +118,6 @@ public void matchStart()
                 new DropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-43), Math.toRadians(270))
+                new SplineCommand(drivetrain, new Vector2d(-6.5,-40), Math.toRadians(270))
                 ));
         }};

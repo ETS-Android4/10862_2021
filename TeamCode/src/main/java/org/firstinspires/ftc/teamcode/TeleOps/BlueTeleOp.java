@@ -145,8 +145,8 @@ public class BlueTeleOp extends MatchOpMode {
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
                 .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
-        resetClawServoBumper = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whenPressed(armServos::boxOpen);
+        /*resetClawServoBumper = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                .whenPressed(armServos::boxOpen);*/
 
 
         //Box servos stuff
