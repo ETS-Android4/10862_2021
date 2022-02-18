@@ -28,11 +28,11 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                                 new DriveForwardCommand(drivetrain, -2)
                         ),
                         new SequentialCommandGroup(
-                                new DriveForwardCommand(drivetrain,3),
+                                new DriveForwardCommand(drivetrain,6),
                                 new InstantCommand(armServos::boxClose),
                                 new InstantCommand(armServos::armHalfDrop),
                                 new InstantCommand(intake::outtake),
-                                new DriveForwardCommand(drivetrain, -3)
+                                new DriveForwardCommand(drivetrain, -6)
                         ),
                         sensorColor::freightInBox
                 ),

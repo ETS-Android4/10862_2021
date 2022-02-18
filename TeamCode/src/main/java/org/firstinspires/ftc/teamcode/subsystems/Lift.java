@@ -19,9 +19,9 @@ public class Lift extends SubsystemBase {
     private MotorEx liftMotor;
     private MotorEx liftMotor2;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.005, 0.0008, 0, 0);
-
-    //public static double ARM_OFFSET = 0;
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.005, 0.008, 0, 0);
+    //I = 0.0008
+    public static double ARM_OFFSET = 0;
     private PIDFController controller;
     private boolean automatic;
 
