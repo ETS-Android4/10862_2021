@@ -52,7 +52,7 @@ public class CRedCarouselCommandL extends SequentialCommandGroup {
                 new InstantCommand(intake::stop),
 
                 new InstantCommand(intake::servoUp),
-                new LiftHighCommand(lift),
+                new LiftHighCommand(lift, armServos),
 
                 new WaitCommand(500),
                 new DriveForwardCommand(drivetrain,-2),

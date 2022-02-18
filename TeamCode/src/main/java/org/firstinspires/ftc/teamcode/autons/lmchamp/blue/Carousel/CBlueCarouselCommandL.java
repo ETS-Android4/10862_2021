@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
@@ -51,7 +52,7 @@ public class CBlueCarouselCommandL extends SequentialCommandGroup {
                 new InstantCommand(intake::stop),
 
                 new InstantCommand(intake::servoUp),
-                new LiftHighCommand(lift),
+                new LiftHighCommand(lift, armServos),
 
                 new WaitCommand(500),
                 new DriveForwardCommand(drivetrain,-2),

@@ -27,7 +27,7 @@ public class RedWarehouseCommandL extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, -2),
                 new TurnToCommand(drivetrain, 50, true),
                 //original 60
-                new LiftLowCommand(lift),
+                new LiftLowCommand(lift, armServos),
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -21.5),

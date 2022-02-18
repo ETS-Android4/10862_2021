@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
@@ -26,7 +27,7 @@ public class BlueWarehouseCommandR extends SequentialCommandGroup {
 
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, 298),
-                new LiftHighCommand(lift),
+                new LiftMidCommand(lift, armServos),
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -4.5),

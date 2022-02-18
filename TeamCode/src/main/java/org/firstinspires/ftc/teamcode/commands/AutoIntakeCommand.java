@@ -28,6 +28,7 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                                 new DriveForwardCommand(drivetrain, -2)
                         ),
                         new SequentialCommandGroup(
+                                //try turning instead of driving
                                 new DriveForwardCommand(drivetrain,6),
                                 new InstantCommand(armServos::boxClose),
                                 new InstantCommand(armServos::armHalfDrop),

@@ -90,7 +90,7 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(-6.5,-33), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new LiftHighCommand(lift),
+                new LiftHighCommand(lift, armServos),
                 new WaitCommand(100),
                 new SplineCommand(drivetrain, new Vector2d(18,18), Math.toRadians(0), true),
                 new WaitCommand(100),
@@ -101,7 +101,7 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(-8,-36), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new LiftHighCommand(lift),
+                new LiftHighCommand(lift, armServos),
                 new WaitCommand(100),
                 new SplineCommand(drivetrain, new Vector2d(18,18), Math.toRadians(0), true),
                 new WaitCommand(100),
@@ -111,7 +111,7 @@ public void matchStart()
                 new SplineCommand(drivetrain, new Vector2d(-10,-40), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new LiftHighCommand(lift),
+                new LiftHighCommand(lift, armServos),
                 new WaitCommand(100),
                 new SplineCommand(drivetrain, new Vector2d(16,17), Math.toRadians(0), true),
                 new WaitCommand(100),

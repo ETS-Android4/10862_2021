@@ -122,6 +122,7 @@ public class BlueTeleOp extends MatchOpMode {
         liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
                 .whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
 
+        //tf is this shit HELLO
         //reset everything
         resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
                 .whenPressed(new LiftResetCommandT(armServos, lift));

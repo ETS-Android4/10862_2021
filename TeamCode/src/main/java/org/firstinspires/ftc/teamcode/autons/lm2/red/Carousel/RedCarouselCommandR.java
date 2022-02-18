@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -25,7 +26,7 @@ public class RedCarouselCommandR extends SequentialCommandGroup {
         addCommands(
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, -60, true),
-                new LiftHighCommand(lift),
+                new LiftMidCommand(lift, armServos),
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -6.5),

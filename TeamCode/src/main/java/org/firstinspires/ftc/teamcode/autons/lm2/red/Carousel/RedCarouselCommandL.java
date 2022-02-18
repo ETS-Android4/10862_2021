@@ -25,7 +25,7 @@ public class RedCarouselCommandL extends SequentialCommandGroup {
         addCommands(
                 new DriveForwardCommand(drivetrain, -24),
                 new TurnToCommand(drivetrain, -60, true),
-                new LiftLowCommand(lift),
+                new LiftLowCommand(lift, armServos),
                 new WaitCommand(1000),
 
                 new KindaSlowDriveForwardCommand(drivetrain, -6.5),
