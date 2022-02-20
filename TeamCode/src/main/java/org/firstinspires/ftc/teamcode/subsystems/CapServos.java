@@ -21,7 +21,7 @@ public class CapServos extends SubsystemBase {
     public static double SERVO_POSITION_AUTO_LOW = 0.95;
     public static double SERVO_POSITION_AUTO_MID = 0.85;
     public static double SERVO_POSITION_AUTO_HIGH = 0.7;
-    public static double SERVO_POSITION_AUTO_HOME = 0.27;
+    public static double SERVO_POSITION_AUTO_HOME = 0.34;
 
     public static double SERVO_POSITION_AUTO_OPEN = 0.38;
     public static double SERVO_POSITION_AUTO_CLOSE = 0.84;

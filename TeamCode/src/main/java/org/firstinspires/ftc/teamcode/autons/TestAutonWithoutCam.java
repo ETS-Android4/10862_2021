@@ -96,7 +96,7 @@ public void matchStart()
 
                 new AutoLiftResetCommand(armServos, lift),
                 new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-8,-33), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-35), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift, armServos),
@@ -104,7 +104,7 @@ public void matchStart()
                 new DropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-10,-38), Math.toRadians(272)),
+                new SplineCommand(drivetrain, new Vector2d(-10,-40), Math.toRadians(272)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift, armServos),

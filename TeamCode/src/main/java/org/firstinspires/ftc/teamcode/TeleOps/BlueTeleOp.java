@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommandT;
+import org.firstinspires.ftc.teamcode.commands.ManualBoxCommand;
 import org.firstinspires.ftc.teamcode.commands.TeleOpDropFreightCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -152,7 +153,7 @@ public class BlueTeleOp extends MatchOpMode {
 
         //Box servos stuff
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
-                .whenPressed(armServos::armUp).whenPressed(armServos::boxClose);
+                .whenPressed(new ManualBoxCommand(armServos, drivetrain));
 
         /*resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                 .whenPressed(lift::resetEncoder);*/
