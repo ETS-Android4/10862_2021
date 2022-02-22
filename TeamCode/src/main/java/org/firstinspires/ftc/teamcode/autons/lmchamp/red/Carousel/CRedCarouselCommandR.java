@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
-import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;

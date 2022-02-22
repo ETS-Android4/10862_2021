@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.LiftCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -18,9 +18,7 @@ public class DropFreightCommand extends SequentialCommandGroup {
         addRequirements(armServos, drivetrain);
         addCommands(
                 new InstantCommand(armServos::armDrop),
-                new InstantCommand(armServos::boxAutoPush),
-                new WaitCommand (300),
-                new DriveForwardCommand(drivetrain,7)
+                new InstantCommand(armServos::boxAutoPush)
                 );
     }
 

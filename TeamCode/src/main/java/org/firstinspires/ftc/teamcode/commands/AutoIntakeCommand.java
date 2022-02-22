@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.command.WaitUntilCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -23,7 +24,7 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                 new ConditionalCommand(
                         new SequentialCommandGroup(
                                 new InstantCommand(armServos::boxClose),
-                                new InstantCommand(armServos::armHalfDrop),
+                                new InstantCommand(armServos::armAutoDrop),
                                 new InstantCommand(intake::outtake),
                                 new DriveForwardCommand(drivetrain, -2)
                         ),
@@ -32,7 +33,7 @@ public class AutoIntakeCommand extends SequentialCommandGroup {
                                 new DriveForwardCommand(drivetrain,6),
                                 new WaitCommand(200),
                                 new InstantCommand(armServos::boxClose),
-                                new InstantCommand(armServos::armHalfDrop),
+                                new InstantCommand(armServos::armAutoDrop),
                                 new InstantCommand(intake::outtake),
                                 new DriveForwardCommand(drivetrain, -6)
                         ),

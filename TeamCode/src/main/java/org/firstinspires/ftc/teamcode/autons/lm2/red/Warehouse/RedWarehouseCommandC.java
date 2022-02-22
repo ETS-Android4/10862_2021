@@ -4,7 +4,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
-import org.firstinspires.ftc.teamcode.commands.DropFreightCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftMidCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
