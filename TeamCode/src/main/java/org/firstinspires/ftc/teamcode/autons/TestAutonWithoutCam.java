@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommands.AutoDropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.LiftCommands;
+package org.firstinspires.ftc.teamcode.commands.DropFreightCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;

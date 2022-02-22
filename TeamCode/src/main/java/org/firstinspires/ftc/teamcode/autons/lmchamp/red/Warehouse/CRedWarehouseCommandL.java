@@ -3,14 +3,12 @@ package org.firstinspires.ftc.teamcode.autons.lmchamp.red.Warehouse;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommands.AutoDropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.LiftCommands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
