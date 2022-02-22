@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.autons;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
@@ -11,9 +12,13 @@ import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommands.AutoDropFreightCommand;
+import org.firstinspires.ftc.teamcode.commands.DropFreightCommands.DropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftHighCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.AutoLiftResetCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
@@ -81,40 +86,24 @@ public void robotInit() {
 public void matchStart()
     {
         schedule(new SequentialCommandGroup(
+
                 new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(23.5,27.5), Math.toRadians(13)),
+                new DriveForwardCommand(drivetrain, 20),
+                new TurnToCommand(drivetrain, 320),
+
+                new DriveForwardCommand(drivetrain, 10),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new InstantCommand(armServos::boxOpen),
-                new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-30), Math.toRadians(272)),
+                new TurnToCommand(drivetrain, 123.5),
+                new DriveForwardCommand(drivetrain, 35),
+                new KindaSlowDriveForwardCommand(drivetrain, 7),
+                new RightCarouselCommand(carousel),
 
-                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new LiftHighCommand(lift, armServos),
-                new TurnToCommand(drivetrain, 280),
-                new SplineCommand(drivetrain, new Vector2d(18.5,20), Math.toRadians(0), true),
-                new AutoDropFreightCommand(armServos, drivetrain),
+                new DriveForwardCommand(drivetrain, -8),
+                new TurnToCommand(drivetrain, 180),
+                new DriveForwardCommand(drivetrain,-14),
 
-                new AutoLiftResetCommand(armServos, lift),
-                new InstantCommand(intake::intake),
-                new SplineCommand(drivetrain, new Vector2d(-8,-34), Math.toRadians(272)),
-
-                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new LiftHighCommand(lift, armServos),
-                new TurnToCommand(drivetrain, 280),
-                new SplineCommand(drivetrain, new Vector2d(18.5,19), Math.toRadians(0), true),
-                new AutoDropFreightCommand(armServos, drivetrain),
-
-                new AutoLiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-10,-38), Math.toRadians(272)),
-
-                new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
-                new LiftHighCommand(lift, armServos),
-                new TurnToCommand(drivetrain, 280),
-                new SplineCommand(drivetrain, new Vector2d(18.5,19), Math.toRadians(0), true),
-                new AutoDropFreightCommand(armServos, drivetrain),
-
-                new AutoLiftResetCommand(armServos, lift),
-                new SplineCommand(drivetrain, new Vector2d(-6.5,-40), Math.toRadians(270))
+                new TurnToCommand(drivetrain, 270),
+                new DriveForwardCommand(drivetrain,-7)
                 ));
         }};
