@@ -17,7 +17,6 @@ import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
-import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -94,21 +93,21 @@ public void matchStart() {
                         new InstantCommand(capServos::autoLow),
                         new SplineCommand(drivetrain, new Vector2d(22,26.2), Math.toRadians(10)),
                         new CapArmLowCommand(capServos, drivetrain),
-                        new CRedWarehouseCommandL(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                        new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                         //Mid
                         new InstantCommand(capServos::autoMid),
                         new SplineCommand(drivetrain, new Vector2d(23.5,27.5), Math.toRadians(13)),
                         new CapArmMidCommand(capServos, drivetrain),
-                        new CRedWarehouseCommandC(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                        new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                         //High
                         new InstantCommand(capServos::autoHigh),
                         new SplineCommand(drivetrain, new Vector2d(23.5,26), Math.toRadians(10)),
                         new CapArmHighCommand(capServos, drivetrain),
-                        new CRedWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                        new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
             }}, vision::getCurrentPosition)
     );
