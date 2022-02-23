@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
@@ -87,10 +88,9 @@ public void robotInit() {
 public void matchStart()
     {
         schedule(new SequentialCommandGroup(
-
-                new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(23.5,27.5), Math.toRadians(13)),
-                new CapArmMidCommand(capServos, drivetrain),
+                new InstantCommand(capServos::autoLow),
+                new SplineCommand(drivetrain, new Vector2d(22,26.2), Math.toRadians(10)),
+                new CapArmLowCommand(capServos, drivetrain),
 
                 new InstantCommand(intake::intake),
                 new SplineCommand(drivetrain, new Vector2d(-8,-30), Math.toRadians(272)),

@@ -27,7 +27,7 @@ public class CBlueWarehouseCommandL extends SequentialCommandGroup {
                 new CapArmMidCommand(capServos, drivetrain),
 
                 new InstantCommand(armServos::boxOpen),
-                new InstantCommand(intake::intake),
+                new InstantCommand(intake::autoIntake),
                 new SplineCommand(drivetrain, new Vector2d(-5,38), Math.toRadians(90)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),

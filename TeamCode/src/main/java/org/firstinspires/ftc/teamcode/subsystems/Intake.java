@@ -15,6 +15,7 @@ import java.util.logging.Level;
 @Config
 public class Intake extends SubsystemBase {
     public static double INTAKE_SPEED = -0.75;
+    public static double AUTO_INTAKE_SPEED = -0.5;
     public static double OUTTAKE_SPEED = 0.5;
     public static double UP_POSITION= 0.85;
     public static double MID_POSITION = 0.85;
@@ -44,6 +45,7 @@ public class Intake extends SubsystemBase {
     private void set(double speed) {intakeMotor.set(speed); }
 
     public void intake() {set(INTAKE_SPEED); }
+    public void autoIntake() {set(AUTO_INTAKE_SPEED); }
 
     public void outtake() {set(OUTTAKE_SPEED); }
 
