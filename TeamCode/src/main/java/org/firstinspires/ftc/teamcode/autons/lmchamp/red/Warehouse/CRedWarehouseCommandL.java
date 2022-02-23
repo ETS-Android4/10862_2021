@@ -27,7 +27,6 @@ public class CRedWarehouseCommandL extends SequentialCommandGroup {
                 new SplineCommand(drivetrain, new Vector2d(22,26.2), Math.toRadians(10)),
                 new CapArmLowCommand(capServos, drivetrain),
 
-                new InstantCommand(armServos::boxOpen),
                 new InstantCommand(intake::intake),
                 new SplineCommand(drivetrain, new Vector2d(-6.5,-30), Math.toRadians(272)),
 
