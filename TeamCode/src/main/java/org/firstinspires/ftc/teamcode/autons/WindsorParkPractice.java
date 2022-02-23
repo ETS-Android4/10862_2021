@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 @Autonomous(name = "PRACTICE", group = "RED/BLUE")
-public class TestAutonWithoutCamPractice extends MatchOpMode {
+public class WindsorParkPractice extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
 public static double startPoseHeading = 0;
