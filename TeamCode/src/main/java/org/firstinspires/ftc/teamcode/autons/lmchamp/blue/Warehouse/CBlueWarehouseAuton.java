@@ -1,23 +1,21 @@
 package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.Command;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.SimpleServo;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandC;
-import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandL;
-import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommandR;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -90,13 +88,25 @@ public class CBlueWarehouseAuton extends MatchOpMode {
         schedule(
                 new SelectCommand(new HashMap<Object, Command>() {{
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
-                            new CBlueWarehouseCommandL(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                            //Low
+                            new InstantCommand(capServos::autoLow),
+                            new SplineCommand(drivetrain, new Vector2d(23,   -20.5), Math.toRadians(0)),
+                            new CapArmMidCommand(capServos, drivetrain),
+                            new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
-                            new CBlueWarehouseCommandC(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                            //Mid
+                            new InstantCommand(capServos::autoMid),
+                            new SplineCommand(drivetrain, new Vector2d(21.5,   -20.5), Math.toRadians(0)),
+                            new CapArmMidCommand(capServos, drivetrain),
+                            new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
-                            new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                            //High
+                            new InstantCommand(capServos::autoHigh),
+                            new SplineCommand(drivetrain, new Vector2d(22.5,   -20.5), Math.toRadians(0)),
+                            new CapArmMidCommand(capServos, drivetrain),
+                            new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                 }}, vision::getCurrentPosition)
         );

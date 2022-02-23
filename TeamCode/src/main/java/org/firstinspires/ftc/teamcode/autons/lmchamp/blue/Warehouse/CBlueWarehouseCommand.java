@@ -17,15 +17,10 @@ import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
-public class CBlueWarehouseCommandL extends SequentialCommandGroup {
-    public CBlueWarehouseCommandL(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor sensorColor, CapServos capServos) {
+public class CBlueWarehouseCommand extends SequentialCommandGroup {
+    public CBlueWarehouseCommand(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor sensorColor, CapServos capServos) {
         //declare variables here
-        //Low
         addCommands(
-                new InstantCommand(capServos::autoLow),
-                new SplineCommand(drivetrain, new Vector2d(23,   -20.5), Math.toRadians(0)),
-                new CapArmMidCommand(capServos, drivetrain),
-
                 new InstantCommand(armServos::boxOpen),
                 new InstantCommand(intake::autoIntake),
                 new SplineCommand(drivetrain, new Vector2d(-5,38), Math.toRadians(90)),
