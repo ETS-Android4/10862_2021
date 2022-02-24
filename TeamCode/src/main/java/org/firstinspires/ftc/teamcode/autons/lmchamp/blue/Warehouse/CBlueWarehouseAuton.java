@@ -56,7 +56,7 @@ public class CBlueWarehouseAuton extends MatchOpMode {
     private Lift lift;
     private Vision vision;
     private ArmServos armServos;
-    private Carousel carousel;
+    //private Carousel carousel;
     private SensorColor sensorColor;
     private CapServos capServos;
 
@@ -69,7 +69,7 @@ public class CBlueWarehouseAuton extends MatchOpMode {
         intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
         lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
-        carousel = new Carousel(hardwareMap, telemetry);
+        //carousel = new Carousel(hardwareMap, telemetry);
         capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
 
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
