@@ -10,6 +10,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 
+import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel.CBlueCarouselCommand;
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommand;
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
@@ -83,17 +84,15 @@ public void robotInit() {
     schedule(
             new SequentialCommandGroup
                     (
-                   new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos)
+                   new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos)
                     ));
             }};*/
 
 public void matchStart()
     {
         schedule(new SequentialCommandGroup(
-                //High
-                new InstantCommand(capServos::autoHigh),
-                new SplineCommand(drivetrain, new Vector2d(24.5,   -18.5), Math.toRadians(0)),
-                new CapArmMidCommand(capServos, drivetrain),
-                new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos)
-        ));
+                //Mid
+                new InstantCommand(capServos::autoMid),
+                new CBlueCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+        );
     }}
