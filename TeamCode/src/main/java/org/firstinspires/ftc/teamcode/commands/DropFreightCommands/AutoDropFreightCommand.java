@@ -13,8 +13,9 @@ public class AutoDropFreightCommand extends SequentialCommandGroup {
     public AutoDropFreightCommand(ArmServos armServos, Drivetrain drivetrain){
         addRequirements(armServos, drivetrain);
         addCommands(
-                new WaitCommand(100),
-                new InstantCommand(armServos::boxAutoPush)
+                new WaitCommand(50),
+                new InstantCommand(armServos::boxAutoPush),
+                new WaitCommand(50)
                 );
     }
 
