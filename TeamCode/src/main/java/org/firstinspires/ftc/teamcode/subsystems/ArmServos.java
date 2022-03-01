@@ -20,7 +20,7 @@ public class ArmServos extends SubsystemBase {
     public static double SERVO_POSITION_ARM_UP = 0.3;
     public static double SERVO_POSITION_ARM_AUTO_DROP = 0.55;
     public static double SERVO_POSITION_ARM_HALF_DROP = 0.8;
-    public static double SERVO_POSITION_ARM_DROP = 0.95;
+    public static double SERVO_POSITION_ARM_DROP = 0.9;
 
     public static double SERVO_POSITION_BOX_OPEN = 0.45;
     public static double SERVO_POSITION_BOX_AUTO_PUSH = 0.1;
