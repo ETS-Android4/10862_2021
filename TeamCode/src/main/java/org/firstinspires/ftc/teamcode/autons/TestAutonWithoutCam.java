@@ -90,9 +90,10 @@ public void robotInit() {
 public void matchStart()
     {
         schedule(new SequentialCommandGroup(
-                new InstantCommand(capServos::autoMid),
+                //High
+                new InstantCommand(capServos::autoHigh),
                 new SplineCommand(drivetrain, new Vector2d(24.5,   -18.5), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
                 new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos)
-                ));
-        }};
+        ));
+    }}
