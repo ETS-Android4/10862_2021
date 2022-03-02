@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 @Config
-@TeleOp(name = "Blue TeleOp")
+@TeleOp(name = "Shared TeleOp")
 public class SharedTeleOp extends MatchOpMode {
     // Gamepads
     private GamepadEx driverGamepad, operatorGamepad;
