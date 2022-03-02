@@ -139,9 +139,9 @@ public class RedTeleOp extends MatchOpMode {
 
         //carousel
         carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                .whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
-        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
                 .whileHeld(carousel::carouselRight).whenReleased(carousel::stop));
+        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+                .whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
 
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
