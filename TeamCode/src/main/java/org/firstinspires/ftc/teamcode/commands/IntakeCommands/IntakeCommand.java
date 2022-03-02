@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.IntakeCommands;
 
         import static org.firstinspires.ftc.teamcode.subsystems.ArmServos.freightInBox;
 

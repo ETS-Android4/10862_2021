@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
-import org.firstinspires.ftc.teamcode.commands.ColorIntakeCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeCommands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommandT;
