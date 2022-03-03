@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
@@ -18,8 +19,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
-
-@Autonomous(name = "PRACTICE", group = "RED/BLUE")
+@Disabled
+@Autonomous(name = "WindsorParkPRACTICE", group = "RED/BLUE")
 public class WindsorParkPractice extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
