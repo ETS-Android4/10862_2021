@@ -5,8 +5,8 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.RedDuckIntakeCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
@@ -27,15 +27,27 @@ public class CRedCarouselCommand extends SequentialCommandGroup {
 
                 new TurnToCommand(drivetrain, 123.5),
                 new DriveForwardCommand(drivetrain, 35),
-                new KindaSlowDriveForwardCommand(drivetrain, 4),
-                new RightCarouselCommand(carousel),
+                new RightCarouselCommand(carousel, drivetrain),
+
+                new RedDuckIntakeCommand(lift, intake, armServos, drivetrain, sensorColor)
+        );
+    }
+}
+
+/*new DriveForwardCommand(drivetrain, 20),
+                new TurnToCommand(drivetrain, 320),
+
+                new DriveForwardCommand(drivetrain, 10),
+                new CapArmMidCommand(capServos, drivetrain),
+
+                new TurnToCommand(drivetrain, 123.5),
+                new DriveForwardCommand(drivetrain, 35),
+                //new SlowestDriveForwardCommand(drivetrain, 4),
+                new RightCarouselCommand(carousel, drivetrain),
 
                 new DriveForwardCommand(drivetrain, -8),
                 new TurnToCommand(drivetrain, 180),
                 new DriveForwardCommand(drivetrain,-14),
 
                 new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain,-9)
-        );
-    }
-}
+                new DriveForwardCommand(drivetrain,-9)*/

@@ -4,16 +4,20 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowestDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 
 public class RightCarouselCommand extends SequentialCommandGroup{
     private Carousel carousel;
+    private Drivetrain drivetrain;
 
-    public RightCarouselCommand(Carousel carousel){
+    public RightCarouselCommand(Carousel carousel, Drivetrain drivetrain){
         addCommands(
                 new InstantCommand(carousel::carouselRight, carousel),
-                new WaitCommand(4000),
+                new SlowestDriveForwardCommand(drivetrain, 10),
+                new WaitCommand(5000),
                 new InstantCommand(carousel::stop, carousel)
         );
     }
