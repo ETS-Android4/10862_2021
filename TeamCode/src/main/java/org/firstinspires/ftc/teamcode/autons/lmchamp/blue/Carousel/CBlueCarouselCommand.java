@@ -22,20 +22,20 @@ public class CBlueCarouselCommand extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, 21),
                 new TurnToCommand(drivetrain, 60, true),
 
-                new DriveForwardCommand(drivetrain, 10),
+                new DriveForwardCommand(drivetrain, 10.5),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 230),
+                new TurnToCommand(drivetrain, 233),
                 new DriveForwardCommand(drivetrain, 35),
-                new KindaSlowDriveForwardCommand(drivetrain, 3),
+                new KindaSlowDriveForwardCommand(drivetrain, 5),
                 new LeftCarouselCommand(carousel),
 
-                new DriveForwardCommand(drivetrain, -8),
+                new DriveForwardCommand(drivetrain, -10),
                 new TurnToCommand(drivetrain, 180),
                 new DriveForwardCommand(drivetrain,-17.5),
 
                 new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain,-12)
+                new DriveForwardCommand(drivetrain,-14)
         );
     }
 }
