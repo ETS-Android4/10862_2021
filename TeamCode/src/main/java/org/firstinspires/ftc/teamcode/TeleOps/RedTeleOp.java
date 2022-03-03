@@ -105,16 +105,16 @@ public class RedTeleOp extends MatchOpMode {
 
 
         //Intake Trigger makes bow go down
-        /*intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                .whileHeld(armServos::armHome).whenReleased(intake::stop));*/
+            /*intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+                    .whileHeld(armServos::armHome).whenReleased(intake::stop));*/
 
         /*//Intake positions
-        intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
-            . whenPressed(intake::servoUp);
-        intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
-            . whenPressed(intake::servoMid);
-        intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-            . whenPressed(intake::servoDown);*/
+            intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
+                . whenPressed(intake::servoUp);
+            intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
+                . whenPressed(intake::servoMid);
+            intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+                . whenPressed(intake::servoDown);*/
 
         //lift commands
         liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
@@ -146,8 +146,8 @@ public class RedTeleOp extends MatchOpMode {
         //Outaking the freight motion
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
                 .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
-        /*resetClawServoBumper = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whenPressed(armServos::boxOpen);*/
+            /*resetClawServoBumper = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                    .whenPressed(armServos::boxOpen);*/
 
 
         //Box servos stuff
@@ -158,7 +158,7 @@ public class RedTeleOp extends MatchOpMode {
                 .whenPressed(lift::resetEncoder);*/
 
         //TODO:Fix the slide reset button
-        //slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> liftMotor.adjustliftPosition);
+        //slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> reset(liftMotor));
 
         intakeClawUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)
                 .whenPressed(armServos::boxUp));
