@@ -33,8 +33,8 @@ public class Lift extends SubsystemBase {
     private double encoderOffset2 = 0;
 
     public static int RESTING_POSITION = 100;
-    public static int LOW_POSITION = -350;
-    public static int MID_POSITION = -700;
+    public static int LOW_POSITION = -370;
+    public static int MID_POSITION = -650;
     public static int HIGH_POSITION = -1680;
     public static int CAP_POSITION = 0;
 
