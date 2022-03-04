@@ -80,10 +80,10 @@ public void robotInit() {
 public void matchStart()
     {
         schedule(new SequentialCommandGroup(
-                //Mid
-                new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(22.8,27.5), Math.toRadians(13)),
+                //Low
+                new InstantCommand(capServos::autoLow),
+                new SplineCommand(drivetrain, new Vector2d(24,   -20.5), Math.toRadians(0)),
                 new CapArmMidCommand(capServos, drivetrain),
-                new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
         );
     }}

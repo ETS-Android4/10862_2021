@@ -90,21 +90,21 @@ public class CBlueWarehouseAuton extends MatchOpMode {
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
                             //Low
                             new InstantCommand(capServos::autoLow),
-                            new SplineCommand(drivetrain, new Vector2d(25,   -20.5), Math.toRadians(0)),
+                            new SplineCommand(drivetrain, new Vector2d(24,   -20.5), Math.toRadians(0)),
                             new CapArmMidCommand(capServos, drivetrain),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                             //Mid
                             new InstantCommand(capServos::autoMid),
-                            new SplineCommand(drivetrain, new Vector2d(24, -20), Math.toRadians(0)),
+                            new SplineCommand(drivetrain, new Vector2d(23, -19), Math.toRadians(0)),
                             new CapArmMidCommand(capServos, drivetrain),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                             //High
                             new InstantCommand(capServos::autoHigh),
-                            new SplineCommand(drivetrain, new Vector2d(24.5,   -18.5), Math.toRadians(0)),
+                            new SplineCommand(drivetrain, new Vector2d(24,   -18.5), Math.toRadians(0)),
                             new CapArmMidCommand(capServos, drivetrain),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
