@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
@@ -83,16 +84,19 @@ public class CRedCarouselAuton extends MatchOpMode {
                 new SelectCommand(new HashMap<Object, Command>() {{
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
                             //Low
+                            new WaitCommand(3000),
                             new InstantCommand(capServos::autoLow),
                             new CRedCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                             //Mid
+                            new WaitCommand(3000),
                             new InstantCommand(capServos::autoMid),
                             new CRedCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                             //High
+                            new WaitCommand(3000),
                             new InstantCommand(capServos::autoHigh),
                             new CRedCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
                     );
