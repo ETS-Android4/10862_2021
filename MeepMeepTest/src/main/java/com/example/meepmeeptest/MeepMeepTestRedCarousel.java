@@ -16,6 +16,8 @@ public class MeepMeepTestRedCarousel {
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
                                 //Red Carousel
+                                .splineTo(new Vector2d(50, -16), 270)
+
                                 .forward(20)
                                 .turn(-0.5)  //320 degrees
 

@@ -22,7 +22,7 @@ public class CRedCarouselCommand extends SequentialCommandGroup {
     public CRedCarouselCommand(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
 
         addCommands(
-                new SplineCommand(drivetrain, new Vector2d(50, -16), Math.toRadians(270)),
+                new SplineCommand(drivetrain, new Vector2d(47, -13), Math.toRadians(270)),
                 new CapArmMidCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 123.5),

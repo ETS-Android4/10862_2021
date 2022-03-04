@@ -82,6 +82,8 @@ public void matchStart()
         schedule(new SequentialCommandGroup(
                 //Mid
                 new InstantCommand(capServos::autoMid),
-                new CRedCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos))
+                new SplineCommand(drivetrain, new Vector2d(22.8,27.5), Math.toRadians(13)),
+                new CapArmMidCommand(capServos, drivetrain),
+                new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
         );
     }}
