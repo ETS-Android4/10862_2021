@@ -35,6 +35,7 @@ public class Lift extends SubsystemBase {
     public static int RESTING_POSITION = 100;
     public static int LOW_POSITION = -370;
     public static int MID_POSITION = -650;
+    public static int SHARED_HIGH_POSITION = -1400;
     public static int HIGH_POSITION = -1680;
     public static int CAP_POSITION = 0;
 
@@ -164,6 +165,12 @@ public class Lift extends SubsystemBase {
     public void liftHigh() {
         automatic = true;
         controller.setSetPoint(HIGH_POSITION);
+        liftPosition = 3;
+    }
+
+    public void liftAutoHigh() {
+        automatic = true;
+        controller.setSetPoint(SHARED_HIGH_POSITION);
         liftPosition = 3;
     }
 
