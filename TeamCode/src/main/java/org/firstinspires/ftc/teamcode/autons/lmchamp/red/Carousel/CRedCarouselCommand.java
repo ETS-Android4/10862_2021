@@ -23,13 +23,13 @@ public class CRedCarouselCommand extends SequentialCommandGroup {
 
         addCommands(
                 new DriveForwardCommand(drivetrain, 20),
-                new TurnToCommand(drivetrain, 320),
+                new TurnToCommand(drivetrain, 320, true),
 
                 new DriveForwardCommand(drivetrain, 10),
                 new CapArmMidCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 123.5, true),
-                new DriveForwardCommand(drivetrain, 35),
+                new TurnToCommand(drivetrain, 126.5),
+                new DriveForwardCommand(drivetrain, 40),
                 //new SlowestDriveForwardCommand(drivetrain, 4),
                 new RightCarouselCommand(carousel, drivetrain),
 
