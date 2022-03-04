@@ -16,6 +16,25 @@ public class MeepMeepTestRedCarousel {
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(0, 0, 0))
                                 //Red Carousel
+                                .forward(20)
+                                .turn(-0.5)  //320 degrees
+
+                                .forward(10)
+
+                                .turn(0.35)    //123.5 degrees
+                                .forward(35)
+
+                                //RedDuckIntake Command
+                                .forward(-8)
+                                .turn(0.5)  //180 degrees
+                                .back(14)
+
+                                .turn(0.75) //270 degrees
+                                .back(9)
+
+
+
+
                                 .build()
                 );
 
