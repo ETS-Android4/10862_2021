@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -80,7 +80,7 @@ public void matchStart()
                 //Mid
                 new InstantCommand(capServos::autoMid),
                 new SplineCommand(drivetrain, new Vector2d(23, -19), Math.toRadians(0)),
-                new CapArmAutoCommand(capServos, drivetrain),
+                new CapArmCarouselCommand(capServos, drivetrain),
                 new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
         );
     }}

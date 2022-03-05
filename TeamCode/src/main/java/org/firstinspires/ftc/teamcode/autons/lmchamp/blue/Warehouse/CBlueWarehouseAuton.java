@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -90,21 +90,18 @@ public class CBlueWarehouseAuton extends MatchOpMode {
                             //Low
                             new InstantCommand(capServos::autoLow),
                             new SplineCommand(drivetrain, new Vector2d(24,   -20.5), Math.toRadians(0)),
-                            new CapArmAutoCommand(capServos, drivetrain),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                             //Mid
                             new InstantCommand(capServos::autoMid),
                             new SplineCommand(drivetrain, new Vector2d(23, -19), Math.toRadians(0)),
-                            new CapArmAutoCommand(capServos, drivetrain),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                             //High
                             new InstantCommand(capServos::autoHigh),
                             new SplineCommand(drivetrain, new Vector2d(24,   -18.5), Math.toRadians(0)),
-                            new CapArmAutoCommand(capServos, drivetrain),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                 }}, vision::getCurrentPosition)

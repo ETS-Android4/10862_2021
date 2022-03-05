@@ -4,6 +4,8 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmWarehouseCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnCommand;
@@ -21,6 +23,8 @@ public class CRedWarehouseCommand extends SequentialCommandGroup {
     public CRedWarehouseCommand(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor sensorColor, CapServos capServos) {
         //declare variables here
         addCommands(
+                new CapArmWarehouseCommand(capServos, drivetrain),
+
                 new InstantCommand(intake::autoIntake),
                 new SplineCommand(drivetrain, new Vector2d(-8,-32), Math.toRadians(270)),
 

@@ -1,13 +1,11 @@
 package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
@@ -26,7 +24,7 @@ public class CBlueCarouselCommand extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 60, true),
 
                 new DriveForwardCommand(drivetrain, 10.5),
-                new CapArmAutoCommand(capServos, drivetrain),
+                new CapArmCarouselCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 270),
                 new DriveForwardCommand(drivetrain, 26.8),
