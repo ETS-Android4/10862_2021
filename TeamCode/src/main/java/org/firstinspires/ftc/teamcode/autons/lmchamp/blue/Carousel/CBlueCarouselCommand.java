@@ -19,7 +19,6 @@ public class CBlueCarouselCommand extends SequentialCommandGroup {
     public CBlueCarouselCommand(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
 
         addCommands(
-
                 new DriveForwardCommand(drivetrain, 21),
                 new TurnToCommand(drivetrain, 63, true),
 
