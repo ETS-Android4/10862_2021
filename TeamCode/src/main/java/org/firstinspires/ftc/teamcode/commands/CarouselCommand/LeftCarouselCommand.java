@@ -16,7 +16,7 @@ public class LeftCarouselCommand extends SequentialCommandGroup{
     public LeftCarouselCommand(Carousel carousel, Drivetrain drivetrain){
         addCommands(
                 new InstantCommand(carousel::carouselLeft, carousel),
-                new SlowestDriveForwardCommand(drivetrain, 4),
+                new SlowestDriveForwardCommand(drivetrain, 10),
                 new WaitCommand(4000),
                 new InstantCommand(carousel::stop, carousel)
         );
