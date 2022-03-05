@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmAutoCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -99,7 +99,7 @@ public void matchStart() {
                         //Mid
                         new InstantCommand(capServos::autoMid),
                         new SplineCommand(drivetrain, new Vector2d(22.8,27.5), Math.toRadians(13)),
-                        new CapArmMidCommand(capServos, drivetrain),
+                        new CapArmAutoCommand(capServos, drivetrain),
                         new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(

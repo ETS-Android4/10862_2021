@@ -1,15 +1,11 @@
 package org.firstinspires.ftc.teamcode.autons.lmchamp.red.Carousel;
 
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmMidCommand;
+import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmAutoCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
-import org.firstinspires.ftc.teamcode.commands.DropFreightCommands.AutoDropFreightCommand;
-import org.firstinspires.ftc.teamcode.commands.RedDuckIntakeCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
 import org.firstinspires.ftc.teamcode.subsystems.Carousel;
@@ -26,12 +22,11 @@ public class CRedCarouselCommand extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 320, true),
 
                 new DriveForwardCommand(drivetrain, 10),
-                new CapArmMidCommand(capServos, drivetrain),
+                new CapArmAutoCommand(capServos, drivetrain),
 
                 new DriveForwardCommand(drivetrain, -10),
                 new TurnToCommand(drivetrain, 126.5),
                 new DriveForwardCommand(drivetrain, 40),
-                //new SlowestDriveForwardCommand(drivetrain, 4),
                 new RightCarouselCommand(carousel, drivetrain),
 
                 new DriveForwardCommand(drivetrain, -8),

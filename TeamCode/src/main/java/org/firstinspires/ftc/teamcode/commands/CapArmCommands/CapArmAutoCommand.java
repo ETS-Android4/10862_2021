@@ -12,13 +12,14 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 import java.time.Instant;
 
-public class CapArmMidCommand extends SequentialCommandGroup {
-    public CapArmMidCommand(CapServos capServos, Drivetrain drivetrain) {
+public class CapArmAutoCommand extends SequentialCommandGroup {
+    public CapArmAutoCommand(CapServos capServos, Drivetrain drivetrain) {
 
         addCommands(
                 new InstantCommand(capServos::clawOpen, capServos),
                 new WaitCommand(200),
-                new TurnToCommand(drivetrain,180),
+                new DriveForwardCommand(drivetrain, -8.5),
+                new TurnToCommand(drivetrain,180, true),
                 new InstantCommand(capServos::capReset, capServos)
 
         );
