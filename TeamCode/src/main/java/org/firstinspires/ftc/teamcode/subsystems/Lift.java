@@ -4,7 +4,6 @@ import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
@@ -36,7 +35,9 @@ public class Lift extends SubsystemBase {
     public static int LOW_POSITION = -370;
     public static int MID_POSITION = -650;
     public static int SHARED_HIGH_POSITION = -1400;
+    public static int AUTO_HIGH_POSITION = -1400;
     public static int HIGH_POSITION = -1680;
+
     public static int CAP_POSITION = 0;
 
     public static int RESTING_POSITION2 = -100;
@@ -170,6 +171,12 @@ public class Lift extends SubsystemBase {
 
     public void liftAutoHigh() {
         automatic = true;
+        controller.setSetPoint(AUTO_HIGH_POSITION);
+        liftPosition = 3;
+    }
+
+    public void liftSharedHigh() {
+        automatic = true;
         controller.setSetPoint(SHARED_HIGH_POSITION);
         liftPosition = 3;
     }
@@ -217,7 +224,7 @@ public class Lift extends SubsystemBase {
         } else if(liftPosition == 2) {
             liftMid();
         } else if(liftPosition == 3) {
-            liftHigh();
+            liftAutoHigh();
         }
     }
 }

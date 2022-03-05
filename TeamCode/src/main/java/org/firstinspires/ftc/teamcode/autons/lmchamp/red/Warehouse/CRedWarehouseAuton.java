@@ -91,7 +91,7 @@ public void matchStart() {
                 put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
                         //Low
                         new InstantCommand(capServos::autoLow),
-                        new SplineCommand(drivetrain, new Vector2d(22,26.2), Math.toRadians(10)),
+                        new SplineCommand(drivetrain, new Vector2d(23,26.2), Math.toRadians(25)),
                         new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                 );
                 put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
