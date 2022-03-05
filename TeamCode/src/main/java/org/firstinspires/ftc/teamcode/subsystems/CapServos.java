@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class CapServos extends SubsystemBase {
 
     public static double SERVO_POSITION_AUTO_LOW = 0.88;
-    public static double SERVO_POSITION_AUTO_MID = 0.8;
+    public static double SERVO_POSITION_AUTO_MID = 0.77;
     public static double SERVO_POSITION_AUTO_HIGH = 0.65;
     public static double SERVO_POSITION_AUTO_HOME = 0.16;
 
