@@ -134,7 +134,7 @@ public class SharedTeleOp extends MatchOpMode {
             liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
                     .whenPressed(lift::liftMid));
             liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                    .whenPressed(lift::liftAutoHigh));
+                    .whenPressed(lift::liftSharedHigh));
 
         //carousel
             carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)

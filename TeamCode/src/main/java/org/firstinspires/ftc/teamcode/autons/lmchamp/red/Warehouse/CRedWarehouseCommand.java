@@ -27,12 +27,12 @@ public class CRedWarehouseCommand extends SequentialCommandGroup {
                 new CapArmWarehouseCommand(capServos, drivetrain),
 
                 new InstantCommand(intake::autoIntake),
-                new SplineCommand(drivetrain, new Vector2d(-8,-37), Math.toRadians(270)),
+                new SplineCommand(drivetrain, new Vector2d(-8,-37), Math.toRadians(278)),
 
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift, armServos),
                 new TurnToCommand(drivetrain, 275),
-                new SplineCommand(drivetrain, new Vector2d(18.2,13), Math.toRadians(5), true),
+                new SplineCommand(drivetrain, new Vector2d(18.2,13.7), Math.toRadians(6), true),
                 new AutoDropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),
@@ -42,7 +42,7 @@ public class CRedWarehouseCommand extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift, armServos),
                 new TurnToCommand(drivetrain, 275),
-                new SplineCommand(drivetrain, new Vector2d(18.3,12), Math.toRadians(3), true),
+                new SplineCommand(drivetrain, new Vector2d(18.4,12.9), Math.toRadians(3), true),
                 new AutoDropFreightCommand(armServos, drivetrain),
 
                 new AutoLiftResetCommand(armServos, lift),
@@ -52,7 +52,7 @@ public class CRedWarehouseCommand extends SequentialCommandGroup {
                 new AutoIntakeCommand(lift, intake, armServos, drivetrain, sensorColor),
                 new LiftHighCommand(lift, armServos),
                 new TurnToCommand(drivetrain, 275),
-                new SplineCommand(drivetrain, new Vector2d(16.85,10), Math.toRadians(360), true),
+                new SplineCommand(drivetrain, new Vector2d(16.85,11.3), Math.toRadians(360), true),
                 new TurnCommand(drivetrain, -5),
                 new AutoDropFreightCommand(armServos, drivetrain),
 
