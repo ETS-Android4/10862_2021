@@ -22,7 +22,7 @@ public class CBlueCarouselCommand extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, 21),
                 new TurnToCommand(drivetrain, 63, true),
 
-                new DriveForwardCommand(drivetrain, 10.5),
+                new DriveForwardCommand(drivetrain, 9.3),
                 new CapArmCarouselCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 270),
