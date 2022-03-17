@@ -27,10 +27,10 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
     }
 
     public void periodic() {
-        Util.logger(this, telemetry, Level.INFO, "Color Alpha:",colorSensor.alpha());
-        Util.logger(this, telemetry, Level.INFO, "Color Red:",colorSensor.red());
-        Util.logger(this, telemetry, Level.INFO, "Color Green:",colorSensor.green());
-        Util.logger(this, telemetry, Level.INFO, "Color Blue:",colorSensor.blue());
+        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",colorSensor.alpha());
+        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",colorSensor.red());
+        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",colorSensor.green());
+        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",colorSensor.blue());
     }
 
     public int[] HSVtoARGB(int alpha, float[] hsv) {

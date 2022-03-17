@@ -40,11 +40,13 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
         Util.logger(this, telemetry, Level.INFO, "Intake Motor Speed: ", intakeMotor.get());
+        Util.logger(this, telemetry, Level.INFO, "Intake Servo Position: ", intakeServo.getPosition());
     }
 
     private void set(double speed) {intakeMotor.set(speed); }
 
     public void intake() {set(INTAKE_SPEED); }
+
     public void autoIntake() {set(AUTO_INTAKE_SPEED); }
 
     public void outtake() {set(OUTTAKE_SPEED); }
