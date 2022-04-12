@@ -28,7 +28,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
-@Autonomous(name = "CBlue Carousel", group = "BLUE")
+@Autonomous(name = "CBlue Carousel", group = "BLUE", preselectTeleOp = "Blue TeleOp")
 public class CBlueCarouselAuton extends MatchOpMode {
     public static double startPoseX = 0;
     public static double startPoseY = 0;

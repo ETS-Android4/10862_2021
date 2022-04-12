@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Warehouse.CBlueWarehouseCommand;
+import org.firstinspires.ftc.teamcode.autons.lmchamp.red.Warehouse.CRedWarehouseCommand;
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
@@ -60,27 +61,12 @@ public void robotInit() {
     sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
 }
 
-@Override
-    /*public void matchStart() {
-        schedule(
-                new SequentialCommandGroup(
-                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel)));
-    }};*/
-/*public void matchStart() {
-    schedule(
-            new SequentialCommandGroup
-                    (
-                   new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos)
-                    ));
-            }};*/
-
 public void matchStart()
     {
         schedule(new SequentialCommandGroup(
-                //Mid
-                new InstantCommand(capServos::autoMid),
-                new SplineCommand(drivetrain, new Vector2d(23, -19), Math.toRadians(0)),
-                new CapArmCarouselCommand(capServos, drivetrain),
-                new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
+                //High
+                new InstantCommand(capServos::autoHigh),
+                new SplineCommand(drivetrain, new Vector2d(23.5,26), Math.toRadians(10)),
+                new CRedWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
         );
     }}

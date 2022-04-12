@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import java.util.HashMap;
 import java.util.logging.Level;
-@Autonomous(name = "CBlue Warehouse", group = "BLUE")
+@Autonomous(name = "CBlue Warehouse", group = "BLUE", preselectTeleOp = "Blue TeleOp")
 public class CBlueWarehouseAuton extends MatchOpMode {
 
     public static double startPoseX = 0;

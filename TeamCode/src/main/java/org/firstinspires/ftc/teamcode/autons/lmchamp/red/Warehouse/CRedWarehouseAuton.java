@@ -33,7 +33,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-@Autonomous(name = "CRed Warehouse", group = "BLUE")
+@Autonomous(name = "CRed Warehouse", group = "BLUE", preselectTeleOp = "Blue TeleOp")
 public class CRedWarehouseAuton extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;
