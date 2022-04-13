@@ -20,21 +20,37 @@ public class CRedCarouselCommand extends SequentialCommandGroup {
     public CRedCarouselCommand(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
 
         addCommands(
-                new DriveForwardCommand(drivetrain, 21),
-                new TurnToCommand(drivetrain, 320, true),
+                new DriveForwardCommand(drivetrain, 45),
+                new TurnToCommand(drivetrain, 270, true),
 
-                new DriveForwardCommand(drivetrain, 9),
+                new DriveForwardCommand(drivetrain, 3),
                 new CapArmCarouselCommand(capServos, drivetrain),
 
-                new TurnToCommand(drivetrain, 115),   //To carousel
-                new DriveForwardCommand(drivetrain, 26.8),
+                new TurnToCommand(drivetrain, 140),   //To carousel
+                new DriveForwardCommand(drivetrain, 40),
                 new RightCarouselCommand(carousel, drivetrain),
 
+                new DriveForwardCommand(drivetrain,-2),
                 new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain,-14),
+                new DriveForwardCommand(drivetrain,-15),
 
                 new TurnToCommand(drivetrain, 270),
                 new DriveForwardCommand(drivetrain, -4)
+//                new DriveForwardCommand(drivetrain, 21),
+//                new TurnToCommand(drivetrain, 320),
+//
+//                new DriveForwardCommand(drivetrain, 9),
+//                new CapArmCarouselCommand(capServos, drivetrain),
+//
+//                new TurnToCommand(drivetrain, 115),   //To carousel
+//                new DriveForwardCommand(drivetrain, 26.8),
+//                new RightCarouselCommand(carousel, drivetrain),
+//
+//                new TurnToCommand(drivetrain, 180),
+//                new DriveForwardCommand(drivetrain,-14),
+//
+//                new TurnToCommand(drivetrain, 270),
+//                new DriveForwardCommand(drivetrain, -4)
                 );
     }
 }

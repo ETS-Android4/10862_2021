@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 
 public class CRedWarehouseCommandLow extends SequentialCommandGroup {
     public CRedWarehouseCommandLow(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, SensorColor sensorColor, CapServos capServos) {
-        //declare variables here
+        //NOT USED
         addCommands(
                 new CapArmWarehouseCommand(capServos, drivetrain),
 
