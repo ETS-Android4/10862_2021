@@ -128,6 +128,8 @@ public class BlueTeleOp extends MatchOpMode {
                     .whenPressed(new LiftResetCommandT(armServos, lift));
             resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
                     .whenPressed(new InstantCommand(lift::liftResting, lift));
+            resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
+                    .whenPressed(new InstantCommand(capServos::clawOpen));
 
         //Lift positions
             liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
