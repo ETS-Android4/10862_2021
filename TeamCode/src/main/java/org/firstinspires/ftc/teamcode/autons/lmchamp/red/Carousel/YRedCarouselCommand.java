@@ -34,18 +34,7 @@ public class YRedCarouselCommand extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, 35),
 
 
-                new TurnToCommand(drivetrain, 280, true),
-                new InstantCommand(capServos::autoLow),
-                new DriveForwardCommand(drivetrain, 25),
-                new CapArmCarouselCommand(capServos, drivetrain),
-
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 15),
-                new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 12),
-
-                new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, -5)
+                new TurnToCommand(drivetrain, 280, true)
                 );
     }
 }
