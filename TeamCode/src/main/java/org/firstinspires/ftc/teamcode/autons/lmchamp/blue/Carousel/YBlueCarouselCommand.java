@@ -34,19 +34,7 @@ public class YBlueCarouselCommand extends SequentialCommandGroup {
                 new TurnToCommand(drivetrain, 0, true),
                 new DriveForwardCommand(drivetrain, 30),
 
-                new TurnToCommand(drivetrain, 100, true),
-                new InstantCommand(capServos::autoLow),
-                new WaitCommand(150),
-                new DriveForwardCommand(drivetrain, 23),
-                new CapArmCarouselCommand(capServos, drivetrain),
-
-                new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, 16.5),
-                new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 7.5),
-
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, -7)
+                new TurnToCommand(drivetrain, 100, true)
                 );
     }
 }
