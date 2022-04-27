@@ -104,7 +104,7 @@ public class CBlueCarouselAuton extends MatchOpMode {
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                             //Mid
-                            new CBlueCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos),
+                            new YBlueCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos),
                             new InstantCommand(capServos::autoMid),
                             new WaitCommand(150),
                             new DriveForwardCommand(drivetrain, 23),
@@ -120,7 +120,7 @@ public class CBlueCarouselAuton extends MatchOpMode {
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                             //High
-                            new CBlueCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos),
+                            new YBlueCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos),
                             new InstantCommand(capServos::autoHigh),
                             new WaitCommand(150),
                             new DriveForwardCommand(drivetrain, 23),
