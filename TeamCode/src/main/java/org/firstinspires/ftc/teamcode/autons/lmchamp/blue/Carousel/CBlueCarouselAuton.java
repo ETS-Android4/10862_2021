@@ -44,7 +44,7 @@ public class CBlueCarouselAuton extends MatchOpMode {
     private MotorEx liftMotor;
     private CRServo carouselServo;
     private ColorSensor colorSensor;
-    private ServoEx capArmServo, clawServo;
+    private ServoEx capArmServo, clawServo, realCapArmServo;
     private ServoEx armServo, dropServo;
 
     // Gamepad
@@ -69,7 +69,7 @@ public class CBlueCarouselAuton extends MatchOpMode {
         lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
         carousel = new Carousel(hardwareMap, telemetry);
-        capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
+        capServos = new CapServos(clawServo, capArmServo, realCapArmServo, telemetry, hardwareMap);
 
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);

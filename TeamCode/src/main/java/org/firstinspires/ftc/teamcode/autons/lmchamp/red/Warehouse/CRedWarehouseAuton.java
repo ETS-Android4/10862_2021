@@ -46,7 +46,7 @@ private ServoEx intakeServo;
 private MotorEx liftMotor;
 private CRServo carouselServo;
 private ColorSensor colorSensor;
-private ServoEx capArmServo, clawServo;
+private ServoEx capArmServo, realCapArmServo, clawServo;
 private ServoEx armServo, dropServo;
 
 // Gamepad
@@ -71,7 +71,7 @@ private CapServos capServos;
         lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
         armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
         carousel = new Carousel(hardwareMap, telemetry);
-        capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
+        capServos = new CapServos(clawServo, capArmServo, realCapArmServo, telemetry, hardwareMap);
 
         sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);

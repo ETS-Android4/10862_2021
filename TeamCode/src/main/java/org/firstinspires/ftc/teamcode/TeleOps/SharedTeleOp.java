@@ -42,7 +42,9 @@ public class SharedTeleOp extends MatchOpMode {
         private ServoEx armServo, dropServo;
         private ServoEx intakeServo;
         private ColorSensor colorSensor;
-        private ServoEx capArmServo, clawServo;
+
+        private ServoEx capArmServo, realCapArmServo, clawServo;
+
 
     // Subsystems
         private Drivetrain drivetrain;
@@ -68,6 +70,10 @@ public class SharedTeleOp extends MatchOpMode {
         public Button intakeClawUpButton;
         public Button intakeClawDownButton;
         public Button resetClawServoBumper;
+        public Button outRealCapHomeTrigger;
+        public Button inRealCapHomeTrigger;
+        public Button realClawHomeButton, realClawMidButton, realClawLowButton;
+
 
     @Override
     public void robotInit() {
@@ -80,7 +86,7 @@ public class SharedTeleOp extends MatchOpMode {
             lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
             armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
             carousel = new Carousel(hardwareMap, telemetry);
-            capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
+            capServos = new CapServos(clawServo, capArmServo, realCapArmServo, telemetry, hardwareMap);
 
             //gamepad1.setJoystickDeadzone(0.0f);
             drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
@@ -153,7 +159,7 @@ public class SharedTeleOp extends MatchOpMode {
 
         //Box servos stuff
             upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
-                  .whenPressed(new ManualBoxCommand(armServos, drivetrain));
+                  .whenPressed(new ManualBoxCommand(armServos));
 
         /*resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                 .whenPressed(lift::resetEncoder);*/
@@ -165,6 +171,19 @@ public class SharedTeleOp extends MatchOpMode {
                     .whenPressed(armServos::boxUp));
             intakeClawDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)
                     .whenPressed(armServos::boxDown));
+
+        outRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)
+                .whenPressed(capServos::addToCap));
+        inRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)
+                .whenPressed(capServos::subtractToCap));
+        realClawHomeButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)
+                .whenPressed(capServos::realCapHome));
+        realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X)
+                .whenPressed(capServos::realCapMid));
+        realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B)
+                .whenPressed(capServos::realCapMid));
+        realClawLowButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A)
+                .whenPressed(capServos::realCapLow));
     }
 
     @Override

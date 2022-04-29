@@ -43,7 +43,7 @@ public class BlueTeleOp extends MatchOpMode {
         private ServoEx armServo, dropServo;
         private ServoEx intakeServo;
         private ColorSensor colorSensor;
-        private ServoEx capArmServo, clawServo;
+        private ServoEx capArmServo, clawServo, realCapArmServo;
 
     // Subsystems
         private Drivetrain drivetrain;
@@ -69,6 +69,10 @@ public class BlueTeleOp extends MatchOpMode {
         public Button intakeClawUpButton;
         public Button intakeClawDownButton;
         public Button resetClawServoBumper;
+        public Button outRealCapHomeTrigger;
+        public Button inRealCapHomeTrigger;
+        public Button setRealClawServoHome;
+        public Button realClawHomeButton, realClawMidButton, realClawLowButton;
 
     @Override
     public void robotInit() {
@@ -81,7 +85,7 @@ public class BlueTeleOp extends MatchOpMode {
             lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
             armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
             carousel = new Carousel(hardwareMap, telemetry);
-            capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
+            capServos = new CapServos(clawServo, capArmServo, realCapArmServo, telemetry, hardwareMap);
 
             //gamepad1.setJoystickDeadzone(0.0f);
             drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
@@ -104,6 +108,8 @@ public class BlueTeleOp extends MatchOpMode {
                     .whileHeld(intake::intake).whenReleased(intake::stop));
 
 
+            setRealClawServoHome = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER)
+                    .whenPressed(capServos::realCapHome));
         //Intake Trigger makes bow go down
             /*intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
                     .whileHeld(armServos::armHome).whenReleased(intake::stop));*/
@@ -122,7 +128,6 @@ public class BlueTeleOp extends MatchOpMode {
             liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
                     .whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
 
-        //tf is this shit HELLO
         //reset everything
             resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
                     .whenPressed(new LiftResetCommandT(armServos, lift));
@@ -154,7 +159,7 @@ public class BlueTeleOp extends MatchOpMode {
 
         //Box servos stuff
             upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
-                  .whenPressed(new ManualBoxCommand(armServos, drivetrain));
+                  .whenPressed(new ManualBoxCommand(armServos));
 
         /*resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                 .whenPressed(lift::resetEncoder);*/
@@ -166,6 +171,21 @@ public class BlueTeleOp extends MatchOpMode {
                     .whenPressed(armServos::boxUp));
             intakeClawDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)
                     .whenPressed(armServos::boxDown));
+
+            outRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)
+                    .whenPressed(capServos::addToCap));
+            inRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)
+                    .whenPressed(capServos::subtractToCap));
+            realClawHomeButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)
+                    .whenPressed(capServos::realCapHome));
+            realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X)
+                    .whenPressed(capServos::realCapMid));
+            realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B)
+                .whenPressed(capServos::realCapMid));
+            realClawLowButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A)
+                    .whenPressed(capServos::realCapLow));
+
+
     }
 
     @Override

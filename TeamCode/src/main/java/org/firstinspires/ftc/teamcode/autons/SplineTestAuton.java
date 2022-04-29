@@ -33,7 +33,8 @@ private ServoEx intakeServo;
 private MotorEx liftMotor;
 private CRServo carouselServo;
 private ServoEx dropServo, armServo;
-private ServoEx clawServo, capArmServo;
+private ServoEx capArmServo, realCapArmServo, clawServo;
+
 
 // Gamepad
 private GamepadEx driverGamepad;
@@ -55,7 +56,7 @@ public void robotInit() {
     lift = new Lift(liftMotor, liftMotor, telemetry, hardwareMap);
     armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
     carousel = new Carousel(hardwareMap, telemetry);
-    capServos = new CapServos(clawServo, capArmServo, telemetry, hardwareMap);
+    capServos = new CapServos(clawServo, capArmServo, realCapArmServo, telemetry, hardwareMap);
     //liftMotor = new MotorEx(hardwareMap, "lift");
     sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
 }

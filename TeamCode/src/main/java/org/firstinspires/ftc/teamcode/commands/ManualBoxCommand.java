@@ -14,8 +14,8 @@ import java.time.Instant;
 public class ManualBoxCommand extends SequentialCommandGroup {
     private ArmServos armServos;
 
-    public ManualBoxCommand(ArmServos armServos, Drivetrain drivetrain) {
-        addRequirements(armServos, drivetrain);
+    public ManualBoxCommand(ArmServos armServos) {
+        addRequirements(armServos);
         addCommands(
                 new InstantCommand(armServos::boxClose, armServos),
                 new InstantCommand(armServos::armHalfDrop, armServos)
