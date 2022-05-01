@@ -59,20 +59,6 @@ public void robotInit() {
     sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
 }
 
-@Override
-    /*public void matchStart() {
-        schedule(
-                new SequentialCommandGroup(
-                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel)));
-    }};*/
-/*public void matchStart() {
-    schedule(
-            new SequentialCommandGroup
-                    (
-                   new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos)
-                    ));
-            }};*/
-
 public void matchStart()
     {
         schedule(new SequentialCommandGroup(
@@ -84,6 +70,5 @@ public void matchStart()
                 new TurnCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 50),
                 new TurnCommand(drivetrain, 90)
-
-                ));
-        }};
+        ));
+    }};
