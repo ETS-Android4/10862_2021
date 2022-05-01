@@ -100,7 +100,7 @@ public class CapServos extends SubsystemBase {
     }
 
     public void realCapHome() {
-        setrealCapArmServo(SERVO_HOME_POS);//X
+        setrealCapArmServo(SERVO_HOME_POS);
     }
 
     public void realCapLow() {

@@ -32,157 +32,137 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 @TeleOp(name = "Shared TeleOp")
 public class SharedTeleOp extends MatchOpMode {
     // Gamepads
-    private GamepadEx driverGamepad, operatorGamepad;
+        private GamepadEx driverGamepad, operatorGamepad;
 
-    // Motors and Servos
+        // Motors and Servos
+        private ColorSensor colorSensor;
         private MotorEx leftFront,  leftRear, rightRear,  rightFront;
         private MotorEx liftMotor, liftMotor2;
         private MotorEx intakeMotor;
+
+        private ServoEx intakeServo;
         private CRServo carouselServo;
         private ServoEx armServo, dropServo;
-        private ServoEx intakeServo;
-        private ColorSensor colorSensor;
 
         private ServoEx capArmServo, realCapArmServo, clawServo;
 
-
-    // Subsystems
+        // Subsystems
+        private SensorColor sensorColor;
         private Drivetrain drivetrain;
         private Lift lift;
         private Intake intake;
-        private ArmServos armServos;
         private Carousel carousel;
-        private SensorColor sensorColor;
+        private ArmServos armServos;
         private CapServos capServos;
 
-    //Buttons
+        // Buttons
         private Button intakeTrigger, outtakeTrigger;
         private Button slowModeBumper;
         public Button liftManualUpButton, liftManualDownButton;
         public Button liftLowButton, liftMidButton, liftHighButton;
         public Button carouselRightTrigger, carouselLeftTrigger;
         public Button resetEveryThingButton;
-        public Button dropFreightButton, resetBoxButton, upBoxButton;
-        public Button intakeUpButton, intakeDownButton, intakeMiddleButton;
-        public Button clawOpenButton, clawCloseButton;
-        public Button capArmHighButton;
-        public Button slideResetButton;
+        public Button dropFreightButton, upBoxButton;
         public Button intakeClawUpButton;
         public Button intakeClawDownButton;
-        public Button resetClawServoBumper;
         public Button outRealCapHomeTrigger;
         public Button inRealCapHomeTrigger;
         public Button realClawHomeButton, realClawMidButton, realClawLowButton;
+        private Button slideResetButton;
 
 
     @Override
     public void robotInit() {
-            driverGamepad = new GamepadEx(gamepad1);
-            operatorGamepad = new GamepadEx(gamepad2);
+        driverGamepad = new GamepadEx(gamepad1);    //Used for button config
+        operatorGamepad = new GamepadEx(gamepad2);
 
-            drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
-            drivetrain.init();
-            intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
-            lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
-            armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
-            carousel = new Carousel(hardwareMap, telemetry);
-            capServos = new CapServos(clawServo, capArmServo, realCapArmServo, telemetry, hardwareMap);
+        //Subsystems
+        sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
+        drivetrain = new Drivetrain(new SampleTankDrive(hardwareMap), telemetry);
+        lift = new Lift(liftMotor, liftMotor2, telemetry, hardwareMap);
+        intake = new Intake(intakeMotor, intakeServo, telemetry, hardwareMap);
+        carousel = new Carousel(hardwareMap, telemetry);
+        armServos = new ArmServos(armServo, dropServo, telemetry, hardwareMap);
+        capServos = new CapServos(clawServo, capArmServo, realCapArmServo, telemetry, hardwareMap);
 
-            //gamepad1.setJoystickDeadzone(0.0f);
-            drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
-
-            sensorColor = new SensorColor(hardwareMap, telemetry, "colorSensor");
-            intake.setDefaultCommand(new ColorIntakeCommand(intake, sensorColor, armServos));
+        intake.setDefaultCommand(new ColorIntakeCommand(intake, sensorColor, armServos));   //Color Sensor default command
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));   //Drivetrain default command
+        drivetrain.init();
     }
 
     @Override
     public void configureButtons() {
-
-        //slowmode for the drivetrain
-            slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+        slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))    //Slowmode
                     .whileHeld(new SharedSlowDriveCommand(drivetrain, driverGamepad));
 
-        //intake
-            outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
-                    .whileHeld(intake::outtake).whenReleased(intake::stop));
-            intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                    .whileHeld(intake::intake).whenReleased(intake::stop));
 
 
-        //Intake Trigger makes bow go down
-            /*intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                    .whileHeld(armServos::armHome).whenReleased(intake::stop));*/
-
-        /*//Intake positions
-            intakeUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
-                . whenPressed(intake::servoUp);
-            intakeMiddleButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                . whenPressed(intake::servoMid);
-            intakeDownButton = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                . whenPressed(intake::servoDown);*/
-
-        //lift commands
-            liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-                    .whenPressed(lift::liftManual).whenReleased(lift::stopLift));
-            liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-                    .whenPressed(lift::lowerLiftManual).whenReleased(lift::stopLift));
-
-        //tf is this shit HELLO
-        //reset everything
-            resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
-                    .whenPressed(new LiftResetCommandT(armServos, lift));
-            resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
-                    .whenPressed(new InstantCommand(lift::liftResting, lift));
-            resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
-                    .whenPressed(new InstantCommand(capServos::clawOpen));
-
-        //Lift positions
-            liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                    .whenPressed(lift::liftLow));
-            liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                    .whenPressed(lift::liftMid));
-            liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                    .whenPressed(lift::liftSharedHigh));
-
-        //carousel
-            carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                    .whileHeld(carousel::carouselLeft).whenReleased(carousel::stop));
-            carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
-                    .whileHeld(carousel::carouselRight).whenReleased(carousel::stop));
-
-        //Outtaking the freight motion
-            dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                    .whenPressed(new SharedDropFreightCommand(armServos,drivetrain));
-            /*resetClawServoBumper = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                    .whenPressed(armServos::boxOpen);*/
+        outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)   //Outtake
+                .whileHeld(intake::outtake)
+                .whenReleased(intake::stop));
+        intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)   //Intake
+                .whileHeld(intake::intake)
+                .whenReleased(intake::stop));
 
 
-        //Box servos stuff
-            upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))
-                  .whenPressed(new ManualBoxCommand(armServos));
 
-        /*resetBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whenPressed(lift::resetEncoder);*/
+        liftManualUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)     //Manual Lift Up
+                .whenPressed(lift::liftManual)
+                .whenReleased(lift::stopLift));
+        liftManualDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)    //Manual Lift Down
+                .whenPressed(lift::lowerLiftManual)
+                .whenReleased(lift::stopLift));
 
-        //TODO:Fix the slide reset button
-            //slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK)).whenPressed(() -> reset(liftMotor));
+        //TODO:Fix the slide reset button and test it
+        slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))    //Reset encoders (hopefully)
+                .whenPressed(() -> reset());
 
-            intakeClawUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)
-                    .whenPressed(armServos::boxUp));
-            intakeClawDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)
-                    .whenPressed(armServos::boxDown));
+        resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))  //Resets Lift/Servos
+                .whenPressed(new LiftResetCommandT(armServos, lift))
+                .whenPressed(new InstantCommand(lift::liftResting, lift))
+                .whenPressed(new InstantCommand(capServos::clawOpen));
 
-        outRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)
+        liftLowButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)   //Lift Low
+                .whenPressed(lift::liftLow));
+        liftMidButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)   //Lift Mid
+                .whenPressed(lift::liftMid));
+        liftHighButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)  //Lift Shared High
+                .whenPressed(lift::liftSharedHigh));
+
+        dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight
+                .whenPressed(new SharedDropFreightCommand(armServos,drivetrain));
+        upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))    //Move Lift Box Up
+                .whenPressed(new ManualBoxCommand(armServos));
+
+
+        carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)   //Carousel Left
+                .whileHeld(carousel::carouselLeft)
+                .whenReleased(carousel::stop));
+        carouselRightTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)   //Carousel Right
+                .whileHeld(carousel::carouselRight)
+                .whenReleased(carousel::stop));
+
+
+
+        intakeClawUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)          //Up Intake Claw
+                .whenPressed(armServos::boxUp));
+        intakeClawDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)      //Down Intake Claw
+                .whenPressed(armServos::boxDown));
+
+
+
+        outRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)    //Out Cap Servo
                 .whenPressed(capServos::addToCap));
-        inRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)
+        inRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)      //In Cap Servo
                 .whenPressed(capServos::subtractToCap));
-        realClawHomeButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)
+
+        realClawHomeButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)    //Home
                 .whenPressed(capServos::realCapHome));
-        realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X)
+        realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X)     //Mid
                 .whenPressed(capServos::realCapMid));
-        realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B)
+        realClawMidButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B)     //Mid
                 .whenPressed(capServos::realCapMid));
-        realClawLowButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A)
+        realClawLowButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A)     //Low
                 .whenPressed(capServos::realCapLow));
     }
 
