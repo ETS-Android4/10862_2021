@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommandfor
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-@Disabled
+
 @Config
 @TeleOp(name = "Kid TeleOp")
 public class KidTeleOpSlow extends MatchOpMode {

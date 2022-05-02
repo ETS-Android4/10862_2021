@@ -115,9 +115,8 @@ public class RedTeleOp extends MatchOpMode {
                 .whenPressed(lift::lowerLiftManual)
                 .whenReleased(lift::stopLift));
 
-        //TODO:Fix the slide reset button and test it
         slideResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))    //Reset encoders (hopefully)
-                .whenPressed(() -> reset());
+                .whenPressed(lift::reset);
 
         resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))  //Resets Lift/Servos
                 .whenPressed(new LiftResetCommandT(armServos, lift))

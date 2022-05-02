@@ -222,4 +222,9 @@ public class Lift extends SubsystemBase {
             liftAutoHigh();
         }
     }
+
+    public void reset(){
+        liftMotor.resetEncoder();
+        liftMotor2.resetEncoder();
+    }
 }
