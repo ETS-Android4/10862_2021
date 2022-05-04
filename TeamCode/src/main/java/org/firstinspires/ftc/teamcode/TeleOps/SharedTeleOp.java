@@ -151,9 +151,9 @@ public class SharedTeleOp extends MatchOpMode {
 
 
         outRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)    //Out Cap Servo
-                .whenPressed(capServos::addToCap));
+                .whileHeld(capServos::addToCap));
         inRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)      //In Cap Servo
-                .whenPressed(capServos::subtractToCap));
+                .whileHeld(capServos::subtractToCap));
 
         realClawHomeButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y)    //Home
                 .whenPressed(capServos::realCapHome));

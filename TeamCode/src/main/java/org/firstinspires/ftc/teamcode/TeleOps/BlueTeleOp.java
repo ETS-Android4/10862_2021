@@ -131,7 +131,7 @@ public class BlueTeleOp extends MatchOpMode {
                 .whenPressed(lift::liftSharedHigh));
 
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight
-                .whenPressed(new SharedDropFreightCommand(armServos,drivetrain));
+                .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))    //Move Lift Box Up
                 .whenPressed(new ManualBoxCommand(armServos));
 
@@ -146,14 +146,14 @@ public class BlueTeleOp extends MatchOpMode {
 
 
         intakeClawUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)          //Up Intake Claw
-                .whenPressed(armServos::boxUp));
+                .whileHeld(armServos::boxUp));
         intakeClawDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)      //Down Intake Claw
-                .whenPressed(armServos::boxDown));
+                .whileHeld(armServos::boxDown));
 
 
 
         outRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT)    //Out Cap Servo
-                .whenPressed(capServos::addToCap));
+                .whileHeld(capServos::addToCap));
         inRealCapHomeTrigger = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT)      //In Cap Servo
                 .whenPressed(capServos::subtractToCap));
 

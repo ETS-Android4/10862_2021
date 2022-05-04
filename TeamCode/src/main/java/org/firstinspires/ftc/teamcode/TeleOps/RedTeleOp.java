@@ -131,7 +131,7 @@ public class RedTeleOp extends MatchOpMode {
                 .whenPressed(lift::liftSharedHigh));
 
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight
-                .whenPressed(new SharedDropFreightCommand(armServos,drivetrain));
+                .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))    //Move Lift Box Up
                 .whenPressed(new ManualBoxCommand(armServos));
 
@@ -146,9 +146,9 @@ public class RedTeleOp extends MatchOpMode {
 
 
         intakeClawUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)          //Up Intake Claw
-                .whenPressed(armServos::boxUp));
+                .whileHeld(armServos::boxUp));
         intakeClawDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)      //Down Intake Claw
-                .whenPressed(armServos::boxDown));
+                .whileHeld(armServos::boxDown));
 
 
 
