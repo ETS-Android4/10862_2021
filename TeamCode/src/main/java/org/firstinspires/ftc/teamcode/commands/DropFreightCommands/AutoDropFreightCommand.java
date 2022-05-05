@@ -9,14 +9,12 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 public class AutoDropFreightCommand extends SequentialCommandGroup {
     private ArmServos armServos;
-
     public AutoDropFreightCommand(ArmServos armServos, Drivetrain drivetrain){
         addRequirements(armServos, drivetrain);
         addCommands(
-                //new WaitCommand(50),
                 new InstantCommand(armServos::boxAutoPush),
                 new WaitCommand(50)
-                );
+        );
     }
 
 }

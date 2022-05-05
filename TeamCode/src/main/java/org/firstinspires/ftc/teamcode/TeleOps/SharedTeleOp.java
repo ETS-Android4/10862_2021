@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SharedSlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DropFreightCommands.SharedDropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.LiftCommands.LiftResetCommandT;
-import org.firstinspires.ftc.teamcode.commands.ManualBoxCommand;
+import org.firstinspires.ftc.teamcode.commands.HalfDropCommandT;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
@@ -131,7 +131,7 @@ public class SharedTeleOp extends MatchOpMode {
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight
                 .whenPressed(new SharedDropFreightCommand(armServos,drivetrain));
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))    //Move Lift Box Up
-                .whenPressed(new ManualBoxCommand(armServos));
+                .whenPressed(new HalfDropCommandT(armServos));
 
 
         carouselLeftTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)   //Carousel Left

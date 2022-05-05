@@ -14,7 +14,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -89,13 +88,13 @@ public class CBlueWarehouseAuton extends MatchOpMode {
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
                             //Low
                             new InstantCommand(capServos::autoLow),
-                            new SplineCommand(drivetrain, new Vector2d(24.7,   -20.5), Math.toRadians(0)),
+                            new SplineCommand(drivetrain, new Vector2d(22,   -18.5), Math.toRadians(360)),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                             //Mid
                             new InstantCommand(capServos::autoMid),
-                            new SplineCommand(drivetrain, new Vector2d(23, -19), Math.toRadians(0)),
+                            new SplineCommand(drivetrain, new Vector2d(21, -19), Math.toRadians(0)),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(

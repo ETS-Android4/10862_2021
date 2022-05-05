@@ -5,7 +5,6 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
@@ -14,9 +13,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
@@ -89,47 +85,20 @@ public class CRedCarouselAuton extends MatchOpMode {
                             //Low
                             new YRedCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos),
                             new InstantCommand(capServos::autoLow),
-                            new DriveForwardCommand(drivetrain, 25),
-                            new CapArmCarouselCommand(capServos, drivetrain),
-
-                            new TurnToCommand(drivetrain, 90),
-                            new DriveForwardCommand(drivetrain, 15),
-                            new TurnToCommand(drivetrain, 180),
-                            new DriveForwardCommand(drivetrain, 12),
-
-                            new TurnToCommand(drivetrain, 270),
-                            new DriveForwardCommand(drivetrain, -5))
-                    );
+                            new YRedCarouselEndCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos)
+                    ));
                     put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup(
                             //Mid
                             new YRedCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos),
                             new InstantCommand(capServos::autoMid),
-                            new DriveForwardCommand(drivetrain, 25),
-                            new CapArmCarouselCommand(capServos, drivetrain),
-
-                            new TurnToCommand(drivetrain, 90),
-                            new DriveForwardCommand(drivetrain, 15),
-                            new TurnToCommand(drivetrain, 180),
-                            new DriveForwardCommand(drivetrain, 12),
-
-                            new TurnToCommand(drivetrain, 270),
-                            new DriveForwardCommand(drivetrain, -5))
-                    );
+                            new YRedCarouselEndCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos)
+                    ));
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                             //High
                             new YRedCarouselCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos),
                             new InstantCommand(capServos::autoHigh),
-                            new DriveForwardCommand(drivetrain, 25),
-                            new CapArmCarouselCommand(capServos, drivetrain),
-
-                            new TurnToCommand(drivetrain, 90),
-                            new DriveForwardCommand(drivetrain, 15),
-                            new TurnToCommand(drivetrain, 180),
-                            new DriveForwardCommand(drivetrain, 12),
-
-                            new TurnToCommand(drivetrain, 270),
-                            new DriveForwardCommand(drivetrain, -10 ))
-                    );
+                            new YRedCarouselEndCommand(drivetrain, intake, lift, armServos, carousel, sensorColor, capServos)
+                    ));
                 }}, vision::getCurrentPosition)
         );
 

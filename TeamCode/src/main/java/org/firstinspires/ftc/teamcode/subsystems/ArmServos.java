@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
@@ -24,7 +23,7 @@ public class ArmServos extends SubsystemBase {
     public static double SERVO_POSITION_ARM_SHARED = 1;
 
     public static double SERVO_POSITION_BOX_OPEN = 0.45;
-    public static double SERVO_POSITION_BOX_AUTO_PUSH = 0.15;
+    public static double SERVO_POSITION_BOX_AUTO_PUSH = 0.12;
     public static double SERVO_POSITION_BOX_PUSH = 0.1;
     public static double SERVO_POSITION_BOX_CLOSE = 0.624;
 
