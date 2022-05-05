@@ -1,10 +1,7 @@
 package org.firstinspires.ftc.teamcode.autons.lmchamp.red.Carousel;
 
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
-import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
@@ -34,7 +31,7 @@ public class YRedCarouselCommand extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, 35),
 
 
-                new TurnToCommand(drivetrain, 280, true)
+                new TurnToCommand(drivetrain, 280, false)
                 );
     }
 }
