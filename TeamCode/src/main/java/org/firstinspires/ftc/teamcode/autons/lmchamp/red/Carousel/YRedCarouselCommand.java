@@ -31,7 +31,7 @@ public class YRedCarouselCommand extends SequentialCommandGroup {
                 new DriveForwardCommand(drivetrain, 35),
 
 
-                new TurnToCommand(drivetrain, 280, false)
+                new TurnToCommand(drivetrain, 266, false)
                 );
     }
 }
