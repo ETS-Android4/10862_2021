@@ -17,16 +17,18 @@ public class YRedCarouselEndCommand extends SequentialCommandGroup {
     public YRedCarouselEndCommand(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
 
         addCommands(
-                new DriveForwardCommand(drivetrain, 26.5),
+                new TurnToCommand(drivetrain, -90, true),
+
+                new DriveForwardCommand(drivetrain, 23.5),
                 new CapArmCarouselCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 90, false),
-                new DriveForwardCommand(drivetrain, 15),
+                new DriveForwardCommand(drivetrain, 18),
                 new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 12),
+                new DriveForwardCommand(drivetrain, 16),
 
                 new TurnToCommand(drivetrain, 268),
-                new DriveForwardCommand(drivetrain, -10)
+                new DriveForwardCommand(drivetrain, -16)
                 );
     }
 }

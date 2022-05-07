@@ -19,7 +19,7 @@ public class YRedCarouselCommand extends SequentialCommandGroup {
 
         addCommands(
                 new DriveForwardCommand(drivetrain,10),
-                new TurnToCommand(drivetrain, 90),
+                new TurnToCommand(drivetrain, 90, true),
                 new DriveForwardCommand(drivetrain, 20),
                 new TurnToCommand(drivetrain, 130),
 
@@ -27,11 +27,9 @@ public class YRedCarouselCommand extends SequentialCommandGroup {
                 new KindaSlowDriveForwardCommand(drivetrain, 4),
                 new RightCarouselCommand(carousel, drivetrain),
 
+                new DriveForwardCommand(drivetrain, -4),
                 new TurnToCommand(drivetrain, 360, true),
-                new DriveForwardCommand(drivetrain, 35),
-
-
-                new TurnToCommand(drivetrain, 266, false)
+                new DriveForwardCommand(drivetrain, 33)
                 );
     }
 }

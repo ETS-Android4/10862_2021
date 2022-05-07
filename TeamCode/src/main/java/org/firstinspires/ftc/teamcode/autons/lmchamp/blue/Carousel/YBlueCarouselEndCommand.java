@@ -18,14 +18,17 @@ public class YBlueCarouselEndCommand extends SequentialCommandGroup {
     public YBlueCarouselEndCommand(Drivetrain drivetrain, Intake intake, Lift lift, ArmServos armServos, Carousel carousel, SensorColor sensorColor, CapServos capServos) {
 
         addCommands(
+
+                new TurnToCommand(drivetrain, 90, true),
                 new WaitCommand(150),
-                new DriveForwardCommand(drivetrain, 23.5),
+                new DriveForwardCommand(drivetrain, 24.2),
+                new TurnToCommand(drivetrain, 113),
                 new CapArmCarouselCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 270),
                 new DriveForwardCommand(drivetrain, 16.5),
                 new TurnToCommand(drivetrain, 180),
-                new DriveForwardCommand(drivetrain, 7.5),
+                new DriveForwardCommand(drivetrain, 9),
 
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, -7)

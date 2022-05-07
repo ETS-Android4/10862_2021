@@ -15,10 +15,10 @@ import java.util.logging.Level;
 @Config
 public class CapServos extends SubsystemBase {
 
-    public static double SERVO_POSITION_AUTO_LOW = 0.88;
-    public static double SERVO_POSITION_AUTO_MID = 0.77;
-    public static double SERVO_POSITION_AUTO_HIGH = 0.65;
-    public static double SERVO_POSITION_AUTO_HOME = 0.185;
+    public static double SERVO_POSITION_AUTO_LOW = 0.95;
+    public static double SERVO_POSITION_AUTO_MID = 0.82;
+    public static double SERVO_POSITION_AUTO_HIGH = 0.64;
+    public static double SERVO_POSITION_AUTO_HOME = 0.195;
 
     public static double SERVO_POSITION_AUTO_OPEN = 0.38;
     public static double SERVO_POSITION_AUTO_CLOSE = 0.84;
