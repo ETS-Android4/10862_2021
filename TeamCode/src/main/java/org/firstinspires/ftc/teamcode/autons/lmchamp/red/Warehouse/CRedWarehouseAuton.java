@@ -14,9 +14,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmHighCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmLowCommand;
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
@@ -33,7 +30,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-@Autonomous(name = "CRed Warehouse", group = "BLUE", preselectTeleOp = "Blue TeleOp")
+@Autonomous(name = "CRed Warehouse", group = "BLUE", preselectTeleOp = "Red TeleOp")
 public class CRedWarehouseAuton extends MatchOpMode {
 public static double startPoseX = 0;
 public static double startPoseY = 0;

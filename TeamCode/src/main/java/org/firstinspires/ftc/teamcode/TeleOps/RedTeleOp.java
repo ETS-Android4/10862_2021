@@ -130,6 +130,8 @@ public class RedTeleOp extends MatchOpMode {
 
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight
                 .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
+        dropFreightButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight Driver
+                .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))    //Move Lift Box Up
                 .whenPressed(new HalfDropCommandT(armServos));
 

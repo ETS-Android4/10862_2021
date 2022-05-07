@@ -4,9 +4,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
-import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ArmServos;
 import org.firstinspires.ftc.teamcode.subsystems.CapServos;
@@ -21,7 +19,7 @@ public class YBlueCarouselEndCommand extends SequentialCommandGroup {
 
         addCommands(
                 new WaitCommand(150),
-                new DriveForwardCommand(drivetrain, 23),
+                new DriveForwardCommand(drivetrain, 23.5),
                 new CapArmCarouselCommand(capServos, drivetrain),
 
                 new TurnToCommand(drivetrain, 270),

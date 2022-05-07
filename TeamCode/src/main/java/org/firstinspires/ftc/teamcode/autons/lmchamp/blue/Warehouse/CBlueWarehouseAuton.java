@@ -100,7 +100,7 @@ public class CBlueWarehouseAuton extends MatchOpMode {
                     put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
                             //High
                             new InstantCommand(capServos::autoHigh),
-                            new SplineCommand(drivetrain, new Vector2d(22,   -18.5), Math.toRadians(0)),
+                            new SplineCommand(drivetrain, new Vector2d(22.5,   -18.5), Math.toRadians(0)),
                             new CBlueWarehouseCommand(drivetrain, intake, lift, armServos, sensorColor, capServos))
                     );
                 }}, vision::getCurrentPosition)

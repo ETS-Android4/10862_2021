@@ -5,12 +5,9 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Util;
 
 import java.util.logging.Level;
@@ -21,14 +18,14 @@ public class CapServos extends SubsystemBase {
     public static double SERVO_POSITION_AUTO_LOW = 0.88;
     public static double SERVO_POSITION_AUTO_MID = 0.77;
     public static double SERVO_POSITION_AUTO_HIGH = 0.65;
-    public static double SERVO_POSITION_AUTO_HOME = 0.16;
+    public static double SERVO_POSITION_AUTO_HOME = 0.185;
 
     public static double SERVO_POSITION_AUTO_OPEN = 0.38;
     public static double SERVO_POSITION_AUTO_CLOSE = 0.84;
 
-    public static double SERVO_HOME_POS = 0;
-    public static double SERVO_MID_POS = 0.08;
-    public static double SERVO_LOW_POS = 0.23;
+    public static double SERVO_HOME_POS = 0.01;
+    public static double SERVO_MID_POS = 0.048;
+    public static double SERVO_LOW_POS = 0.24;
 
 
 
@@ -58,6 +55,7 @@ public class CapServos extends SubsystemBase {
 
         this.capArmServo.setPosition(SERVO_POSITION_AUTO_HOME);
         this.clawServo.setPosition(SERVO_POSITION_AUTO_CLOSE);
+
         this.realCapArmServo.setPosition(SERVO_HOME_POS);
     }
 

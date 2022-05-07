@@ -1,12 +1,8 @@
 package org.firstinspires.ftc.teamcode.autons.lmchamp.blue.Carousel;
 
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
-import org.firstinspires.ftc.teamcode.commands.CapArmCommands.CapArmCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.CarouselCommand.LeftCarouselCommand;
-import org.firstinspires.ftc.teamcode.commands.CarouselCommand.RightCarouselCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.KindaSlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
@@ -23,7 +19,7 @@ public class YBlueCarouselCommand extends SequentialCommandGroup {
 
         addCommands(
                 new DriveForwardCommand(drivetrain,10),
-                new TurnToCommand(drivetrain, 270),
+                new TurnToCommand(drivetrain, -90, false),
                 new DriveForwardCommand(drivetrain, 16),
                 new TurnToCommand(drivetrain, 208),
 

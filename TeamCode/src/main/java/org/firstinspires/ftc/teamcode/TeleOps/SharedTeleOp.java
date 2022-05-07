@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
+import org.firstinspires.ftc.teamcode.commands.DropFreightCommands.TeleOpDropFreightCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommands.ColorIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SharedSlowDriveCommand;
@@ -130,6 +131,8 @@ public class SharedTeleOp extends MatchOpMode {
 
         dropFreightButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight
                 .whenPressed(new SharedDropFreightCommand(armServos,drivetrain));
+        dropFreightButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))    //Outtake Freight Driver
+                .whenPressed(new TeleOpDropFreightCommand(armServos,drivetrain));
         upBoxButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A))    //Move Lift Box Up
                 .whenPressed(new HalfDropCommandT(armServos));
 
